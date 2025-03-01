@@ -34,12 +34,13 @@ RUN chmod -R 777 storage bootstrap/cache
 # Install Node.js dan npm
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
+    cd /var/www \
     npm cache clean --force && \
     rm -rf node_modules package-lock.json && \
     npm install && \
     npm install --save-dev vite && \
     npm rebuild esbuild && \
-    ./node_modules/.bin/vite build
+    npm run build && \
 
 # Jalankan entrypoint script
 ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
