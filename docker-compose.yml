@@ -24,17 +24,17 @@ services:
       - DB_PORT=3306
       - DB_DATABASE=elibrary
       - DB_USERNAME=elibrary
-      - DB_PASSWORD=elibrary2025
+      - DB_PASSWORD=Elibrary2025!
 
   db:
     image: mysql:8
     container_name: laravel_db
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=elibrary2025
+      - MYSQL_ROOT_PASSWORD=Elibrary2025!
       - MYSQL_DATABASE=elibrary
       - MYSQL_USER=elibrary
-      - MYSQL_PASSWORD=elibrary2025
+      - MYSQL_PASSWORD=Elibrary2025!
     ports:
       - "3306:3306"
     networks:
@@ -63,7 +63,7 @@ services:
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306
-      - MYSQL_ROOT_PASSWORD=elibrary2025
+      - MYSQL_ROOT_PASSWORD=Elibrary2025!
     ports:
       - "8080:80"
     depends_on:
