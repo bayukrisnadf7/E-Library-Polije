@@ -37,9 +37,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     npm cache clean --force && \
     rm -rf node_modules package-lock.json && \
     npm install && \
-    npm install --save-dev vite && \   # Pastikan Vite keinstall
+    npm install --save-dev vite && \
     npm rebuild esbuild && \
-    ./node_modules/.bin/vite build  # Pakai path eksplisit untuk Vite
+    ./node_modules/.bin/vite build
 
 # Jalankan entrypoint script
 ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
