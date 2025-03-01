@@ -1,58 +1,33 @@
-# Pakai base image PHP 8.4 + Nginx
+# Pakai PHP 8.4 dengan FPM
 FROM php:8.4-fpm
 
-# Install dependensi tambahan (MySQL, unzip, dll.)
+# Install dependencies
 RUN apt-get update && apt-get install -y \
-    nginx \
-    zip \
-    unzip \
-    git \
-    curl \
-    mariadb-client \
-    && docker-php-ext-install pdo_mysql
+    git unzip curl libpng-dev libonig-dev libxml2-dev zip \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Set workdir ke /var/www/html
 WORKDIR /var/www/html
 
 # Copy semua file Laravel ke dalam container
 COPY . .
 
-# Copy default Nginx config
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
-# Beri permission ke storage & bootstrap cache
+# Set file permissions
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage \
-    && chmod -R 775 /var/www/html/bootstrap/cache
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy .env-example jadi .env
+# Copy env file
 RUN cp .env.example .env
 
-# Install dependencies Laravel
-RUN composer install --no-dev --optimize-autoloader
+# Install dependency Laravel & generate key
+RUN composer install --no-dev --optimize-autoloader \
+    && php artisan key:generate
 
-# Generate APP_KEY
-RUN php artisan key:generate
+# Migrate database dan seeding (otomatis)
+RUN php artisan migrate --force && php artisan db:seed --force
 
-# Jalankan migrasi & seeder (jika ada)
-RUN php artisan migrate --force
-
-# Jalankan supervisor buat worker queue (opsional)
-RUN apt-get install -y supervisor && \
-    echo "[program:laravel-worker]
-command=php /var/www/html/artisan queue:work --tries=3
-autostart=true
-autorestart=true
-user=www-data
-numprocs=1
-redirect_stderr=true
-stdout_logfile=/var/www/html/storage/logs/worker.log" > /etc/supervisor/conf.d/laravel-worker.conf
-
-# Expose port 80 buat Nginx
-EXPOSE 80
-
-# Jalankan Nginx & PHP-FPM
-CMD service nginx start && php-fpm
+# Jalankan PHP-FPM
+CMD ["php-fpm"]
