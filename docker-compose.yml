@@ -8,6 +8,17 @@ services:
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
+    environment:
+      APP_ENV: production
+      APP_KEY: base64:YOUR_GENERATED_APP_KEY
+      APP_DEBUG: "false"
+      APP_URL: http://localhost
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: root
+      DB_PASSWORD: secret
     depends_on:
       - db
     networks:
@@ -19,7 +30,23 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - laravel
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: secret
+    depends_on:
+      - db
     networks:
       - laravel
 
@@ -39,3 +66,6 @@ services:
 
 networks:
   laravel:
+
+volumes:
+  mysql_data:
