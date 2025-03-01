@@ -25,11 +25,11 @@ WORKDIR /var/www
 COPY . .
 
 # Copy entrypoint.sh ke root container dan beri izin eksekusi
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 # Beri permission ke storage dan bootstrap/cache agar bisa ditulis
 RUN chmod -R 777 storage bootstrap/cache
 
 # Jalankan entrypoint script
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
