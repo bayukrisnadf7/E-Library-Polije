@@ -2,8 +2,9 @@
 
 # Tunggu database MySQL siap
 echo "Menunggu database MySQL..."
-while ! mysqladmin ping -h db --silent; do
+while ! nc -z db 3306; do
   sleep 1
+  echo "Menunggu database MySQL..."
 done
 echo "Database MySQL siap!"
 
