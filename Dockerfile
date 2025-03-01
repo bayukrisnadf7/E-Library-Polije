@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set workdir ke dalam folder project Laravel
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 # Copy semua file ke dalam container
 COPY . .
