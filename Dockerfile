@@ -1,33 +1,34 @@
-# Pakai PHP 8.4 dengan FPM
+# Gunakan base image PHP + Nginx
 FROM php:8.4-fpm
 
-# Install dependencies
+# Install dependensi yang diperlukan
 RUN apt-get update && apt-get install -y \
-    git unzip curl libpng-dev libonig-dev libxml2-dev zip \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    libonig-dev \
+    libxml2-dev \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set workdir ke /var/www/html
+# Set working directory
 WORKDIR /var/www/html
 
-# Copy semua file Laravel ke dalam container
+# Copy project Laravel
 COPY . .
 
-# Set file permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Copy dan set permission entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Copy env file
-RUN cp .env.example .env
+# Expose port
+EXPOSE 9000
 
-# Install dependency Laravel & generate key
-RUN composer install --no-dev --optimize-autoloader \
-    && php artisan key:generate
-
-# Migrate database dan seeding (otomatis)
-RUN php artisan migrate --force && php artisan db:seed --force
-
-# Jalankan PHP-FPM
-CMD ["php-fpm"]
+# Jalankan entrypoint script
+ENTRYPOINT ["/entrypoint.sh"]
