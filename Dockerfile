@@ -3,6 +3,7 @@ FROM php:8.4-fpm
 
 # Install dependensi yang diperlukan
 RUN apt-get update && apt-get install -y \
+    netcat \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
