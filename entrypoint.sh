@@ -28,5 +28,11 @@ php artisan migrate --force
 # Beri permission storage & cache
 chmod -R 777 storage bootstrap/cache
 
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+# npm install --save-dev vite
+# ./node_modules/.bin/vite build
+
 # Jalankan PHP-FPM
 exec php-fpm
