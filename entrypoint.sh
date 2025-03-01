@@ -1,29 +1,29 @@
 #!/bin/sh
 
-# Tunggu database siap
-echo "Menunggu database..."
-until nc -z -v -w30 db 3306
-do
-  echo "Database belum siap. Menunggu..."
-  sleep 5
+# Tunggu database MySQL siap
+echo "Menunggu database MySQL..."
+while ! mysqladmin ping -h db --silent; do
+  sleep 1
 done
-echo "Database siap!"
+echo "Database MySQL siap!"
 
-# Copy .env.example jadi .env kalau belum ada
-if [ ! -f ".env" ]; then
-  echo "Membuat .env dari .env.example"
-  cp .env.example .env
+# Install dependency Laravel
+composer install --no-interaction --optimize-autoloader
+
+# Copy .env-example jadi .env kalau belum ada
+if [ ! -f .env ]; then
+    cp .env.example .env
 fi
 
 # Generate key Laravel
 php artisan key:generate
 
-# Jalankan migration & seeder
+# Migrate dan seed database
 php artisan migrate --force
 php artisan db:seed --force
 
-# Jalankan queue worker (opsional, kalau pakai queue)
-php artisan queue:work &
+# Beri permission storage & cache
+chmod -R 777 storage bootstrap/cache
 
-# Start PHP-FPM
-exec "$@"
+# Jalankan PHP-FPM
+exec php-fpm
