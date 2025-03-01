@@ -18,10 +18,12 @@ fi
 
 # Generate key Laravel
 php artisan key:generate
+php artisan config:clear
+php artisan config:cache
 
 # Migrate dan seed database
 php artisan migrate --force
-php artisan db:seed --force
+#php artisan db:seed --force
 
 # Beri permission storage & cache
 chmod -R 777 storage bootstrap/cache
