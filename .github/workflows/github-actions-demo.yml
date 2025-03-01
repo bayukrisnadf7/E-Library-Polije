@@ -17,5 +17,5 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: sudo apt-get update
-      - run: apt-get install -y neofetch
+      - run: sudo apt-get install -y neofetch
       - run: neofetch
