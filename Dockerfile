@@ -34,7 +34,10 @@ RUN chmod -R 777 storage bootstrap/cache && chmod -R 775 /var/www/html/storage
 # Install Node.js dan npm
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
+    npm cache clean --force && \
+    rm -rf node_modules package-lock.json && \
     npm install && \
+    npm rebuild esbuild && \
     npm run build
 
 # Jalankan entrypoint script
