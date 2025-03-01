@@ -32,4 +32,4 @@ RUN chmod +x ./entrypoint.sh
 RUN chmod -R 777 storage bootstrap/cache
 
 # Jalankan entrypoint script
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
