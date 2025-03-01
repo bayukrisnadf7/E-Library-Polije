@@ -24,23 +24,22 @@ WORKDIR /var/www
 # Copy semua file ke dalam container
 COPY . .
 
-# Copy entrypoint.sh ke root container dan beri izin eksekusi
-COPY entrypoint.sh ./entrypoint.sh
-RUN chmod +x ./entrypoint.sh
-
 # Beri permission ke storage dan bootstrap/cache agar bisa ditulis
 RUN chmod -R 777 storage bootstrap/cache
 
 # Install Node.js dan npm
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
-    cd /var/www \
     npm cache clean --force && \
     rm -rf node_modules package-lock.json && \
     npm install && \
     npm install --save-dev vite && \
     npm rebuild esbuild && \
-    npm run build && \
+    npm run build
+
+# Copy entrypoint.sh ke root container dan beri izin eksekusi
+COPY entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 # Jalankan entrypoint script
 ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
