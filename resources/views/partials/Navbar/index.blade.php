@@ -1,33 +1,38 @@
-<div class="flex justify-center p-5 items-center gap-16">
-    <img src="img/logo.png" alt="">
-    <ul class="flex gap-12">
-        <li
-            class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
-            Beranda
-        </li>
-        <li
-            class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
-            Layanan
-        </li>
-        <li
-            class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
-            Artikel
-        </li>
-        <li
-            class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
-            Berita
-        </li>
-        <li
-            class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
-            Tentang
-        </li>
-        <li
-            class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
-            Hubungi Kami
-        </li>
-    </ul>
-
-    <button id="open-modal" class="bg-[#334B48] px-5 py-2 text-white w-48 rounded-xl">Login/Daftar</button>
+<div class="bg-[#F8F5FC]">
+    <div class="flex justify-between items-center p-5 mx-20">
+        <div class="flex items-center gap-5">
+            <img src="img/logo.png" alt="">
+            <ul class="flex gap-12">
+                <li
+                    class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                    Beranda
+                </li>
+                <li
+                    class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                    Layanan
+                </li>
+                <li
+                    class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                    Artikel
+                </li>
+                <li
+                    class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                    Berita
+                </li>
+                <li
+                    class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                    Tentang
+                </li>
+                <li
+                    class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                    Hubungi Kami
+                </li>
+            </ul>
+    
+        </div>
+    
+        <button id="open-modal" class="bg-[#3694A8] px-5 py-2 text-white w-48 rounded-xl">Masuk/Daftar</button>
+    </div>
 </div>
 
 
@@ -51,11 +56,13 @@
                 <form class="space-y-4">
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-                        <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded-lg" required />
+                        <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded-lg"
+                            required />
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your password</label>
-                        <input type="password" id="password" class="w-full p-2 border border-gray-300 rounded-lg" required />
+                        <input type="password" id="password" class="w-full p-2 border border-gray-300 rounded-lg"
+                            required />
                     </div>
                     <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded-lg">Login</button>
                 </form>
@@ -65,7 +72,7 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const modal = document.getElementById("authentication-modal");
         const backdrop = document.getElementById("modal-backdrop");
         const openModalBtn = document.getElementById("open-modal");

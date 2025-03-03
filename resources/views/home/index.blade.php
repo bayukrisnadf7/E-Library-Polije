@@ -1,38 +1,36 @@
 @extends('main')
 
 @section('content')
-    <div class="mx-24">
+    <div class="">
         {{-- Section 1 Start --}}
-        <div class="relative ">
-            <img src="img/carousel.png" alt="Gambar" class="w-full">
-            <p class="absolute left-24 text-white top-32 text-5xl font-bold">Perpustakaan</p>
-            <p class="absolute left-24 text-white top-48 text-5xl font-bold" style="word-spacing: 5px;">
-                Politeknik Negeri Jember
-            </p>
-            <p class="absolute left-24 text-white top-64 max-w-3xl">Sebagai salah satu sarana penunjang akademik memiliki
-                peran
-                cukup strategis dalam penyediaan informasi
-                perkembangan ilmu pengetahuan bagi pengguna dilingkungan civitas akademika Politeknik Negeri Jember.
-                Perpustakaan sebagai bagian selalu berupaya untuk memberikan yang terbaik sesuai motto kami untuk menjadi
-                One
-                Stop Information Service Provider dalam hal pemenuhan kebutuhan informasi yang dapat menunjang pelaksanaan
-                akademis di Politeknik Negeri Jember.</p>
-            <button
-                class="absolute left-24 text-white top-96 bg-gradient-to-r from-[#40E0D0] to-[#5A92DE] px-8 py-3 rounded-xl mt-10 font-bold">
-                Peminjaman Buku
-            </button>
-            <button
-                class="absolute right-2.5 bottom-3.5 bg-white rounded-tl-xl rounded-br-xl flex gap-10 justify-center w-1/5 p-5 shadow-lg">
-                Hubungi Kami
-                <img src="img/navigation-03.png" alt="">
-            </button>
+        <div class="bg-[#F8F5FC] min-h-screen">
+            <div class="flex justify-between">
+                <div class="text-[#2A1D43] flex flex-col gap-8 w-full p-28">
+                    <div class="flex flex-col gap-5">
+                        <p class="text-5xl font-bold">Perpustakaan</p>
+                        <p class="text-5xl font-bold">Politeknik Negeri Jember</p>
+                    </div>
+                    <p class="text-lg max-w-3xl">Sebagai salah satu sarana penunjang akademik memiliki peran cukup strategis dalam penyediaan
+                        informasi perkembangan ilmu pengetahuan bagi pengguna dilingkungan civitas akademika Politeknik
+                        Negeri Jember. Perpustakaan sebagai bagian selalu berupaya untuk memberikan yang terbaik sesuai
+                        motto kami untuk menjadi One Stop Information Service Provider dalam hal pemenuhan kebutuhan
+                        informasi yang dapat menunjang pelaksanaan akademis di Politeknik Negeri Jember.</p>
+                        <div class="flex gap-5">
+                            <button class="bg-[#3694A8] px-5 py-3 text-white w-48 rounded-xl flex gap-2 justify-center font-bold items-center">Pinjam Buku <img src="img/Vector (4).png" alt="" class="bg-white p-2 rounded-full"></button>
+                            <button class="bg-transparent px-5 py-3 text-black w-52 rounded-xl flex gap-2 font-bold items-center justify-center relative cursor-pointer hover:text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-black hover:after:w-full after:transition-all after:duration-300">Hubungi Kami<img src="img/Vector (5).png" alt="" class="bg-black p-2 rounded-full"></button>
+                        </div>
+                </div>
+                <img src="img/section-1.svg" alt="Gambar" class="" width="43%">
+            </div>
         </div>
         {{-- Section 1 End --}}
 
         {{-- Section 2 Start --}}
         <div class="mt-10 mb-10">
             <div class="flex">
-                <input type="text" class="w-full focus:outline-none shadow-xl rounded-s-xl px-5 py-5" placeholder="Cari Buku...">
+                <input type="text" class="w-full inset-shadow-sm shadow-xl rounded-s-xl px-5 py-5 border-none focus:b"
+                    placeholder="Cari Buku...">
+
                 <button class="bg-[#334B48] px-5 py-2 rounded-e-xl w-24">
                     <img src="img/search.png" alt="" class="mx-auto">
                 </button>
@@ -222,33 +220,3 @@
 
     {{-- Section 4 End --}}
 @endsection
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        new Swiper(".swiper", {
-            slidesPerView: 1, // Bisa diubah ke 2 atau lebih
-            spaceBetween: 20,
-            loop: true, // Agar slider berulang terus
-            autoplay: {
-                delay: 3000, // Waktu pergantian slide dalam milidetik (3 detik)
-                disableOnInteraction: false, // Autoplay tetap berjalan meskipun user berinteraksi
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2
-                },
-                1024: {
-                    slidesPerView: 4
-                },
-            }
-        });
-    });
-</script>
