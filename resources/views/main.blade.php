@@ -21,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 
 </html>
