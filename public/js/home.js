@@ -27,3 +27,29 @@ document.addEventListener("DOMContentLoaded", function() {
      });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    new Swiper(".mySwiper", {
+        slidesPerView: 1, // Bisa diubah ke 2 atau lebih
+        spaceBetween: 10,
+        loop: true, // Aktifkan looping
+        loopAdditionalSlides: 1, // Pastikan looping lebih mulus
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 5 },
+        }
+    });
+});
+
+
