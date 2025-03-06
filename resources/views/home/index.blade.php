@@ -51,9 +51,8 @@
                 <p>Layanan</p>
                 <hr class="w-[110px] border-t-4 border-[#5B9BC1] mt-2">
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center gap-2 mt-10 md:mx-28">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center mx-auto gap-2 mt-10 md:mx-28">
                 <button class="flex flex-col gap-2 group max-w-[200px] text-center">
-
                     <img src="img/APA AJA PKM (13).png" alt="">
                     <div class="flex flex-col gap-1 text-center font-bold">
                         <p>Usulan Bahan</p>
@@ -76,7 +75,7 @@
                         <hr class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
                     </div>
                 </button>
-                <button class="flex flex-col gap-2 group">
+                <button class="flex flex-col gap-2 group max-w-[200px]">
                     <img src="img/sipora.png" alt="">
                     <div class="flex flex-col gap-1 text-center font-bold">
                         <p>SIPORA</p>
@@ -169,7 +168,7 @@
 
         {{-- Section 3 Start --}}
         <div class="md:mt-20 mt-10">
-            <div class="bg-[#F8F5FC] min-h-screen">
+            <div class="bg-[#F8F5FC] max-h-max">
                 <div class="flex flex-col md:gap-10 gap-5 md:mx-20 mx-5">
                     <p class="text-2xl text-center font-bold text-[#2A1D43] mt-10">Langkah Kami untuk Masa Depan
                         Literasi</p>
