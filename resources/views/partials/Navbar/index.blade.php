@@ -125,12 +125,12 @@
 <!-- Main modal -->
 <div id="authentication-modal" tabindex="-1" aria-hidden="true"
     class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full">
-    <div class="relative p-4 w-full max-w-md bg-white rounded-lg shadow-md">
+    <div class="relative p-4 w-full md:max-w-md max-w-[350px] bg-white rounded-lg shadow-md">
         <!-- Modal content -->
         <div class="relative">
             <!-- Modal header -->
             <img src="img/logopol 1.png" alt="" class="absolute -top-16 left-1/2 -translate-x-1/2 w-[100px]">
-            <button type="button" id="close-modal" class="relative -top-1 left-96 text-gray-400 hover:bg-gray-200 rounded-lg w-10 h-10">
+            <button type="button" id="close-modal" class="relative -top-1 md:left-96 left-[88%] text-gray-400 hover:bg-gray-200 rounded-lg w-10 h-10">
                 ✖
             </button>
             <div class="flex items-center justify-center p-4 md:p-5 border-b border-gray-200">

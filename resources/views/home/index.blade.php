@@ -51,33 +51,32 @@
                 <p>Layanan</p>
                 <hr class="w-[110px] border-t-4 border-[#5B9BC1] mt-2">
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center mx-auto gap-2 mt-10 md:mx-28">
-                <button class="flex flex-col gap-2 group max-w-[200px] text-center">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center mx-auto gap-10 mt-10 md:mx-28">
+                <button class="flex flex-col justify-center gap-2 group text-center w-[200px]">
                     <img src="img/APA AJA PKM (13).png" alt="">
-                    <div class="flex flex-col gap-1 text-center font-bold">
+                    <div class="flex flex-col justify-center gap-1 text-center font-bold">
                         <p>Usulan Bahan</p>
-                        <p class="">Pustaka</p>
+                        <p>Pustaka</p>
                         <hr class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
                     </div>
                 </button>
-                <button class="flex flex-col gap-2 group max-w-[200px]">
+                <button class="flex flex-col justify-center gap-2 group text-center w-[200px]">
                     <img src="img/APA AJA PKM (14).png" alt="">
-                    <div class="flex flex-col gap-1 text-center font-bold">
+                    <div class="flex flex-col justify-center gap-1 text-center font-bold">
                         <p>Sirkulasi</p>
                         <hr class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
                     </div>
                 </button>
-                <button class="flex flex-col gap-2 group max-w-[200px]">
+                <button class="flex flex-col justify-center gap-2 group text-center w-[200px]">
                     <img src="img/APA AJA PKM (15).png" alt="">
-                    <div class="flex flex-col gap-1 text-center font-bold">
-                        <p>Penelusuran Bahan</p>
-                        <p class="">Pustaka</p>
+                    <div class="flex flex-col justify-center gap-1 text-center font-bold">
+                        <p>Penelusuran Bahan Pustaka</p>
                         <hr class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
                     </div>
                 </button>
-                <button class="flex flex-col gap-2 group max-w-[200px]">
+                <button class="flex flex-col justify-center gap-2 group text-center w-[200px]">
                     <img src="img/sipora.png" alt="">
-                    <div class="flex flex-col gap-1 text-center font-bold">
+                    <div class="flex flex-col justify-center gap-1 text-center font-bold">
                         <p>SIPORA</p>
                     </div>
                     <hr class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
@@ -90,9 +89,9 @@
 
                         <!-- Slide 2 -->
                         <div class="swiper-slide flex justify-center">
-                            <button class="flex flex-col gap-2 group">
+                            <button class="flex flex-col justify-center gap-2 group">
                                 <img src="img/tugas akhir.png" alt="">
-                                <div class="flex flex-col gap-1 text-center font-bold">
+                                <div class="flex flex-col justify-center gap-1 text-center font-bold">
                                     <p>Pengumpulan Laporan</p>
                                     <p>Tugas Akhir/Skripsi/Tesis</p>
                                     <hr
@@ -102,9 +101,9 @@
                         </div>
                         <!-- Slide 3 -->
                         <div class="swiper-slide flex justify-center">
-                            <button class="flex flex-col gap-2 group">
+                            <button class="flex flex-col justify-center gap-2 group">
                                 <img src="img/laporan.png" alt="">
-                                <div class="flex flex-col gap-1 text-center font-bold">
+                                <div class="flex flex-col justify-center gap-1 text-center font-bold">
                                     <p>Penelusuran Laporan</p>
                                     <p>PKL/Magang</p>
                                     <hr
@@ -113,9 +112,9 @@
                             </button>
                         </div>
                         <div class="swiper-slide flex justify-center">
-                            <button class="flex flex-col gap-2 group">
+                            <button class="flex flex-col justify-center gap-2 group">
                                 <img src="img/turnitin.png" alt="">
-                                <div class="flex flex-col gap-1 text-center font-bold">
+                                <div class="flex flex-col justify-center gap-1 text-center font-bold">
                                     <p>Pengecekan Simmiliarity</p>
                                     <p>Menggunakan Turnitin</p>
                                     <hr
@@ -124,9 +123,9 @@
                             </button>
                         </div>
                         <div class="swiper-slide flex justify-center">
-                            <button class="flex flex-col gap-2 group">
+                            <button class="flex flex-col justify-center gap-2 group">
                                 <img src="img/siputri.png" alt="">
-                                <div class="flex flex-col gap-1 text-center font-bold">
+                                <div class="flex flex-col justify-center gap-1 text-center font-bold">
                                     <p>SIPUTRI</p>
                                     <hr
                                         class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
@@ -134,9 +133,9 @@
                             </button>
                         </div>
                         <div class="swiper-slide flex justify-center">
-                            <button class="flex flex-col gap-2 group">
+                            <button class="flex flex-col justify-center gap-2 group">
                                 <img src="img/skbp.png" alt="">
-                                <div class="flex flex-col gap-1 text-center font-bold">
+                                <div class="flex flex-col justify-center gap-1 text-center font-bold">
                                     <p>SKBP</p>
                                     <hr
                                         class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
@@ -144,9 +143,9 @@
                             </button>
                         </div>
                         <div class="swiper-slide flex justify-center">
-                            <button class="flex flex-col gap-2 group">
+                            <button class="flex flex-col justify-center gap-2 group">
                                 <img src="img/kartu super.png" alt="">
-                                <div class="flex flex-col gap-1 text-center font-bold">
+                                <div class="flex flex-col justify-center gap-1 text-center font-bold">
                                     <p>Kartu Super</p>
                                     <hr
                                         class="w-0 group-hover:w-full transition-all duration-300 border-b-4 border-[#5B9BC1] mx-auto">
