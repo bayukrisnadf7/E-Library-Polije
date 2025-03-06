@@ -1,25 +1,30 @@
-document.addEventListener("DOMContentLoaded", function() {
-const modal = document.getElementById("authentication-modal");
-const backdrop = document.getElementById("modal-backdrop");
-const openModalBtn = document.getElementById("open-modal");
-const closeModalBtn = document.getElementById("close-modal");
+document.addEventListener("DOMContentLoaded", function () {
+    const openModalButtons = document.querySelectorAll("#open-modal");
+    const closeModalButton = document.getElementById("close-modal");
+    const modal = document.getElementById("authentication-modal");
+    const backdrop = document.getElementById("modal-backdrop");
 
-function openModal() {
-modal.classList.remove("hidden");
-backdrop.classList.remove("hidden");
-document.body.classList.add("overflow-hidden"); // Mencegah scroll saat modal terbuka
-}
+    // Tambahkan event listener ke semua tombol "Masuk/Daftar"
+    openModalButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            modal.classList.remove("hidden");
+            backdrop.classList.remove("hidden");
+        });
+    });
 
-function closeModal() {
-modal.classList.add("hidden");
-backdrop.classList.add("hidden");
-document.body.classList.remove("overflow-hidden"); // Mengembalikan scroll saat modal tertutup
-}
+    // Tutup modal saat tombol close ditekan
+    closeModalButton.addEventListener("click", function () {
+        modal.classList.add("hidden");
+        backdrop.classList.add("hidden");
+    });
 
-openModalBtn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
-backdrop.addEventListener("click", closeModal);
+    // Tutup modal jika klik di luar modal
+    backdrop.addEventListener("click", function () {
+        modal.classList.add("hidden");
+        backdrop.classList.add("hidden");
+    });
 });
+
 
 // Toogle 
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,4 +1,4 @@
-<div class="max-h-max bg-[#20232e] mt-28">
+<div class="max-h-max bg-[#20232e] md:mt-28 mt-16">
     <div class="md:p-32 p-5 flex md:gap-20 gap-10">
         <div class="flex flex-col text-white gap-5 md:max-w-64 max-w-32 md:text-base text-xs">
             <p class="font-bold">POLITEKNIK NEGERI JEMBER</p>
