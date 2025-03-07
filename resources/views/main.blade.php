@@ -15,7 +15,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-poppins">
+<body class="font-poppins overflow-x-hidden">
     @include('partials.Navbar.index')
     @yield('content')
     @include('partials.Footer.index')
