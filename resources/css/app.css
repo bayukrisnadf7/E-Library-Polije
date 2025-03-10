@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* tailwind css v4.x */
+@import "tailwindcss";
+@import "tailwindcss-animated";

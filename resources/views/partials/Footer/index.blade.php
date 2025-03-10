@@ -1,6 +1,6 @@
-<div class="max-h-max bg-[#20232e] mt-20">
-    <div class="p-32 flex gap-20">
-        <div class="flex flex-col text-white gap-5 max-w-64">
+<div class="max-h-max bg-[#20232e] md:mt-28 mt-16 w-full">
+    <div class="md:p-32 p-5 flex md:gap-20 gap-10">
+        <div class="flex flex-col text-white gap-5 md:max-w-64 max-w-32 md:text-base text-xs">
             <p class="font-bold">POLITEKNIK NEGERI JEMBER</p>
             <p>Jl. Mastrip PO BOX 164, Sumbersari, Jember</p>
             <div class="flex gap-2 items-center">
@@ -14,6 +14,6 @@
         </div>
     </div>
 </div>
-<div class="h-20 bg-[#1b1d26] flex items-center justify-center text-white gap-2">
+<div class="h-20 bg-[#1b1d26] flex items-center justify-center text-white gap-2 md:text-base text-[10px]">
     <p>© Copyright <p class="font-bold">UPT. Perpustakaan Politeknik Negeri Jember</p>  | 2025.</p>
 </div>
