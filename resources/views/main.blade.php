@@ -16,13 +16,23 @@
 </head>
 
 <body class="font-poppins overflow-x-hidden">
-    @include('partials.Navbar.index')
+    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register']))
+        @include('partials.Navbar.index')
+    @endif
+
     @yield('content')
-    @include('partials.Footer.index')
+
+    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register']))
+        @include('partials.Footer.index')
+    @endif
+
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="js/home.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/kunjungan.js"></script>
 </body>
+
+
 
 </html>
