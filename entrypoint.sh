@@ -29,7 +29,7 @@ php artisan migrate --force
 chmod -R 777 storage bootstrap/cache
 
 rm -rf node_modules package-lock.json
-npm install
+npm i
 npm run build
 # npm install --save-dev vite
 # ./node_modules/.bin/vite build
