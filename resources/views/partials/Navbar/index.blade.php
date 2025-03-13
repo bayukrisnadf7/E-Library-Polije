@@ -4,9 +4,9 @@
         <div class="flex justify-between items-center md:w-auto w-full">
             <div class="flex gap-3 items-center">
                 <img src="img/logopol 1.png" alt="Logo" class="md:w-14 w-10">
-                <div class="flex flex-col  text-white font-bold md:text-base text-xs">
+                <div class="flex flex-col  text-white font-bold md:text-sm text-xs">
                     <p>UPA PERPUSTAKAAN</p>
-                    <div class="flex md:gap-[22px] gap-[17px]">
+                    <div class="flex md:gap-[19px] gap-[17px]">
                         <p>P</p>
                         <p>O</p>
                         <p>L</p>
@@ -30,8 +30,8 @@
                 Beranda
             </li>
             <li class="relative cursor-pointer group">
-                <button
-                    class="flex items-center justify-between w-full md:mt-0 mt-1 rounded-sm md:hover:bg-transparent md:border-0 md:p-0 md:w-auto  dark:hover:text-blue-500  dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent md:text-white text-black">
+                <button id="dropdownButton"
+                    class="flex items-center justify-between w-full md:mt-0 mt-1 rounded-sm md:hover:bg-transparent md:border-0 md:p-0 md:w-auto dark:hover:text-blue-500 dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent md:text-white text-black">
                     Layanan
                     <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 10 6">
@@ -41,7 +41,7 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdownNavbar"
-                    class="absolute left-0 z-10 hidden group-hover:block font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm md:w-96 w-72 dark:bg-gray-700 dark:divide-gray-600">
+                    class="absolute left-0 z-10 hidden group-hover:block md:group-hover:block font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm md:w-96 w-72 dark:bg-gray-700 dark:divide-gray-600">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                         <li>
                             <a href="#"
@@ -67,7 +67,6 @@
                                 SIPORA (Sistem Informasi POLIJE Repositori Aset)
                             </a>
                         </li>
-
                         <li>
                             <a href="#"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -104,7 +103,6 @@
                                 Kartu Super
                             </a>
                         </li>
-
                     </ul>
                 </div>
             </li>
