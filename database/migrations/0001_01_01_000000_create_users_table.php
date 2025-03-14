@@ -15,10 +15,10 @@ return new class extends Migration
             $table->string('id_user')->primary();
             $table->string('email')->unique();
             $table->string('nama');
-            $table->string('foto');
+            $table->binary('foto')->nullable();
             $table->string('institute');
             $table->string('no_telepon');
-            $table->string('jenis_anggota');
+            $table->enum('jenis_anggota', ['admin', 'staff', 'mahasiswa'])->default('mahasiswa');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
