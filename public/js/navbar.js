@@ -1,67 +1,3 @@
-// Login Modal
-document.addEventListener("DOMContentLoaded", function () {
-    const openModalButtons = document.querySelectorAll("#open-modal");
-    const closeModalButton = document.getElementById("close-modal");
-    const modal = document.getElementById("authentication-modal");
-    const backdrop = document.getElementById("modal-backdrop");
-
-    // Tambahkan event listener ke semua tombol "Masuk/Daftar"
-    openModalButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            modal.classList.remove("hidden");
-            backdrop.classList.remove("hidden");
-        });
-    });
-
-    // Tutup modal saat tombol close ditekan
-    closeModalButton.addEventListener("click", function () {
-        modal.classList.add("hidden");
-        backdrop.classList.add("hidden");
-    });
-
-    // Tutup modal jika klik di luar modal
-    backdrop.addEventListener("click", function () {
-        modal.classList.add("hidden");
-        backdrop.classList.add("hidden");
-    });
-});
-
-// Register Modal
-    document.addEventListener("DOMContentLoaded", function () {
-        const loginModal = document.getElementById("authentication-modal");
-        const registerModal = document.getElementById("register-modal");
-
-        const openRegisterBtn = document.getElementById("open-modal-register");
-        const closeRegisterBtn = document.getElementById("close-register-modal");
-        const backToLoginBtn = document.getElementById("back-to-login");
-        const closeLoginBtn = document.getElementById("close-modal");
-        const backdrop = document.getElementById("modal-backdrop");
-
-        // Buka modal register ketika tombol "Daftar sekarang!" diklik
-        openRegisterBtn.addEventListener("click", function () {
-            loginModal.classList.add("hidden"); // Sembunyikan modal login
-            registerModal.classList.remove("hidden"); // Tampilkan modal register
-        });
-
-        // Tutup modal register ketika tombol close diklik
-        closeRegisterBtn.addEventListener("click", function () {
-            registerModal.classList.add("hidden");
-            backdrop.classList.add("hidden");
-        });
-
-        // Kembali ke modal login
-        backToLoginBtn.addEventListener("click", function () {
-            registerModal.classList.add("hidden");
-            loginModal.classList.remove("hidden");
-        });
-
-        // Tutup modal login jika diperlukan
-        closeLoginBtn.addEventListener("click", function () {
-            loginModal.classList.add("hidden");
-        });
-    });
-
-
 // Toogle 
 document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.getElementById("menu-toggle");
@@ -69,5 +5,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     menuToggle.addEventListener("click", function () {
     navMenu.classList.toggle("hidden");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownNavbar = document.getElementById("dropdownNavbar");
+
+    dropdownButton.addEventListener("click", function (event) {
+        // Cek apakah mode mobile (lebar layar kurang dari 768px)
+        if (window.innerWidth < 768) {
+            event.stopPropagation(); // Mencegah event bubbling
+            dropdownNavbar.classList.toggle("hidden");
+        }
+    });
+
+    // Klik di luar dropdown untuk menutupnya di mode mobile
+    document.addEventListener("click", function (event) {
+        if (window.innerWidth < 768 && !dropdownButton.contains(event.target) && !dropdownNavbar.contains(event.target)) {
+            dropdownNavbar.classList.add("hidden");
+        }
     });
 });

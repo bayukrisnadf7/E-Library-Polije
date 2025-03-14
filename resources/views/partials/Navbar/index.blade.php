@@ -1,8 +1,21 @@
-<div class="bg-[#F8F5FC]">
-    <div class="flex justify-between items-center p-5 md:mx-20">
+<div class="bg-[#2A1D43]">
+    <div class="flex justify-between items-center p-5 md:mx-10 gap-10">
         <!-- Logo dan tombol hamburger -->
         <div class="flex justify-between items-center md:w-auto w-full">
-            <img src="img/logo.png" alt="Logo" class="md:w-64 w-40">
+            <div class="flex gap-3 items-center">
+                <img src="img/logopol 1.png" alt="Logo" class="md:w-14 w-10">
+                <div class="flex flex-col  text-white font-bold md:text-sm text-xs">
+                    <p>UPA PERPUSTAKAAN</p>
+                    <div class="flex md:gap-[19px] gap-[17px]">
+                        <p>P</p>
+                        <p>O</p>
+                        <p>L</p>
+                        <p>I</p>
+                        <p>J</p>
+                        <p>E</p>
+                    </div>
+                </div>
+            </div>
             <!-- Tombol hamburger -->
             <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none">
                 ☰
@@ -11,14 +24,14 @@
 
         <!-- Menu Navbar -->
         <ul id="nav-menu"
-            class="hidden md:flex flex-col md:flex-row gap-6 font-semibold absolute md:static top-16 left-0 w-full bg-[#F8F5FC] md:w-auto md:bg-transparent md:gap-12 p-5 md:p-0 shadow-lg md:shadow-none">
+            class="hidden md:flex flex-col md:flex-row gap-4 font-semibold absolute md:static top-20 left-0 w-full bg-[#F8F5FC] md:w-auto md:bg-transparent md:gap-10 p-5 md:p-0 shadow-lg md:shadow-none md:text-white text-black">
             <li
-                class="relative cursor-pointer hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Beranda
             </li>
             <li class="relative cursor-pointer group">
-                <button
-                    class="flex items-center justify-between w-full md:mt-0 mt-1 text-gray-900 rounded-sm hover:text-[#334B48] md:hover:bg-transparent md:border-0 md:p-0 md:w-auto  dark:hover:text-blue-500  dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
+                <button id="dropdownButton"
+                    class="flex items-center justify-between w-full md:mt-0 mt-1 rounded-sm md:hover:bg-transparent md:border-0 md:p-0 md:w-auto dark:hover:text-blue-500 dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent md:text-white text-black">
                     Layanan
                     <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 10 6">
@@ -28,177 +41,100 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdownNavbar"
-                    class="absolute left-0 z-10 hidden group-hover:block font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm md:w-96 w-72 dark:bg-gray-700 dark:divide-gray-600">
+                    class="absolute left-0 z-10 hidden group-hover:block md:group-hover:block font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm md:w-96 w-72 dark:bg-gray-700 dark:divide-gray-600">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Ulasan Bahan Pustaka
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Sirkulasi
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Penelusuran Bahan Pustaka
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 SIPORA (Sistem Informasi POLIJE Repositori Aset)
                             </a>
                         </li>
-                        
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Pengumpulan Laporan Tugas Akhir/Skripsi/Thesis
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Pengumpulan Laporan PKL/Magang
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Pengecekan Simmilarity dengan Turnitin
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 SIPUTRI (Baca E-Book)
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 SKBP (Surat Keterangan Bebas Perpustakaan)
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 Kartu Super
                             </a>
                         </li>
-                       
                     </ul>
                 </div>
             </li>
-            
+
             <li
-                class="relative cursor-pointer md:mt-0 mt-1 hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Artikel
             </li>
             <li
-                class="relative cursor-pointer md:mt-0 mt-1 hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Berita
             </li>
             <li
-                class="relative cursor-pointer md:mt-0 mt-1 hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Tentang
             </li>
             <li
-                class="relative cursor-pointer md:mt-0 mt-1 hover:text-[#334B48] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[#334B48] hover:after:w-full after:transition-all after:duration-300">
+                class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Hubungi Kami
             </li>
             <li>
                 <hr class="my-2 border-gray-300 dark:border-gray-600">
             </li>
             <li>
-                <button id="open-modal" class="md:hidden block md:mt-0 mt-3 font-semibold text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                <button class="md:hidden block md:mt-0 mt-3 font-semibold text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Masuk / Daftar
                 </button>
             </li>
         </ul>
         <!-- Tombol Login -->
-        <button id="open-modal" class="bg-[#3694A8] px-5 py-2 text-white w-48 rounded-xl hidden md:block">
-            Masuk/Daftar
+        <button class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg hidden md:block hover:bg-[#3694A8] hover:border-none">
+            Masuk / Daftar
         </button>
-    </div>
-</div>
-
-
-<div id="modal-backdrop" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
-
-<!-- Login modal -->
-<div id="authentication-modal" tabindex="-1" aria-hidden="true" 
-    class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full">
-    <div class="relative p-4 w-full md:max-w-md max-w-[350px] bg-white rounded-lg shadow-md">
-        <!-- Modal content -->
-        <div class="relative">
-            <!-- Modal header -->
-            <img src="img/logopol 1.png" alt="" class="absolute -top-16 left-1/2 -translate-x-1/2 w-[100px]">
-            <button type="button" id="close-modal" class="relative -top-1 md:left-96 left-[88%] text-gray-400 hover:bg-gray-200 rounded-lg w-10 h-10">
-                ✖
-            </button>
-            <div class="flex items-center justify-center p-4 md:p-5 border-b border-gray-200">
-                <h3 class="text-xl text-center font-bold text-gray-900">Login ke akun anda</h3>
-                
-            </div>
-            <!-- Modal body -->
-            <div class="p-4 md:p-5">
-                <form class="space-y-4">
-                    <div>
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                        <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded-lg"
-                            required />
-                    </div>
-                    <div>
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                        <input type="password" id="password" class="w-full p-2 border border-gray-300 rounded-lg"
-                            required />
-                    </div>
-                    <button type="submit" class="w-full bg-[#3694A8] text-white py-2 rounded-lg">Login</button>
-                    <div class="flex flex-col gap-3">
-                        <div class="flex gap-2 justify-center text-center">
-                            <p class="text-sm font-medium text-gray-400">Belum punya akun?</p>
-                            <a id="open-modal-register" class="text-sm font-medium text-gray-600 cursor-pointer hover:text-[#3694A8]">Daftar sekarang!</a>
-                        </div>
-                        <div class="flex gap-2 justify-center  text-center">
-                            <p class="text-sm font-medium text-gray-400">Lupa password?</p>
-                            <a class="text-sm font-medium text-gray-600 cursor-pointer hover:text-[#3694A8]">Reset password</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Register -->
-<div id="register-modal" tabindex="-1" aria-hidden="true"
-    class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full">
-    <div class="relative p-4 w-full md:max-w-md max-w-[350px] bg-white rounded-lg shadow-md">
-        <div class="relative">
-            <img src="img/logopol 1.png" alt="" class="absolute -top-16 left-1/2 -translate-x-1/2 w-[100px]">
-            <button type="button" id="close-register-modal" class="relative -top-1 md:left-96 left-[88%] text-gray-400 hover:bg-gray-200 rounded-lg w-10 h-10">
-                ✖
-            </button>
-            <div class="flex items-center justify-center p-4 md:p-5 border-b border-gray-200">
-                <h3 class="text-xl text-center font-bold text-gray-900">Registrasi Akun</h3>
-            </div>
-            <div class="p-4 md:p-5">
-                <form class="space-y-4">
-                    <div>
-                        <label for="register-name" class="block mb-2 text-sm font-medium text-gray-900">Nomer Identitas (NIM/NIP/No Paspor)</label>
-                        <input type="text" id="register-name" class="w-full p-2 border border-gray-300 rounded-lg" required />
-                    </div>
-                    <div>
-                        <label for="register-email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                        <input type="email" id="register-email" class="w-full p-2 border border-gray-300 rounded-lg" required />
-                    </div>
-                    <div>
-                        <label for="register-password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                        <input type="password" id="register-password" class="w-full p-2 border border-gray-300 rounded-lg" required />
-                    </div>
-                    <button type="submit" class="w-full bg-[#3694A8] text-white py-2 rounded-lg">Daftar</button>
-                    <div class="flex justify-center text-center">
-                        <p class="text-sm font-medium text-gray-400">Sudah punya akun?</p>
-                        <a id="back-to-login" class="text-sm font-medium text-gray-600 cursor-pointer hover:text-[#3694A8] ml-2">Login di sini</a>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 </div>

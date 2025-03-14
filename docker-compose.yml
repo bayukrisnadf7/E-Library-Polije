@@ -63,7 +63,7 @@ services:
       - PMA_PORT=3306
       - MYSQL_ROOT_PASSWORD=Elibrary2025!
     ports:
-      - "8080:80"
+      - "9999:80"
     depends_on:
       - db
     networks:
