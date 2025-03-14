@@ -23,6 +23,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('api/logout', 'logout');
     Route::get('api/session', 'checkSession');
     Route::get('api/allsession', 'getAllSession');
+});
 
 Route::controller(BukuController::class)->group(function () {
     Route::get('api/buku', 'login');
