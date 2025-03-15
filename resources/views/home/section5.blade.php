@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 lg:mx-20 gap-14 place-items-center py-10 space-y-16 md:space-y-0">
+    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 lg:mx-20 gap-14 place-items-center py-10 space-y-16 md:space-y-0 opacity-0 translate-y-5 transition-all duration-1000 animate-on-scroll-2">
         <div class="relative md:w-[400px] w-[350px] md:h-[270px] h-[250px] overflow-visible">
             <!-- Gambar -->
             <img src="img/berita.png" alt="Gambar Berita" class="object-cover w-full h-full">
