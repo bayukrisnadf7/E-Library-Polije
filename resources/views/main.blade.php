@@ -15,7 +15,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-poppins overflow-x-hidden">
+<body class="font-poppins max-w-full">
     @if (!in_array(request()->path(), ['kunjungan', 'login', 'register']))
         @include('partials.Navbar.index')
     @endif

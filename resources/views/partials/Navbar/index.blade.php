@@ -1,7 +1,7 @@
-<div class="bg-[#2A1D43]">
-    <div class="flex justify-between items-center p-5 md:mx-10 gap-10">
+<div class="bg-[#1A2130] w-full">
+    <div class="flex justify-between items-center p-4 md:mx-10 gap-10">
         <!-- Logo dan tombol hamburger -->
-        <div class="flex justify-between items-center md:w-auto w-full">
+        <div class="flex justify-between items-center lg:w-auto w-full">
             <div class="flex gap-3 items-center">
                 <img src="img/logopol 1.png" alt="Logo" class="md:w-14 w-10">
                 <div class="flex flex-col  text-white font-bold md:text-sm text-xs">
@@ -17,14 +17,14 @@
                 </div>
             </div>
             <!-- Tombol hamburger -->
-            <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none">
+            <button id="menu-toggle" class="lg:hidden md:block block text-3xl focus:outline-none text-white">
                 ☰
             </button>
         </div>
 
         <!-- Menu Navbar -->
         <ul id="nav-menu"
-            class="hidden md:flex flex-col md:flex-row gap-4 font-semibold absolute md:static top-20 left-0 w-full bg-[#F8F5FC] md:w-auto md:bg-transparent md:gap-10 p-5 md:p-0 shadow-lg md:shadow-none md:text-white text-black">
+            class="hidden lg:flex flex-col md:flex-row gap-4 font-semibold absolute md:static top-20 left-0 w-full bg-[#F8F5FC] md:w-auto md:bg-transparent md:gap-10 p-5 md:p-0 shadow-lg md:shadow-none md:text-white text-black">
             <li
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Beranda
@@ -127,13 +127,13 @@
                 <hr class="my-2 border-gray-300 dark:border-gray-600">
             </li>
             <li>
-                <button class="md:hidden block md:mt-0 mt-3 font-semibold text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                <button onclick="window.location.href='/login'" class="md:hidden block md:mt-0 mt-3 font-semibold text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Masuk / Daftar
                 </button>
             </li>
         </ul>
         <!-- Tombol Login -->
-        <button class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg hidden md:block hover:bg-[#3694A8] hover:border-none">
+        <button onclick="window.location.href='/login'" class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg lg:block md:hidden hidden hover:bg-[#3694A8] hover:border-none">
             Masuk / Daftar
         </button>
     </div>
