@@ -26,19 +26,19 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(BukuController::class)->group(function () {
-    Route::get('api/buku', 'login');
-    Route::post('api/buku/{id}', 'register');
-    Route::post('api/buku', 'logout');
-    Route::get('api/buku/{id}', 'checkSession');
-    Route::get('api/allsession', 'getAllSession');
+    Route::get('api/buku', 'index');
+    Route::get('api/buku/{id}', 'show');
+    Route::post('api/buku', 'store');
+    Route::put('api/buku/{id}', 'update');
+    Route::delete('/api/buku/{id}', 'destroy');
 });
 
 // CRUD Buku
-Route::get('api/buku', [BukuController::class, 'index']);
-Route::get('api/buku/{id}', [BukuController::class, 'show']);
-Route::post('/api/buku', [BukuController::class, 'store']);
-Route::put('/api/buku/{id}', [BukuController::class, 'update']);
-Route::delete('/api/buku/{id}', [BukuController::class, 'destroy']);
+// Route::get('api/buku', [BukuController::class, 'index']);
+// Route::get('api/buku/{id}', [BukuController::class, 'show']);
+// Route::post('/api/buku', [BukuController::class, 'store']);
+// Route::put('/api/buku/{id}', [BukuController::class, 'update']);
+// Route::delete('/api/buku/{id}', [BukuController::class, 'destroy']);
 
 // CRUD Exemplar
 Route::get('/api/exemplar', [ExemplarController::class, 'index']);
