@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KunjunganController;
@@ -59,4 +60,8 @@ Route::get('/api/buku/{id}/exemplar', [BukuController::class, 'getExemplarByBuku
 Route::get('/api/exemplar/{kode_eksemplar}/buku', [ExemplarController::class, 'getBukuByExemplar']);
 
 // Admin
-Route::get('/admin', [HomeController::class, 'indexAdmin']);
+Route::get('/admin', function () {
+    return view('main.index');
+});
+
+Route::get('/{main}/{view}', [AdminController::class, 'show']);
