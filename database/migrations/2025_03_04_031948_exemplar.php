@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('lokasi_rak');
             $table->string('tipe_koleksi');
             $table->string('status');
-            $table->string('id_buku');
+            $table->unsignedBigInteger('id_buku'); // Cocokin dengan buku
+        
             $table->foreign('id_buku')->references('id_buku')->on('buku')->onDelete('cascade');
             $table->timestamps();
         });
