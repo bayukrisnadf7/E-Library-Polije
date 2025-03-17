@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('komentare');
             $table->date('tgl_review');
             $table->string('id_user');
-            $table->string('id_buku');
+            $table->unsignedBigInteger('id_buku');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->foreign('id_buku')->references('id_buku')->on('buku')->onDelete('cascade');
             $table->timestamps();
