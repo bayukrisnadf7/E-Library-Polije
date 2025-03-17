@@ -16,13 +16,13 @@
 </head>
 
 <body class="font-poppins max-w-full">
-    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register']))
+    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register', 'lupa-password']))
         @include('partials.Navbar.index')
     @endif
 
     @yield('content')
 
-    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register']))
+    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register', 'lupa-password']))
         @include('partials.Footer.index')
     @endif
 
