@@ -7,6 +7,11 @@ use App\Models\Buku;
 
 class BukuController extends Controller
 {
+    public function indexBuku(){
+        return view('buku.index')->with([
+            'title' => 'Buku'
+        ]);
+    }
     // Get All Buku
     public function index()
     {

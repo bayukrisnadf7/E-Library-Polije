@@ -22,7 +22,7 @@
                             <p>Bayu Krisna</p>
                         </div>
                         <div class="flex gap-2 items-center text-sm">
-                            <img src="img/user.png" alt="" class="w-3 h-3">
+                            <img src="img/calendar.png" alt="" class="w-3 h-3">
                             <p>12-12-2012</p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             <p>Bayu Krisna</p>
                         </div>
                         <div class="flex gap-2 items-center text-sm">
-                            <img src="img/user.png" alt="" class="w-3 h-3">
+                            <img src="img/calendar.png" alt="" class="w-3 h-3">
                             <p>12-12-2012</p>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                             <p>Bayu Krisna</p>
                         </div>
                         <div class="flex gap-2 items-center text-sm">
-                            <img src="img/user.png" alt="" class="w-3 h-3">
+                            <img src="img/calendar.png" alt="" class="w-3 h-3">
                             <p>12-12-2012</p>
                         </div>
                     </div>

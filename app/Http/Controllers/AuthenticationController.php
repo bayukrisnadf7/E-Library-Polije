@@ -18,4 +18,9 @@ class AuthenticationController extends Controller
             'title' => 'Register'
         ]);
     }
+    public function indexLupaPassword(){
+        return view('authentication.lupa-password.index')->with([
+            'title' => 'Lupa Password'
+        ]);
+    }
 }

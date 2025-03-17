@@ -1,6 +1,6 @@
 {{-- Section 5 Start --}}
-<div class="md:min-h-[600px] min-h-[1250px] w-full bg-[#F8F5FC] md:py-5">
-    <div class="flex justify-between md:mx-20 mx-3 text-[#2A1D43] md:text-xl text-sm">
+<div class="md:min-h-[600px] min-h-[1200px] w-full bg-[#F8F5FC]">
+    <div class="flex justify-between md:mx-20 mx-8 text-[#2A1D43] md:text-xl text-sm">
         <p class="font-bold mt-10">Berita</p>
         <div class="flex items-center gap-2 cursor-pointer mt-10">
             <p class="font-semibold">Selengkapnya</p>
@@ -8,7 +8,8 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 lg:mx-20 gap-14 place-items-center py-10 space-y-16 md:space-y-0 opacity-0 translate-y-5 transition-all duration-1000 animate-on-scroll-2">
+    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 lg:mx-20 gap-14 place-items-center py-10 space-y-14 md:space-y-0 opacity-0 translate-y-5 transition-all duration-1000 animate-on-scroll-2">
+        
         <div class="relative md:w-[400px] w-[350px] md:h-[270px] h-[250px] overflow-visible">
             <!-- Gambar -->
             <img src="img/berita.png" alt="Gambar Berita" class="object-cover w-full h-full">
@@ -26,7 +27,7 @@
                             <p>Bayu Krisna</p>
                         </div>
                         <div class="flex gap-2 items-center md:text-sm text-xs">
-                            <img src="img/user.png" alt="" class="w-3 h-3">
+                            <img src="img/calendar.png" alt="" class="w-3 h-3">
                             <p>12-12-2012</p>
                         </div>
                     </div>
@@ -53,7 +54,7 @@
                             <p>Bayu Krisna</p>
                         </div>
                         <div class="flex gap-2 items-center md:text-sm text-xs">
-                            <img src="img/user.png" alt="" class="w-3 h-3">
+                            <img src="img/calendar.png" alt="" class="w-3 h-3">
                             <p>12-12-2012</p>
                         </div>
                     </div>
@@ -80,7 +81,7 @@
                             <p>Bayu Krisna</p>
                         </div>
                         <div class="flex gap-2 items-center md:text-sm text-xs">
-                            <img src="img/user.png" alt="" class="w-3 h-3">
+                            <img src="img/calendar.png" alt="" class="w-3 h-3">
                             <p>12-12-2012</p>
                         </div>
                     </div>

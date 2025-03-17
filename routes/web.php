@@ -11,6 +11,10 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [AuthenticationController::class, 'indexLogin']);
 Route::get('/register', [AuthenticationController::class, 'indexRegister']);
+Route::get('/lupa-password', [AuthenticationController::class, 'indexLupaPassword']);
+
+//
+
 Route::get('/kunjungan', [KunjunganController::class, 'index']);
 Route::middleware('api')->group(function () {
     Route::post('/register', [AuthenticationController::class, 'register']);
@@ -25,6 +29,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('api/allsession', 'getAllSession');
 });
 
+
+// buku
+Route::get('/buku', [BukuController::class, 'indexBuku']);
 Route::controller(BukuController::class)->group(function () {
     Route::get('api/buku', 'login');
     Route::post('api/buku/{id}', 'register');
@@ -50,3 +57,6 @@ Route::delete('/api/exemplar/{id}', [ExemplarController::class, 'destroy']);
 // Relasi Buku & Exemplar
 Route::get('/api/buku/{id}/exemplar', [BukuController::class, 'getExemplarByBuku']);
 Route::get('/api/exemplar/{kode_eksemplar}/buku', [ExemplarController::class, 'getBukuByExemplar']);
+
+// Admin
+Route::get('/admin', [HomeController::class, 'indexAdmin']);
