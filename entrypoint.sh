@@ -3,8 +3,8 @@
 # Install dependency Laravel
 composer install --no-interaction --optimize-autoloader
 
-# rm -rf node_modules package-lock.json
-npm ci
+rm -rf node_modules package-lock.json
+npm i
 npm run build
 # npm install --save-dev vite
 # ./node_modules/.bin/vite build
