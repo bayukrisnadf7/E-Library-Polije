@@ -29,7 +29,7 @@ COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 # Beri permission ke storage dan bootstrap/cache agar bisa ditulis
-RUN chmod -R 777 storage bootstrap/cache
+# RUN chmod -R 777 storage bootstrap/cache
 
 # Install Node.js dan npm
 RUN curl -fsSL https://deb.nodesource.com/setup_23.x | bash - && \
