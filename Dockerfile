@@ -22,7 +22,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /var/www
 
 # Copy semua file ke dalam container
-COPY . .
+# COPY . .
 
 # Copy entrypoint.sh ke root container dan beri izin eksekusi
 COPY entrypoint.sh ./entrypoint.sh
