@@ -1,10 +1,12 @@
 #!/bin/sh
 
+echo "installing composer"
 # Install dependency Laravel
 composer install --no-interaction --optimize-autoloader
 
-rm -rf node_modules package-lock.json
-npm i
+echo "build node modules"
+# rm -rf node_modules package-lock.json
+npm ci
 npm run build
 # npm install --save-dev vite
 # ./node_modules/.bin/vite build
