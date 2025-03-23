@@ -32,7 +32,7 @@ RUN chmod +x ./entrypoint.sh
 # RUN chmod -R 777 storage bootstrap/cache
 
 # Install Node.js dan npm
-RUN curl -fsSL https://deb.nodesource.com/setup_23.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y nodejs && \
     npm cache clean --force
 
