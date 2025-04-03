@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
-    public function indexBuku(){
-        return view('buku.index')->with([
-            'title' => 'Buku'
-        ]);
+    public function indexBuku()
+    {
+        // Ambil data buku dengan paginasi (misalnya, 8 per halaman)
+        $books = Buku::paginate(8);
+
+        return view('buku.index', ['title' => 'Buku'], compact('books'));
     }
     // Get All Buku
     public function index()

@@ -2,20 +2,24 @@
     <div class="flex justify-between items-center p-4 md:mx-10 gap-10">
         <!-- Logo dan tombol hamburger -->
         <div class="flex justify-between items-center lg:w-auto w-full">
-            <div class="flex gap-3 items-center">
-                <img src="img/logopol 1.png" alt="Logo" class="md:w-14 w-10">
-                <div class="flex flex-col  text-white font-bold md:text-sm text-xs">
-                    <p>UPA PERPUSTAKAAN</p>
-                    <div class="flex md:gap-[19px] gap-[17px]">
-                        <p>P</p>
-                        <p>O</p>
-                        <p>L</p>
-                        <p>I</p>
-                        <p>J</p>
-                        <p>E</p>
+            <a href="/">
+
+                <div class="flex gap-3 items-center">
+                    <img src="img/logopol 1.png" alt="Logo" class="md:w-14 w-10">
+                    <div class="flex flex-col  text-white font-bold md:text-sm text-xs">
+                        <p>UPA PERPUSTAKAAN</p>
+                        <div class="flex md:gap-[19px] gap-[17px]">
+                            <p>P</p>
+                            <p>O</p>
+                            <p>L</p>
+                            <p>I</p>
+                            <p>J</p>
+                            <p>E</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            </a>
             <!-- Tombol hamburger -->
             <button id="menu-toggle" class="lg:hidden md:block block text-3xl focus:outline-none text-white">
                 ☰
