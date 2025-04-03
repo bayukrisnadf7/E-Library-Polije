@@ -16,7 +16,7 @@ export default defineConfig({
     build: {
         manifest: true,
         rtl: true,
-        outDir: folder.dist_assets,
+        outDir: "public/build",
         cssCodeSplit: true,
         rollupOptions: {
             output: {
