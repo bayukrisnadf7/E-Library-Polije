@@ -1,3 +1,4 @@
+# .github/workflows/build.yml
 name: Build and Push Docker Image
 
 on:
@@ -13,31 +14,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Read version and bump it
-        id: bump
-        run: |
-          version=$(cat version.txt)
-          major=$(echo "$version" | cut -d. -f1)
-          minor=$(echo "$version" | cut -d. -f2)
-          new_minor=$((minor + 1))
-          new_version="$major.$new_minor"
-          echo "$new_version" > version.txt
-          echo "version=$new_version" >> "$GITHUB_OUTPUT"
-
-      - name: Commit bumped version
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Bump version to ${{ steps.bump.outputs.version }}
-
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/elibrary:${{ steps.bump.outputs.version }} .
-          docker tag ghcr.io/${{ github.repository_owner }}/elibrary:${{ steps.bump.outputs.version }} ghcr.io/${{ github.repository_owner }}/elibrary:latest
+          docker build -t ghcr.io/${{ github.repository_owner }}/elibrary:latest -t ghcr.io/${{ github.repository_owner }}/elibrary:${{ github.run_number }} .
 
       - name: Push Docker images
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/elibrary:${{ steps.bump.outputs.version }}
           docker push ghcr.io/${{ github.repository_owner }}/elibrary:latest
+          docker push ghcr.io/${{ github.repository_owner }}/elibrary:${{ github.run_number }}
