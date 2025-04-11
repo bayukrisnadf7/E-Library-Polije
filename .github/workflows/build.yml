@@ -25,3 +25,20 @@ jobs:
         run: |
           docker push ghcr.io/${{ github.repository_owner }}/elibrary:latest
           docker push ghcr.io/${{ github.repository_owner }}/elibrary:${{ github.run_number }}
+          
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd /root/elibrary
+            docker-compose pull
+            docker-compose down -v
+            COMPOSE_HTTP_TIMEOUT=300 docker-compose up -d
+
