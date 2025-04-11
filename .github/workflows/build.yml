@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Deploy via SSH
+      - name: Pull Docker image
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -40,6 +40,23 @@ jobs:
           script: |
             cd /root/elibrary
             docker-compose pull
-            docker-compose down -v
-            COMPOSE_HTTP_TIMEOUT=300 docker-compose up -d
 
+      - name: Stop and remove container
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd /root/elibrary
+            docker-compose down -v
+
+      - name: Start container
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd /root/elibrary
+            COMPOSE_HTTP_TIMEOUT=300 docker-compose up -d
