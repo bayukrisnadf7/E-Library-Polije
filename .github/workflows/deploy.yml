@@ -21,4 +21,4 @@ jobs:
             cd /root/elibrary
             docker-compose pull
             docker-compose down -v
-            docker-compose up -d
+            COMPOSE_HTTP_TIMEOUT=300 docker-compose up -d
