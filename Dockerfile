@@ -39,6 +39,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
 RUN composer install --no-interaction --optimize-autoloader
 RUN npm ci
 RUN npm run build
+RUN cp public/build/.vite/manifest.json public/build
 
 # Jalankan entrypoint script
 ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
