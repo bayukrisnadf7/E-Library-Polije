@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->string('id_user')->primary();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('nama');
+            $table->string('nim');
             $table->binary('foto')->nullable();
             $table->string('institute');
             $table->string('no_telepon');
-            $table->enum('jenis_anggota', ['admin', 'staff', 'mahasiswa'])->default('mahasiswa');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('jenis_anggota');
+            $table->string('alamat_anggota')->nullable();
+            $table->string('catatan')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            // $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

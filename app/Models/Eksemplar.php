@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Exemplar extends Model
+class Eksemplar extends Model
 {
     use HasFactory;
 
@@ -16,10 +16,14 @@ class Exemplar extends Model
 
     protected $fillable = [
         'kode_eksemplar',
-        'lokasi',
-        'lokasi_rak',
+        'nomor_panggil',
         'tipe_koleksi',
+        'tanggal_penerimaan',
+        'lokasi',
+        'tanggal_pemesanan',
         'status',
+        'lokasi_rak',
+        'tanggal_faktur',
         'id_buku'
     ];
 

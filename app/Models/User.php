@@ -25,9 +25,11 @@ class User extends Authenticatable
         'institute',
         'no_telepon',
         'jenis_anggota',
+        'alamat_anggota',
+        'catatan',
         'password',
-        'created_at',
-        'updated_at'
+        // 'created_at',
+        // 'updated_at'
     ];
 
     /**

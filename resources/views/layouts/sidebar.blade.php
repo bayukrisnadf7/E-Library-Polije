@@ -25,38 +25,46 @@
         <!-- Dashboard -->
         <!-- ---------------------------------- -->
         <li class="sidebar-item">
-          <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/" aria-expanded="false">
+          <a class="sidebar-link {{ request()->is('/main/index') ? 'active' : '' }}" href="/main/index" aria-expanded="false">
             <span>
               <i class="ti ti-aperture"></i>
             </span>
-            <span class="hide-menu">Modern</span>
+            <span class="hide-menu">Dashboard</span>
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link {{ request()->is('main/index2') ? 'active' : '' }}" href="/main/index2" aria-expanded="false">
+          <a class="sidebar-link {{ request()->is('main/index-buku') ? 'active' : '' }}" href="/main/index-buku" aria-expanded="false">
             <span>
               <i class="ti ti-shopping-cart"></i>
             </span>
-            <span class="hide-menu">eCommerce</span>
+            <span class="hide-menu">Data Buku</span>
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link {{ request()->is('main/index3') ? 'active' : '' }}" href="/main/index3" aria-expanded="false">
+          <a class="sidebar-link {{ request()->is('main/index-eksemplar') ? 'active' : '' }}" href="/main/index-eksemplar" aria-expanded="false">
             <span>
               <i class="ti ti-currency-dollar"></i>
             </span>
-            <span class="hide-menu">NFT</span>
+            <span class="hide-menu">Data Eksemplar</span>
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link {{ request()->is('main/index4') ? 'active' : '' }}" href="/main/index4" aria-expanded="false">
+          <a class="sidebar-link {{ request()->is('main/index-peminjaman') ? 'active' : '' }}" href="/main/index-peminjaman" aria-expanded="false">
             <span>
               <i class="ti ti-cpu"></i>
             </span>
-            <span class="hide-menu">Crypto</span>
+            <span class="hide-menu">Data Peminjaman</span>
           </a>
         </li>
         <li class="sidebar-item">
+          <a class="sidebar-link {{ request()->is('main/index-anggota') ? 'active' : '' }}" href="/main/index-anggota" aria-expanded="false">
+            <span>
+              <i class="ti ti-cpu"></i>
+            </span>
+            <span class="hide-menu">Data Anggota</span>
+          </a>
+        </li>
+        {{-- <li class="sidebar-item">
           <a class="sidebar-link {{ request()->is('main/index5') ? 'active' : '' }}" href="/main/index5" aria-expanded="false">
             <span>
               <i class="ti ti-activity-heartbeat"></i>
@@ -234,11 +242,11 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         <!-- ---------------------------------- -->
         <!-- PAGES -->
         <!-- ---------------------------------- -->
-        <li class="nav-small-cap">
+        {{-- <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu">PAGES</span>
         </li>
@@ -338,11 +346,11 @@
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu">UI</span>
-        </li>
+        </li> --}}
         <!-- ---------------------------------- -->
         <!-- UI Elements -->
         <!-- ---------------------------------- -->
-        <li class="sidebar-item">
+        {{-- <li class="sidebar-item">
           <a class="sidebar-link has-arrow {{ request()->is('main/ui-accordian', 'main/ui-badge', 'main/ui-buttons', 'main/ui-dropdowns', 'main/ui-modals', 'main/ui-tab', 'main/ui-tooltip-popover', 'main/ui-notification', 'main/ui-progressbar', 'main/ui-pagination', 'main/ui-typography', 'main/ui-bootstrap-ui', 'main/ui-breadcrumb', 'main/ui-offcanvas', 'main/ui-lists', 'main/ui-grid', 'main/ui-carousel', 'main/ui-scrollspy', 'main/ui-spinner', 'main/ui-link') ? 'active' : '' }}" href="javascript:void(0)" aria-expanded="false">
             <span class="d-flex">
               <i class="ti ti-layout-grid"></i>
@@ -976,42 +984,7 @@
           </ul>
         </li>
         <!-- ---------------------------------- -->
-        <!-- Datatable -->
-        <!-- ---------------------------------- -->
-        <li class="sidebar-item">
-          <a class="sidebar-link has-arrow {{ request()->is('main/table-datatable-basic', 'main/table-datatable-api', 'main/table-datatable-advanced') ? 'active' : '' }}" href="javascript:void(0)" aria-expanded="false">
-            <span class="d-flex">
-              <i class="ti ti-air-conditioning-disabled"></i>
-            </span>
-            <span class="hide-menu">Datatables</span>
-          </a>
-          <ul aria-expanded="false" class="collapse first-level {{ request()->is('main/table-datatable-basic', 'main/table-datatable-api', 'main/table-datatable-advanced') ? 'ind' : '' }}">
-            <li class="sidebar-item">
-              <a class="sidebar-link {{ request()->is('main/table-datatable-basic') ? 'active' : '' }}" href="/main/table-datatable-basic">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                  <i class="ti ti-circle"></i>
-                </div>
-                <span class="hide-menu">Basic Initialisation</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link {{ request()->is('main/table-datatable-api') ? 'active' : '' }}" href="/main/table-datatable-api">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                  <i class="ti ti-circle"></i>
-                </div>
-                <span class="hide-menu">API</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link {{ request()->is('main/table-datatable-advanced') ? 'active' : '' }}" href="/main/table-datatable-advanced">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                  <i class="ti ti-circle"></i>
-                </div>
-                <span class="hide-menu">Advanced Initialisation</span>
-              </a>
-            </li>
-          </ul>
-        </li>
+        
         <!-- ---------------------------------- -->
         <!-- Table Jsgrid -->
         <!-- ---------------------------------- -->
@@ -1440,7 +1413,7 @@
             </span>
             <span class="hide-menu">External Link</span>
           </a>
-        </li>
+        </li> --}}
       </ul>
     </nav>
 

@@ -3,6 +3,7 @@
 <head>
     @include('layouts.head')
     <title>@yield('title', 'Modernize Bootstrap Admin')</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
     @yield('css')
 </head>
 <body class="link-sidebar">
@@ -43,6 +44,8 @@
     </div>
     <div class="dark-transparent sidebartoggler"></div>
     @include('layouts.scripts')
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    
     @yield('scripts')
 </body>
 </html>

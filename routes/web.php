@@ -59,9 +59,20 @@ Route::delete('/api/exemplar/{id}', [ExemplarController::class, 'destroy']);
 Route::get('/api/buku/{id}/exemplar', [BukuController::class, 'getExemplarByBuku']);
 Route::get('/api/exemplar/{kode_eksemplar}/buku', [ExemplarController::class, 'getBukuByExemplar']);
 
-// Admin
-Route::get('/admin', function () {
-    return view('main.index');
-});
 
+// Admin
+// Buku Start
+Route::get('/main/index-buku', [AdminController::class, 'indexBuku']);
+Route::get('/main/tambah-buku', [AdminController::class, 'tampilanTambahBuku']);
+// Buku End
+
+// Eksemplar Start
+Route::get('/main/index-eksemplar', [AdminController::class, 'indexEksemplar']);
+
+// Eksemplar End
+
+// Anggota Start
+Route::get('/main/index-anggota', [AdminController::class, 'indexAnggota']);
+// Anggota End
+// Wildcard harus paling bawah!
 Route::get('/{main}/{view}', [AdminController::class, 'show']);
