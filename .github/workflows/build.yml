@@ -25,9 +25,9 @@ jobs:
         run: |
           docker push ghcr.io/${{ github.repository_owner }}/elibrary:latest
           docker push ghcr.io/${{ github.repository_owner }}/elibrary:${{ github.run_number }}
-          
-jobs:        
+      
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
