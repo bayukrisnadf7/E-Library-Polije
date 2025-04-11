@@ -22,19 +22,23 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /var/www
 
 # Copy semua file ke dalam container
-# COPY . .
+COPY . .
 
 # Copy entrypoint.sh ke root container dan beri izin eksekusi
 COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 # Beri permission ke storage dan bootstrap/cache agar bisa ditulis
-# RUN chmod -R 777 storage bootstrap/cache
+RUN chmod -R 777 storage bootstrap/cache
 
 # Install Node.js dan npm
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y nodejs && \
     npm cache clean --force
+
+RUN composer install --no-interaction --optimize-autoloader
+RUN npm ci
+RUN npm run build
 
 # Jalankan entrypoint script
 ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]

@@ -1,13 +1,13 @@
 #!/bin/sh
 
-echo "installing composer"
+# echo "installing composer"
 # Install dependency Laravel
-composer install --no-interaction --optimize-autoloader
+# composer install --no-interaction --optimize-autoloader
 
-echo "build node modules"
+# echo "build node modules"
 # rm -rf node_modules package-lock.json
-npm ci
-npm run build
+# npm ci
+# npm run build
 # npm install --save-dev vite
 # ./node_modules/.bin/vite build
 
@@ -33,7 +33,7 @@ php artisan migrate --force
 #php artisan db:seed --force
 
 # Beri permission storage & cache
-chmod -R 777 storage bootstrap/cache
+# chmod -R 777 storage bootstrap/cache
 
 # Jalankan PHP-FPM
 exec php-fpm
