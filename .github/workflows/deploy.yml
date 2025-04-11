@@ -1,26 +1,24 @@
-name: Deploy Laravel App
+name: Deploy to Server
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Build and Push Docker Image"]
+    types:
+      - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup SSH Connection
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd /root/elibrary-main
-            git pull origin main
-            docker-compose down
-            docker-compose up -d --build
+            cd /root/elibrary
+            docker-compose pull
+            docker-compose down -v
+            docker-compose up -d
