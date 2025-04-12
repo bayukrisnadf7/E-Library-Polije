@@ -1,3 +1,9 @@
 {
-    "packagesToCopy": []
+    "packagesToCopy": [
+        "jquery",
+        "bootstrap",
+        "simplebar",
+        "owl.carousel",
+        "apexcharts"
+    ]
 }
