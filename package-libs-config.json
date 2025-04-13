@@ -4,6 +4,7 @@
         "bootstrap",
         "simplebar",
         "owl.carousel",
+        "datatables.net",
         "apexcharts"
     ]
 }
