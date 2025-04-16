@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('alamat_anggota')->nullable();
             $table->string('catatan')->nullable();
             $table->string('password');
-            // $table->timestamps();
+            $table->rememberToken();
+            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

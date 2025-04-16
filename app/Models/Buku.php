@@ -26,4 +26,9 @@ class Buku extends Model
         'kota_terbit',
         'kode_barcode'
     ];
+    public function eksemplar()
+{
+    return $this->hasMany(Eksemplar::class, 'id_buku', 'id_buku');
 }
+}
+

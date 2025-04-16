@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Buku;
@@ -51,6 +52,12 @@ class AdminController extends Controller
         set_time_limit(0);
         $anggota = User::all();
         return view('main.index-anggota', compact('anggota'));
+    }
+    public function indexPeminjaman(){
+        ini_set('memory_limit', '-1');
+        set_time_limit(0);
+        $peminjaman = Peminjaman::all();
+        return view('main.index-peminjaman', compact('peminjaman'));
     }
 
 }

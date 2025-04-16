@@ -36,7 +36,7 @@
             <!-- Kontainer utama dengan dua bagian -->
             <div class="w-full md:h-full h-[200px] flex flex-col md:flex-row">
                 <!-- Bagian kiri: Konten jelajah -->
-                <div class="md:w-1/2 w-full bg-[#1A2130] flex flex-col justify-center md:p-8 p-5 text-white">
+                <div class="md:w-1/2 w-full bg-[#1A2130] flex flex-col justify-center md:p-8 p-5 text-white ">
                     <p class="lg:text-xl md:text-lg text-sm font-semibold">Siap menjelajah pengetahuan?</p>
                     <p class="lg:max-w-[500px] md:max-w-[700px] max-w-[280px] lg:text-base md:text-sm text-xs mt-2">
                         Cari judul buku sesuai dengan topik yang kamu minati, silahkan masukkan

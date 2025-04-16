@@ -62,17 +62,24 @@ Route::get('/api/exemplar/{kode_eksemplar}/buku', [ExemplarController::class, 'g
 
 // Admin
 // Buku Start
-Route::get('/main/index-buku', [AdminController::class, 'indexBuku']);
-Route::get('/main/tambah-buku', [AdminController::class, 'tampilanTambahBuku']);
+Route::get('/admin/main/index-buku', [AdminController::class, 'indexBuku']);
+Route::get('/admin/main/tambah-buku', [AdminController::class, 'tampilanTambahBuku']);
+Route::get('/admin/main/edit-buku/{id}', [BukuController::class, 'showEditBuku']);
+Route::get('/admin/main/hapus_buku/{id}', [BukuController::class, 'deleteBuku']);
+Route::get('/admin/main/export-buku', [BukuController::class, 'exportCsv']);
 // Buku End
 
 // Eksemplar Start
-Route::get('/main/index-eksemplar', [AdminController::class, 'indexEksemplar']);
+Route::get('/admin/main/index-eksemplar', [AdminController::class, 'indexEksemplar']);
 
 // Eksemplar End
 
 // Anggota Start
-Route::get('/main/index-anggota', [AdminController::class, 'indexAnggota']);
+Route::get('/admin/main/index-anggota', [AdminController::class, 'indexAnggota']);
 // Anggota End
+
+// Peminjaman Start
+Route::get('/admin/main/index-peminjaman', [AdminController::class, 'indexPeminjaman']);
+// Peminjaman End
 // Wildcard harus paling bawah!
-Route::get('/{main}/{view}', [AdminController::class, 'show']);
+Route::get('/admin/{main}/{view}', [AdminController::class, 'show']);

@@ -8,7 +8,7 @@
 @endsection
 
 @section('pageContent')
-    <div class="row w-100 g-4 mt-3 h-100">
+    <div class="row w-100 g-4 h-100">
         <p class="font-bold text-2xl text-gray-800">Tambah Buku</p>
         <div class="col-md-4">
             <div class="card border shadow">
@@ -50,7 +50,7 @@
                             </p>
                             <input type="text"
                                 class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan ISBN buku">
+                                placeholder="Masukan ISBN buku" value="{{ $buku->ISBN }}">
                         </div>
                         <div class="flex flex-col mt-3">
                             <p class="font-medium text-gray-700">
@@ -58,10 +58,11 @@
                             </p>
                             <input type="text"
                                 class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan pengarang buku">
+                                placeholder="Masukan pengarang buku" value="{{ $buku->pengarang }}">
                         </div>
                         <div class="flex flex-col mt-3">
-                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Penerbit <span class="text-red-500">*</span></label>
+                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Penerbit <span
+                                    class="text-red-500">*</span></label>
                             <select id="isbn"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline text-sm">
                                 <option value="">Pilih penerbit</option>
@@ -76,7 +77,7 @@
                             </p>
                             <input type="text"
                                 class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan tahun terbit">
+                                placeholder="Masukan tahun terbit" value="{{ $buku->tahun_terbit }}">
                         </div>
                         <div class="flex flex-col mt-3">
                             <p class="font-medium text-gray-700">
@@ -87,7 +88,8 @@
                                 placeholder="Masukan tahun langganan">
                         </div>
                         <div class="flex flex-col mt-3">
-                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Status <span class="text-red-500">*</span></label>
+                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Status <span
+                                    class="text-red-500">*</span></label>
                             <select id="isbn"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline text-sm">
                                 <option value="aktif">Aktif</option>
@@ -109,18 +111,20 @@
                             </p>
                             <input type="text"
                                 class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan judul buku">
+                                placeholder="Masukan judul buku" value="{{ $buku->judul_buku }}">
                         </div>
                         <div class="flex flex-col mt-3">
                             <label for="message"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sinopsis <span class="text-red-500">*</span></label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sinopsis <span
+                                    class="text-red-500">*</span></label>
                             <textarea id="message" rows="4"
                                 class="block p-2.5 w-full h-[220px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder-gray-400"
                                 placeholder="Masukan sinopsis buku"></textarea>
                         </div>
 
                         <div class="flex flex-col mt-3">
-                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Kategori <span class="text-red-500">*</span></label>
+                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Kategori <span
+                                    class="text-red-500">*</span></label>
                             <select id="isbn"
                                 class="appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline text-sm">
                                 <option value="">Masukan kategori...</option>
@@ -131,6 +135,67 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+
+
+            <div class="card border shadow max-h-max">
+                <div class="card-body">
+                    <label class="font-bold text-xl text-gray-800">Data Koleksi</label>
+                    <div class="relative overflow-x-autorounded-xl border border-gray-200 mt-3">
+                        <!-- Scrollable container -->
+                        <div class="overflow-y-auto max-h-64">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-100 sticky top-0">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                            Kode Eksemplar
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                            Tipe Koleksi
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                            Lokasi
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                            Lokasi Rak
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                            Aksi
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-100">
+                                    @forelse ($buku->eksemplar as $item)
+                                        <tr class="hover:bg-gray-50 transition">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                {{ $item->kode_eksemplar }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                {{ $item->tipe_koleksi }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                {{ $item->lokasi }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                {{ $item->lokasi_rak }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                                <a href="#" class="inline-block px-3 py-1 text-yellow-600 hover:text-yellow-800 hover:bg-yellow-100 rounded-md text-xs font-medium transition">Edit</a>
+                                                <a href="#" class="inline-block px-3 py-1 text-red-600 hover:text-red-800 hover:bg-red-100 rounded-md text-xs font-medium transition">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center py-4 text-gray-500">Belum ada data eksemplar.</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+
                 </div>
             </div>
 
@@ -176,7 +241,8 @@
             </div>
             <div class="flex justify-end gap-2">
                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reset</button>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[150px]">Simpan</button>
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[150px]">Simpan</button>
             </div>
         </div>
     </div>

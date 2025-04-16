@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Eksemplar;
 use Illuminate\Http\Request;
 use App\Models\Buku;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+
 
 class BukuController extends Controller
 {
@@ -33,6 +36,7 @@ class BukuController extends Controller
 
         return response()->json($buku);
     }
+
 
     // Create Buku
     public function store(Request $request)
@@ -164,4 +168,72 @@ class BukuController extends Controller
 
         return response()->json($buku);
     }
+
+    public function showEditBuku($id)
+    {
+        $buku = Buku::with('eksemplar')->where('id_buku', $id)->first();
+
+        if (!$buku) {
+            abort(404, 'Buku tidak ditemukan');
+        }
+
+        return view('main.edit-buku', compact('buku'));
+    }
+    public function deleteBuku($id)
+    {
+        $buku = Buku::find($id);
+        if (!$buku) {
+            return response()->json(['message' => 'Buku tidak ditemukan'], 404);
+        }
+        $buku->delete();
+        return redirect()->route('main.index-buku')->with('success', 'Buku berhasil dihapus');
+    }
+    public function exportCsv()
+    {
+        $books = Buku::all();
+
+        $headers = [
+            'Content-type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=buku.csv',
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0'
+        ];
+
+        $columns = ['id_buku', 'isbn', 'judul_buku', 'pengarang', 'penerbit', 'tempat_penerbit', 'tahun_terbit', 'edisi', 'bahasa', 'subyek', 'deskripsi_fisik', 'judul_seri', 'abstrak', 'cover', 'gmd', 'no_panggil', 'klasifikasi', 'created_at', 'update_at'];
+
+        $callback = function () use ($books, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($books as $book) {
+                fputcsv($file, [
+                    $book->id_buku,
+                    $book->ISBN,
+                    $book->judul_buku,
+                    $book->pengarang,
+                    $book->penerbit,
+                    $book->tempat_penerbit,
+                    $book->tahun_terbit,
+                    $book->edisi,
+                    $book->bahasa,
+                    $book->subyek,
+                    $book->deskripsi_fisik,
+                    $book->judul_seri,
+                    $book->abstrak,
+                    $book->cover,
+                    $book->gmd,
+                    $book->no_panggil,
+                    $book->klasifikasi,
+                    $book->created_at,
+                    $book->updated_at
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
 }
