@@ -25,15 +25,19 @@ done
 echo "Database MySQL siap!"
 # Generate key Laravel
 php artisan key:generate
-php artisan config:clear
-php artisan config:cache
 
 # Migrate dan seed database
 php artisan migrate --force
 #php artisan db:seed --force
 
 # Beri permission storage & cache
-# chmod -R 777 storage bootstrap/cache
+chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
 
 # Jalankan PHP-FPM
 exec php-fpm

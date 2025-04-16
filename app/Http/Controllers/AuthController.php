@@ -58,43 +58,39 @@ class AuthController extends Controller
     // Proses login
     public function login(Request $request)
     {
-        $emailExists = User::where('email', $request->email)->exists();
-        if (!$emailExists) {
-            return response()->json(['message' => 'User Not Found'], 403);
+        $user = User::where('id_user', $request->id_user)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'User tidak ditemukan!'], 404);
         }
 
-        $user = User::where('email', $request->email)->first();
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Password salah!'], 401);
+        }
+        // Konversi foto BLOB ke Base64
+        $fotoBase64 = $user->foto ? base64_encode($user->foto) : null;
 
-        if ($user && Hash::check($request->password, $user->password)) {
-            // Konversi foto BLOB ke Base64
-            $fotoBase64 = $user->foto ? base64_encode($user->foto) : null;
+        Session::put('user', [
+            'id_user' => $user->id_user,
+            'email' => $user->email,
+            'nama' => $user->nama,
+            'institute' => $user->institute,
+            'no_telepon' => $user->no_telepon,
+            'jenis_anggota' => $user->jenis_anggota,
+        ]);
 
-            Session::put('user', [
+        return response()->json([
+            'message' => 'Login berhasil!',
+            'user' => [
                 'id_user' => $user->id_user,
                 'email' => $user->email,
                 'nama' => $user->nama,
+                'foto' => $fotoBase64, // Kirim foto dalam bentuk base64
                 'institute' => $user->institute,
                 'no_telepon' => $user->no_telepon,
                 'jenis_anggota' => $user->jenis_anggota,
-            ]);
-
-            return response()->json([
-                'message' => 'Login berhasil!',
-                'user' => [
-                    'id_user' => $user->id_user,
-                    'email' => $user->email,
-                    'nama' => $user->nama,
-                    'foto' => $fotoBase64, // Kirim foto dalam bentuk base64
-                    'institute' => $user->institute,
-                    'no_telepon' => $user->no_telepon,
-                    'jenis_anggota' => $user->jenis_anggota,
-                ]
-            ]);
-        }
-
-        return response()->json([
-            'message' => 'Email atau password salah!',
-        ], 401);
+            ]
+        ]);
     }
 
 

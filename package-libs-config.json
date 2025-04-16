@@ -1,3 +1,11 @@
 {
-    "packagesToCopy": []
+    "packagesToCopy": [
+        "jquery",
+        "bootstrap",
+        "simplebar",
+        "owl.carousel",
+        "datatables.net",
+        "datatables.net-bs5",
+        "apexcharts"
+    ]
 }

@@ -63,6 +63,7 @@ services:
       - PMA_HOST=db
       - PMA_PORT=3306
       - MYSQL_ROOT_PASSWORD=Elibrary2025!
+      - UPLOAD_LIMIT=300M
     ports:
       - "9999:80"
     depends_on:
