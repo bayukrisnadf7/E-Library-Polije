@@ -29,10 +29,10 @@
         <!-- Menu Navbar -->
         <ul id="nav-menu"
             class="hidden lg:flex flex-col md:flex-row gap-4 font-semibold absolute md:static top-20 left-0 w-full bg-[#F8F5FC] md:w-auto md:bg-transparent md:gap-10 p-5 md:p-0 shadow-lg md:shadow-none md:text-white text-black">
-            <li
+            <a href="/"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Beranda
-            </li>
+            </a>
             <li class="relative cursor-pointer group">
                 <button id="dropdownButton"
                     class="flex items-center justify-between w-full md:mt-0 mt-1 rounded-sm md:hover:bg-transparent md:border-0 md:p-0 md:w-auto dark:hover:text-blue-500 dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent md:text-white text-black">
@@ -111,34 +111,69 @@
                 </div>
             </li>
 
-            <li
+            <a href="#"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Artikel
-            </li>
-            <li
+            </a>
+            <a href="#"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Berita
-            </li>
-            <li
+            </a>
+            <a href="/tentang"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Tentang
-            </li>
-            <li
+            </a>
+            <a href="/hubungi-kami"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Hubungi Kami
-            </li>
+            </a>
             <li>
                 <hr class="my-2 border-gray-300 dark:border-gray-600">
             </li>
             <li>
-                <button onclick="window.location.href='/login'" class="md:hidden block md:mt-0 mt-3 font-semibold text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                <button onclick="window.location.href='/login'"
+                    class="md:hidden block md:mt-0 mt-3 font-semibold text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Masuk / Daftar
                 </button>
             </li>
         </ul>
+        @auth
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Welcome, {{ auth()->user()->name }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Riwayat Lelang</a></li>
+                    <li><a class="dropdown-item" href="/notifikasi">Notifikasi</a></li>
+                    @if (auth()->user()->status == 1)
+                        <li><a class="dropdown-item" href="/pengajuan">Pengajuan Menjadi Lelang</a></li>
+                    @endif
+                    @if (auth()->user()->status == 2)
+                        <li><a class="dropdown-item" href="/upload_barang">Upload Barang</a></li>
+                        <li><a class="dropdown-item" href="/riwayat_lelang">Riwayat </a></li>
+                    @endif
+                    <li>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="dropdown-item">Logout</button>
+                        </form>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+        @else
+            <button onclick="window.location.href='/login'"
+                class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg lg:block md:hidden hidden hover:bg-[#3694A8] hover:border-none">
+                Masuk / Daftar
+            </button>
+        @endauth
         <!-- Tombol Login -->
-        <button onclick="window.location.href='/login'" class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg lg:block md:hidden hidden hover:bg-[#3694A8] hover:border-none">
-            Masuk / Daftar
-        </button>
+
+
     </div>
 </div>

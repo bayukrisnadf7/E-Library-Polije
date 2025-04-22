@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
 <head>
     @include('layouts.head')
-    <title>@yield('title', 'Modernize Bootstrap Admin')</title>
+    <title>@yield('title', 'Admin')</title>
     @yield('css')
 </head>
 <body class="link-sidebar">

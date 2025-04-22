@@ -5,7 +5,7 @@
 @section('css')
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ URL::asset('build/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+  
 @endsection
 
 @section('pageContent')
@@ -622,5 +622,5 @@
   <script src="{{ URL::asset('build/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
   <script src="{{ URL::asset('build/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
   <script src="{{ URL::asset('build/js/dashboards/dashboard.js') }}"></script>
-  <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+  
 @endsection

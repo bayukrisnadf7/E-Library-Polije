@@ -56,20 +56,23 @@ class AuthController extends Controller
     }
 
     // Proses login
-    public function login(Request $request)
+    public function authenticate(Request $request)
     {
         $user = User::where('id_user', $request->id_user)->first();
 
         if (!$user) {
-            return response()->json(['message' => 'User tidak ditemukan!'], 404);
+            return back()->with('errorLogin', 'User tidak ditemukan!');
         }
 
         if (!Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Password salah!'], 401);
+            return back()->with('errorLogin', 'Password salah!');
         }
-        // Konversi foto BLOB ke Base64
-        $fotoBase64 = $user->foto ? base64_encode($user->foto) : null;
 
+        // Login user secara manual
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        // Simpan data tambahan di session jika diperlukan
         Session::put('user', [
             'id_user' => $user->id_user,
             'email' => $user->email,
@@ -79,28 +82,27 @@ class AuthController extends Controller
             'jenis_anggota' => $user->jenis_anggota,
         ]);
 
-        return response()->json([
-            'message' => 'Login berhasil!',
-            'user' => [
-                'id_user' => $user->id_user,
-                'email' => $user->email,
-                'nama' => $user->nama,
-                'foto' => $fotoBase64, // Kirim foto dalam bentuk base64
-                'institute' => $user->institute,
-                'no_telepon' => $user->no_telepon,
-                'jenis_anggota' => $user->jenis_anggota,
-            ]
-        ]);
+        // Redirect berdasarkan jenis_anggota
+        if ($user->jenis_anggota == 5) {
+            return redirect('/admin/dashboard')->with('successLogin', 'Login berhasil sebagai Admin.');
+        } else {
+            return redirect('/')->with('successLogin', 'Login berhasil.');
+        }
     }
 
 
     // Logout
-    public function logout()
+
+
+    public function logout(Request $request)
     {
-        Session::forget('user');
-        return response()->json([
-            'message' => 'Logout berhasil!'
-        ]);
+        Auth::logout(); // Logout dari sistem autentikasi Laravel
+        Session::flush(); // Hapus semua data session
+
+        $request->session()->invalidate(); // Invalidate session sekarang
+        $request->session()->regenerateToken(); // Regenerasi CSRF token
+
+        return redirect('/login')->with('successLogout', 'Anda telah logout.');
     }
 
     public function checkSession(Request $request)

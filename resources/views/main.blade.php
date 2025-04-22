@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logo_tab.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    
     @vite('resources/css/app.css')
 </head>
 
@@ -32,7 +32,7 @@
     <script src="js/home.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/kunjungan.js"></script>
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+
 </body>
 
 

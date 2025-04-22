@@ -56,7 +56,7 @@
                   <div class="text-center">
                     <img src="{{ URL::asset('build/images/svgs/icon-mailbox.svg') }}" width="50" height="50" class="mb-3"
                       alt="modernize-img" />
-                    <p class="fw-semibold fs-3 text-info mb-1">Projects</p>
+                    <p class="fw-semibold fs-3 text-info mb-1">Total Peminjaman</p>
                     <h5 class="fw-semibold text-info mb-0">356</h5>
                   </div>
                 </div>
@@ -68,7 +68,7 @@
                   <div class="text-center">
                     <img src="{{ URL::asset('build/images/svgs/icon-favorites.svg') }}" width="50" height="50" class="mb-3"
                       alt="modernize-img" />
-                    <p class="fw-semibold fs-3 text-danger mb-1">Events</p>
+                    <p class="fw-semibold fs-3 text-danger mb-1">Total Anggota</p>
                     <h5 class="fw-semibold text-danger mb-0">696</h5>
                   </div>
                 </div>
@@ -80,7 +80,7 @@
                   <div class="text-center">
                     <img src="{{ URL::asset('build/images/svgs/icon-speech-bubble.svg') }}" width="50" height="50" class="mb-3"
                       alt="modernize-img" />
-                    <p class="fw-semibold fs-3 text-success mb-1">Payroll</p>
+                    <p class="fw-semibold fs-3 text-success mb-1">Total Eksemplar</p>
                     <h5 class="fw-semibold text-success mb-0">$96k</h5>
                   </div>
                 </div>
@@ -92,7 +92,7 @@
                   <div class="text-center">
                     <img src="{{ URL::asset('build/images/svgs/icon-connect.svg') }}" width="50" height="50" class="mb-3"
                       alt="modernize-img" />
-                    <p class="fw-semibold fs-3 text-info mb-1">Reports</p>
+                    <p class="fw-semibold fs-3 text-info mb-1">Total Judul</p>
                     <h5 class="fw-semibold text-info mb-0">59</h5>
                   </div>
                 </div>

@@ -23,19 +23,19 @@ class AdminController extends Controller
         }
 
     }
+    public function indexDashboard(){
+        return view ('main.index-dashboard');
+    }
     // Data Buku
-    public function indexBuku()
+    public function indexBibliography()
     {
         ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
         set_time_limit(0);
         // Ambil semua data buku dari database
         $books = Buku::all();
-        return view('main.index-buku', compact('books'));
+        return view('main.index-bibliography', compact('books'));
     }
-    public function tampilanTambahBuku()
-    {
-        return view('main.tambah-buku');
-    }
+    
     // Data Eksemplar
     public function indexEksemplar()
     {

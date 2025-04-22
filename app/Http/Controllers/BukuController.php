@@ -15,7 +15,7 @@ class BukuController extends Controller
     public function indexBuku()
     {
         // Ambil data buku dengan paginasi (misalnya, 8 per halaman)
-        $books = Buku::paginate(8);
+        $books = Buku::paginate(10);
 
         return view('buku.index', ['title' => 'Buku'], compact('books'));
     }
@@ -168,8 +168,11 @@ class BukuController extends Controller
 
         return response()->json($buku);
     }
-
-    public function showEditBuku($id)
+    public function tampilanTambahBibliography()
+    {
+        return view('main.tambah-bibliography');
+    }
+    public function showEditBibliography($id)
     {
         $buku = Buku::with('eksemplar')->where('id_buku', $id)->first();
 
@@ -177,9 +180,9 @@ class BukuController extends Controller
             abort(404, 'Buku tidak ditemukan');
         }
 
-        return view('main.edit-buku', compact('buku'));
+        return view('main.edit-bibliography', compact('buku'));
     }
-    public function deleteBuku($id)
+    public function deleteBibliography($id)
     {
         $buku = Buku::find($id);
         if (!$buku) {
@@ -188,7 +191,7 @@ class BukuController extends Controller
         $buku->delete();
         return redirect()->route('main.index-buku')->with('success', 'Buku berhasil dihapus');
     }
-    public function exportCsv()
+    public function exportBibliography()
     {
         $books = Buku::all();
 

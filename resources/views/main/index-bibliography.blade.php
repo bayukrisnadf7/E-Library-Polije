@@ -29,7 +29,7 @@
             {{-- KANAN: Aksi Tambah, Export, Hapus --}}
             <div class="d-flex gap-2">
                 <button onclick="window.location.href='/admin/main/tambah-bibliography'" class="btn btn-primary">
-                    <i class="ti ti-plus"></i> Tambah Anggota
+                    <i class="ti ti-plus"></i> Tambah Buku
                 </button>
                 <button class="btn btn-danger" onclick="deleteSelected()">
                     <i class="ti ti-trash"></i> Hapus yang Terpilih
@@ -38,48 +38,37 @@
         </div>
         
 
-        <div class="card border mt-3">
+        <div class="card border">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example" class="table table-striped display text-nowrap">
+                    <table id="example" class="table table-striped text-nowrap" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>ID Anggota</th>
-                                <th>Nama Anggota</th>
-                                <th>Tipe Anggota</th>
-                                {{-- <th>Judul Buku</th> --}}
+                                <th><input type="checkbox" id="checkAll" onclick="toggleAll(this)"></th>
+                                <th>Judul Buku</th>
+                                <th>ISBN</th>
+                                <th>Tahun Terbit</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($anggota as $item)
+                            @foreach ($books as $item)
                                 <tr>
-                                    <td>{{ $item->id_user }}</td>
-                                    <td>{{ $item->nama }}</td>
+                                    <td><input type="checkbox" class="book-checkbox" value="{{ $item->id_buku }}"></td>
+                                    <td>{{ $item->judul_buku }}</td>
+                                    <td>{{ $item->ISBN }}</td>
+                                    <td>{{ $item->tahun_terbit }}</td>
                                     <td>
-                                        @if($item->jenis_anggota == 1)
-                                            <span class="badge bg-success">Mahasiswa</span>
-                                        @elseif ($item->jenis_anggota == 2)
-                                            <span class="badge bg-warning text-dark">Dosen</span>
-                                        @elseif ($item->jenis_anggota == 3)
-                                            <span class="badge bg-danger">Teknisi</span>
-                                        @elseif ($item->jenis_anggota == 4)
-                                            <span class="badge bg-info">Karyawan</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                                        <a href="/admin/edit-bibliography/{{ $item->id_buku }}" class="btn btn-warning"><i class="ti ti-pencil"></i></a>
+                                        <a class="btn btn-danger" onclick="return confirmDelete('{{ $item->id_buku }}')"><i class="ti ti-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 

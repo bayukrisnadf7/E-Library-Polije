@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HubungiKamiController;
 use App\Http\Controllers\KunjunganController;
+use App\Http\Controllers\TentangController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\ExemplarController;
@@ -11,10 +13,16 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [AuthenticationController::class, 'indexLogin']);
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthenticationController::class, 'indexRegister']);
 Route::get('/lupa-password', [AuthenticationController::class, 'indexLupaPassword']);
 
-//
+//Tentang
+Route::get('/tentang', [TentangController::class, 'index']);
+
+// Hubungi Kami
+Route::get('/hubungi-kami', [HubungiKamiController::class, 'index']);
 
 Route::get('/kunjungan', [KunjunganController::class, 'index']);
 Route::middleware('api')->group(function () {
@@ -61,25 +69,31 @@ Route::get('/api/exemplar/{kode_eksemplar}/buku', [ExemplarController::class, 'g
 
 
 // Admin
+
+// Dashboard Start
+Route::get('/admin/dashboard', [AdminController::class, 'indexDashboard']);
+// Dashboard End
+
+
 // Buku Start
-Route::get('/admin/main/index-buku', [AdminController::class, 'indexBuku']);
-Route::get('/admin/main/tambah-buku', [AdminController::class, 'tampilanTambahBuku']);
-Route::get('/admin/main/edit-buku/{id}', [BukuController::class, 'showEditBuku']);
-Route::get('/admin/main/hapus_buku/{id}', [BukuController::class, 'deleteBuku']);
-Route::get('/admin/main/export-buku', [BukuController::class, 'exportCsv']);
+Route::get('/admin/bibliography', [AdminController::class, 'indexBibliography']);
+Route::get('/admin/tambah-bibliography', [BukuController::class, 'tampilanTambahBibliography']);
+Route::get('/admin/edit-bibliography/{id}', [BukuController::class, 'showEditBibliography']);
+Route::get('/admin/hapus-bibliography/{id}', [BukuController::class, 'deleteBibliography']);
+Route::get('/admin/export-bibliography', [BukuController::class, 'exportBibliography']);
 // Buku End
 
 // Eksemplar Start
-Route::get('/admin/main/index-eksemplar', [AdminController::class, 'indexEksemplar']);
+Route::get('/admin/eksemplar', [AdminController::class, 'indexEksemplar']);
 
 // Eksemplar End
 
 // Anggota Start
-Route::get('/admin/main/index-anggota', [AdminController::class, 'indexAnggota']);
+Route::get('/admin/anggota', [AdminController::class, 'indexAnggota']);
 // Anggota End
 
 // Peminjaman Start
-Route::get('/admin/main/index-peminjaman', [AdminController::class, 'indexPeminjaman']);
+Route::get('/admin/peminjaman', [AdminController::class, 'indexPeminjaman']);
 // Peminjaman End
 // Wildcard harus paling bawah!
 Route::get('/admin/{main}/{view}', [AdminController::class, 'show']);

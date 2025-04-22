@@ -41,6 +41,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function getAuthIdentifierName()
+    {
+        return 'id_user'; // default-nya 'email'
+    }
+
 
     /**
      * Get the attributes that should be cast.
