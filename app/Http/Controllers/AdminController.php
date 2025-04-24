@@ -27,14 +27,14 @@ class AdminController extends Controller
         return view ('main.index-dashboard');
     }
     // Data Buku
-    public function indexBibliography()
-    {
-        ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
-        set_time_limit(0);
-        // Ambil semua data buku dari database
-        $books = Buku::all();
-        return view('main.index-bibliography', compact('books'));
-    }
+    // public function indexBibliography()
+    // {
+    //     ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
+    //     set_time_limit(0);
+    //     // Ambil semua data buku dari database
+    //     $books = Buku::all();
+    //     return view('main.index-bibliography', compact('books'));
+    // }
     
     // Data Eksemplar
     public function indexEksemplar()
@@ -58,6 +58,20 @@ class AdminController extends Controller
         set_time_limit(0);
         $peminjaman = Peminjaman::all();
         return view('main.index-peminjaman', compact('peminjaman'));
+    }
+    public function indexKoleksi(){
+        ini_set('memory_limit', '-1');
+        set_time_limit(0);
+        $koleksi = Buku::all();
+        return view('main.index-koleksi', compact('koleksi'));
+    }
+    public function indexBibliography()
+    {
+        ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
+        set_time_limit(0);
+        // Ambil semua data buku dari database
+        $books = Buku::all();
+        return view('main.index-bibliography', compact('books'));
     }
 
 }

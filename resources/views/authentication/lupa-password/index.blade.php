@@ -25,17 +25,19 @@
         <div class=" flex flex-col gap-5 w-[400px]">
             <img src="img/logopol 1.png" alt="" width="100" class="mx-auto">
             <p class="text-center font-bold">Reset Password</p>
-    
-            <div class="flex flex-col gap-3 w-full">
-                <div class="flex flex-col gap-2">
-                    <p>Email</p>
-                    <div class="flex gap-2 items-center">
-                        <input type="" class="bg-[#E1E1E1] py-3 rounded-lg px-3 w-full placeholder:text-[#A8A8A8]" placeholder="Email">
-                        <button class="bg-[#3694A8] py-2 p-1 w-[130px] rounded-lg text-white font-semibold mt-1">Kirim Kode</button>
+            <form action="{{ route('password.email')}}" method="POST">
+                @csrf
+                <div class="flex flex-col gap-3 w-full">
+                    <div class="flex flex-col gap-2">
+                        <p>Email</p>
+                        <div class="flex gap-2 items-center">
+                            <input type="email" name="email" class="bg-[#E1E1E1] py-3 rounded-lg px-3 w-full placeholder:text-[#A8A8A8]" placeholder="Email">
+                            <button type="submit" class="bg-[#3694A8] border-none py-2 p-1 w-[130px] rounded-lg text-white font-semibold mt-1">Kirim Kode</button>
+                        </div>
                     </div>
+                    {{-- <button type="submit" class="bg-[#3694A8] py-3 rounded-lg text-white font-bold mt-1">Verifikasi</button> --}}
                 </div>
-                <button class="bg-[#3694A8] py-3 rounded-lg text-white font-bold mt-1">Verifikasi</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

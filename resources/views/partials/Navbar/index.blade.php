@@ -137,41 +137,30 @@
                 </button>
             </li>
         </ul>
-        @auth
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Welcome, {{ auth()->user()->name }}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Riwayat Lelang</a></li>
-                    <li><a class="dropdown-item" href="/notifikasi">Notifikasi</a></li>
-                    @if (auth()->user()->status == 1)
-                        <li><a class="dropdown-item" href="/pengajuan">Pengajuan Menjadi Lelang</a></li>
-                    @endif
-                    @if (auth()->user()->status == 2)
-                        <li><a class="dropdown-item" href="/upload_barang">Upload Barang</a></li>
-                        <li><a class="dropdown-item" href="/riwayat_lelang">Riwayat </a></li>
-                    @endif
-                    <li>
-                        <form action="/logout" method="post">
-                            @csrf
-                            <button type="submit" class="dropdown-item">Logout</button>
-                        </form>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </li>
-        @else
+        @guest
             <button onclick="window.location.href='/login'"
-                class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg lg:block md:hidden hidden hover:bg-[#3694A8] hover:border-none">
+                class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg hover:bg-[#3694A8] hover:border-none">
                 Masuk / Daftar
             </button>
+        @endguest
+
+        @auth
+            <div class="relative group">
+                <img src="{{ asset('build/images/profile/user-1.jpg') }}" class="w-10 h-10 rounded-full cursor-pointer"
+                    alt="User Avatar">
+                <div
+                    class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out delay-200 z-50">
+                    <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
         @endauth
+
         <!-- Tombol Login -->
 
 

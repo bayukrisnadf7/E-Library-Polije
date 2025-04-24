@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
-
-class AuthController extends Controller
+use Illuminate\Http\RedirectResponse;
+class AuthControllerAPI extends Controller
 {
     // Proses registrasi
     public function register(Request $request)
@@ -54,41 +55,35 @@ class AuthController extends Controller
             return response()->json(['message' => 'unknown eror while creating user'], 406);
         }
     }
-
-    // Proses login
-    public function authenticate(Request $request)
+    public function authenticate(Request $request): RedirectResponse
     {
-        $user = User::where('id_user', $request->id_user)->first();
-
-        if (!$user) {
-            return back()->with('errorLogin', 'User tidak ditemukan!');
-        }
-
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->with('errorLogin', 'Password salah!');
-        }
-
-        // Login user secara manual
-        Auth::login($user);
-        $request->session()->regenerate();
-
-        // Simpan data tambahan di session jika diperlukan
-        Session::put('user', [
-            'id_user' => $user->id_user,
-            'email' => $user->email,
-            'nama' => $user->nama,
-            'institute' => $user->institute,
-            'no_telepon' => $user->no_telepon,
-            'jenis_anggota' => $user->jenis_anggota,
+        $credentials = $request->validate([
+            'id_user' => ['required'],
+            'password' => ['required'],
         ]);
 
-        // Redirect berdasarkan jenis_anggota
-        if ($user->jenis_anggota == 5) {
-            return redirect('/admin/dashboard')->with('successLogin', 'Login berhasil sebagai Admin.');
-        } else {
-            return redirect('/')->with('successLogin', 'Login berhasil.');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            if (in_array($user->jenis_anggota, [5, 6])) {
+                return redirect()->intended('admin/dashboard');
+            }
+
+            return redirect()->intended('/');
         }
+
+        return back()->withErrors([
+            'id_user' => 'ID atau password salah.',
+        ]);
     }
+
+    
+
+
+
+
 
 
     // Logout

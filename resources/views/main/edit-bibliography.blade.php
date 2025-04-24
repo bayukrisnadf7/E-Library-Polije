@@ -8,244 +8,184 @@
 @endsection
 
 @section('pageContent')
-    <div class="row w-100 g-4 h-100">
-        <p class="font-bold text-2xl text-gray-800">Tambah Buku</p>
-        <div class="col-md-4">
-            <div class="card border shadow">
-                <div class="card-body">
-                    <div class="mb-4">
-                        <label class="font-bold text-xl text-gray-800">Cover <span class="text-red-500">*</span></label>
-                        <div
-                            class="relative mt-2 w-72 h-80 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-50 hover:bg-gray-100 group">
+    <form action="{{ route('buku.update', $buku->id_buku) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="row w-100 g-4 h-100">
+            <p class="font-bold text-2xl text-gray-800">Edit Buku</p>
 
-                            <!-- Preview image -->
-                            <img id="previewImage" src="https://cdn-icons-png.flaticon.com/512/149/149852.png"
-                                alt="Preview"
-                                class="max-h-full max-w-full object-contain opacity-50 group-hover:opacity-75 transition" />
+            <!-- Cover Upload -->
+            <div class="col-md-4">
+                <div class="card border shadow">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label class="font-bold text-xl text-gray-800">Cover <span class="text-red-500">*</span></label>
+                            <div
+                                class="relative mt-2 w-72 h-80 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-50 hover:bg-gray-100 group">
+                                <img id="previewImage" src="/covers/{{ $buku->cover }}" alt="Preview"
+                                    class="max-h-full max-w-full object-contain opacity-50 group-hover:opacity-75 transition" />
 
-                            <!-- Remove button -->
-                            <button id="removeBtn" type="button"
-                                class="absolute top-2 right-2 bg-white border border-gray-300 rounded-full p-1 hover:bg-red-100 text-red-500 hidden z-20">
-                                &times;
-                            </button>
-
-                            <!-- Transparent file input that overlays the container -->
-                            <input id="coverInput" type="file" accept=".png, .jpg, .jpeg"
-                                class="absolute inset-0 opacity-0 cursor-pointer z-10"
-                                onchange="previewTailwindCover(event)" />
+                                <input name="cover" id="coverInput" type="file" accept=".png, .jpg, .jpeg"
+                                    class="absolute inset-0 opacity-0 cursor-pointer z-10"
+                                    onchange="previewTailwindCover(event)" />
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">Format yang diterima: <strong>.png</strong>,
+                                <strong>.jpg</strong>, <strong>.jpeg</strong>.</p>
                         </div>
-                        <p class="text-sm text-gray-500 mt-2">Hanya menerima berkas dengan format <strong>.png</strong>,
-                            <strong>.jpg</strong>, atau <strong>.jpeg</strong>.
-                        </p>
                     </div>
                 </div>
-            </div>
-            <div class="card border shadow">
-                <div class="card-body">
-                    <div class="mb-4">
+
+                <!-- Registrasi -->
+                <div class="card border shadow mt-4 h-[514px]">
+                    <div class="card-body">
                         <label class="font-bold text-xl text-gray-800">Registrasi</label>
-                        <div class="flex flex-col mt-3">
-                            <p class="font-medium text-gray-700">
-                                ISBN <span class="text-red-500">*</span>
-                            </p>
-                            <input type="text"
-                                class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan ISBN buku" value="{{ $buku->ISBN }}">
-                        </div>
-                        <div class="flex flex-col mt-3">
-                            <p class="font-medium text-gray-700">
-                                Pengarang <span class="text-red-500">*</span>
-                            </p>
-                            <input type="text"
-                                class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan pengarang buku" value="{{ $buku->pengarang }}">
-                        </div>
-                        <div class="flex flex-col mt-3">
-                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Penerbit <span
-                                    class="text-red-500">*</span></label>
-                            <select id="isbn"
-                                class="appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline text-sm">
-                                <option value="">Pilih penerbit</option>
-                                <option value="978-602-03-9310-0">978-602-03-9310-0</option>
-                                <option value="978-602-03-9321-6">978-602-03-9321-6</option>
-                                <option value="978-602-03-9332-2">978-602-03-9332-2</option>
-                            </select>
-                        </div>
-                        <div class="flex flex-col mt-3">
-                            <p class="font-medium text-gray-700">
-                                Tahun Terbit <span class="text-red-500">*</span>
-                            </p>
-                            <input type="text"
-                                class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan tahun terbit" value="{{ $buku->tahun_terbit }}">
-                        </div>
-                        <div class="flex flex-col mt-3">
-                            <p class="font-medium text-gray-700">
-                                Tahun Langganan <span class="text-red-500">*</span>
-                            </p>
-                            <input type="text"
-                                class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan tahun langganan">
-                        </div>
-                        <div class="flex flex-col mt-3">
-                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Status <span
-                                    class="text-red-500">*</span></label>
-                            <select id="isbn"
-                                class="appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline text-sm">
-                                <option value="aktif">Aktif</option>
-                                <option value="tidak-aktif">Tidak Aktif</option>
-                            </select>
-                        </div>
+                        @php
+                            $registrasiFields = [
+                                'ISBN' => 'Masukan ISBN buku',
+                                'pengarang' => 'Masukan pengarang buku',
+                                'penerbit' => 'Masukan nama penerbit',
+                                'tempat_penerbit' => 'Masukan tempat terbit',
+                                'tahun_terbit' => 'Masukan tahun terbit',
+                            ];
+                        @endphp
+                        @foreach ($registrasiFields as $field => $placeholder)
+                            <div class="flex flex-col mt-3">
+                                <p class="font-medium text-gray-700">
+                                    {{ str_replace('_', ' ', ucfirst($field)) }} <span class="text-red-500">*</span>
+                                </p>
+                                <input
+                                    type="{{ $field === 'tahun_terbit' ? 'number' : 'text' }}"
+                                    name="{{ $field }}"
+                                    value="{{ $buku->$field }}"
+                                    class="mt-1 border rounded w-full py-2 px-3 text-gray-700 placeholder:text-sm placeholder-gray-400 focus:outline-none focus:shadow-outline"
+                                    placeholder="{{ $placeholder }}">
+                            </div>
+                        @endforeach
                     </div>
+                </div>                
+            </div>
+
+            <!-- Detail -->
+            <div class="col-md-8">
+                <div class="card border shadow max-h-max">
+                    <div class="card-body">
+                        <label class="font-bold text-xl text-gray-800">Detail</label>
+
+                        <div class="flex flex-col mt-3">
+                            <p class="font-medium text-gray-700">Judul Buku <span class="text-red-500">*</span></p>
+                            <input type="text" name="judul_buku" value="{{ $buku->judul_buku }}"
+                                class="mt-1 border rounded w-full py-2 px-3 text-gray-700 placeholder:text-sm placeholder-gray-400 focus:outline-none focus:shadow-outline"
+                                placeholder="Masukan judul buku">
+                        </div>
+
+                        <div class="flex flex-col mt-3">
+                            <label for="abstrak" class="font-medium text-gray-700">Abstrak <span
+                                    class="text-red-500">*</span></label>
+                            <textarea id="abstrak" name="abstrak" rows="4"
+                                class="p-2.5 w-full h-[220px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder-gray-400"
+                                placeholder="Masukan sinopsis buku">{{ $buku->abstrak }}</textarea>
+                        </div>
+
+                        @php
+                            $detailFields = [
+                                'deskripsi_fisik' => 'Masukan deskripsi fisik',
+                                'edisi' => 'Masukan edisi',
+                                'bahasa' => 'Masukan bahasa',
+                                'subyek' => 'Masukan subyek',
+                                'gmd' => 'Masukan GMD',
+                                'no_panggil' => 'Masukan nomor panggil',
+                                'klasifikasi' => 'Masukan klasifikasi',
+                            ];
+                        @endphp
+                        @foreach ($detailFields as $field => $placeholder)
+                            <div class="flex flex-col mt-3">
+                                <p class="font-medium text-gray-700">{{ str_replace('_', ' ', ucfirst($field)) }} <span
+                                        class="text-red-500">*</span></p>
+                                <input type="text" name="{{ $field }}" value="{{ $buku->$field }}"
+                                    class="mt-1 border rounded w-full py-2 px-3 text-gray-700 placeholder:text-sm placeholder-gray-400 focus:outline-none focus:shadow-outline"
+                                    placeholder="{{ $placeholder }}">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-2 mt-[40px] mb-[40px]">
+                    <a href="{{ route('main.index-bibliography') }}"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Batal</a>
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[150px]">Simpan</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="card border shadow max-h-max">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <label class="font-bold text-xl text-gray-800">Detail</label>
-                        <div class="flex flex-col mt-3">
-                            <p class="font-medium text-gray-700">
-                                Judul <span class="text-red-500">*</span>
-                            </p>
-                            <input type="text"
-                                class="mt-1 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
-                                placeholder="Masukan judul buku" value="{{ $buku->judul_buku }}">
+    </form>
+    <!-- Modal Tambah Eksemplar -->
+    <!-- Modal Tambah/Edit Eksemplar -->
+    <div id="modalEksemplar" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative animate-fade-in">
+            <h3 id="modalTitle" class="text-lg font-semibold text-gray-800 mb-4">Tambah Eksemplar</h3>
+            <form id="formEksemplar" method="POST">
+                @csrf
+                <input type="hidden" id="_methodField" name="_method" value="POST">
+                <input type="hidden" name="id_buku" id="form_id_buku" value="{{ $buku->id_buku }}">
+                <div class="space-y-4">
+                    <div class="flex gap-2">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Kode Eksemplar</label>
+                            <input type="text" name="kode_eksemplar" id="form_kode_eksemplar" required
+                                class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-                        <div class="flex flex-col mt-3">
-                            <label for="message"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sinopsis <span
-                                    class="text-red-500">*</span></label>
-                            <textarea id="message" rows="4"
-                                class="block p-2.5 w-full h-[220px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder-gray-400"
-                                placeholder="Masukan sinopsis buku"></textarea>
-                        </div>
-
-                        <div class="flex flex-col mt-3">
-                            <label for="isbn" class="mb-1 text-gray-700 font-medium">Kategori <span
-                                    class="text-red-500">*</span></label>
-                            <select id="isbn"
-                                class="appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline text-sm">
-                                <option value="">Masukan kategori...</option>
-                                <option value="978-602-03-9310-0">978-602-03-9310-0</option>
-                                <option value="978-602-03-9321-6">978-602-03-9321-6</option>
-                                <option value="978-602-03-9332-2">978-602-03-9332-2</option>
-                            </select>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="card border shadow max-h-max">
-                <div class="card-body">
-                    <label class="font-bold text-xl text-gray-800">Data Koleksi</label>
-                    <div class="relative overflow-x-autorounded-xl border border-gray-200 mt-3">
-                        <!-- Scrollable container -->
-                        <div class="overflow-y-auto max-h-64">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-100 sticky top-0">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                            Kode Eksemplar
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                            Tipe Koleksi
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                            Lokasi
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                            Lokasi Rak
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                            Aksi
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-100">
-                                    @forelse ($buku->eksemplar as $item)
-                                        <tr class="hover:bg-gray-50 transition">
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $item->kode_eksemplar }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $item->tipe_koleksi }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $item->lokasi }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $item->lokasi_rak }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                                <a href="#" class="inline-block px-3 py-1 text-yellow-600 hover:text-yellow-800 hover:bg-yellow-100 rounded-md text-xs font-medium transition">Edit</a>
-                                                <a href="#" class="inline-block px-3 py-1 text-red-600 hover:text-red-800 hover:bg-red-100 rounded-md text-xs font-medium transition">Hapus</a>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="5" class="text-center py-4 text-gray-500">Belum ada data eksemplar.</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Nomor Panggil</label>
+                            <input type="text" name="nomor_panggil" id="form_nomor_panggil" required
+                                class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                     </div>
-                    
-
-                </div>
-            </div>
-
-            <div class="card border shadow max-h-max">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <label class="font-bold text-xl text-gray-800">Berkas</label>
-                        <div class="flex flex-col mt-3">
-                            <label for="pdfFile" class="mb-2 font-semibold text-gray-700">
-                                File <span class="text-red-500">*</span>
-                            </label>
-
-                            <label for="pdfFile"
-                                class="w-full h-32 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 rounded-md cursor-pointer hover:bg-gray-100 transition">
-                                <div class="text-gray-500">
-                                    <span class="font-medium">Drag & Drop</span> your files or
-                                    <span class="underline">Browse</span>
-                                </div>
-                                <input id="pdfFile" type="file" accept=".pdf" class="hidden" />
-                            </label>
-
-                            <p class="text-sm text-gray-400 mt-2">
-                                Untuk saat ini hanya berkas <strong>.pdf</strong> yang didukung.
-                            </p>
+                    <div class="flex gap-2">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Tipe Koleksi</label>
+                            <input type="text" name="tipe_koleksi" id="form_tipe_koleksi" required
+                                class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-
-                        <div class="flex flex-col mt-3">
-                            <label for="jumlah" class="mb-1">Jumlah Halaman</label>
-                            <input type="number" id="jumlah" name="jumlah"
-                                class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg"
-                                placeholder="Masukkan angka..." />
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Tanggal Penerimaan</label>
+                            <input type="date" name="tanggal_penerimaan" id="form_tanggal_penerimaan" required
+                                class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-
-                        <div class="flex flex-col mt-3">
-                            <label for="jumlah" class="mb-1">Jumlah Copy</label>
-                            <input type="number" id="jumlah" name="jumlah"
-                                class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg"
-                                placeholder="Masukkan angka..." />
+                    </div>
+                    <div class="flex gap-2">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Lokasi</label>
+                            <input type="text" name="lokasi" id="form_lokasi" required
+                                class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Lokasi Rak</label>
+                            <input type="text" name="lokasi_rak" id="form_lokasi_rak" required
+                                class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="flex justify-end gap-2">
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reset</button>
-                <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[150px]">Simpan</button>
-            </div>
+
+                <div class="mt-6 flex justify-end gap-2">
+                    <button type="button" onclick="toggleModal(false)"
+                        class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition">
+                        Batal
+                    </button>
+                    <button type="submit" id="submitBtn"
+                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+
+            <!-- Tombol Close -->
+            <button onclick="toggleModal(false)"
+                class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl font-bold">
+                &times;
+            </button>
         </div>
     </div>
+
 
 @endsection
 
@@ -280,5 +220,55 @@
             fileInput.value = ''; // Reset file input
             removeBtn.classList.add('hidden');
         });
+    </script>
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('modalEksemplar');
+            modal.classList.toggle('hidden', !show);
+        }
+
+        // Untuk TAMBAH
+        function openCreateModal() {
+            document.getElementById('modalTitle').innerText = 'Tambah Eksemplar';
+            document.getElementById('submitBtn').innerText = 'Simpan';
+            document.getElementById('formEksemplar').action = '{{ route('eksemplar.store') }}';
+            document.getElementById('_methodField').value = 'POST';
+
+            // Kosongkan semua input
+            document.getElementById('form_kode_eksemplar').readOnly = false;
+            document.getElementById('form_kode_eksemplar').value = '';
+            document.getElementById('form_nomor_panggil').value = '';
+            document.getElementById('form_tipe_koleksi').value = '';
+            document.getElementById('form_tanggal_penerimaan').value = '';
+            document.getElementById('form_lokasi').value = '';
+            document.getElementById('form_lokasi_rak').value = '';
+
+            toggleModal(true);
+        }
+
+        // Untuk EDIT
+        function openEditModal(data) {
+            document.getElementById('modalTitle').innerText = 'Edit Eksemplar';
+            document.getElementById('submitBtn').innerText = 'Update';
+            document.getElementById('formEksemplar').action = `/eksemplar/${data.kode_eksemplar}`;
+            document.getElementById('_methodField').value = 'PUT';
+
+            // Isi form
+            document.getElementById('form_kode_eksemplar').readOnly = true;
+            document.getElementById('form_kode_eksemplar').value = data.kode_eksemplar;
+            document.getElementById('form_nomor_panggil').value = data.nomor_panggil;
+            document.getElementById('form_tipe_koleksi').value = data.tipe_koleksi;
+            document.getElementById('form_tanggal_penerimaan').value = data.tanggal_penerimaan;
+            document.getElementById('form_lokasi').value = data.lokasi;
+            document.getElementById('form_lokasi_rak').value = data.lokasi_rak;
+
+            toggleModal(true);
+        }
+    </script>
+
+    <script>
+        function confirmDelete(form) {
+            return confirm('Apakah Anda yakin ingin menghapus data ini?');
+        }
     </script>
 @endsection

@@ -47,5 +47,6 @@
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     
     @yield('scripts')
+    
 </body>
 </html>

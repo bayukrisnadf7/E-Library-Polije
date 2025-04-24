@@ -4,86 +4,91 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Eksemplar;
+use Milon\Barcode\Facades\DNS1D;
+
+
 
 class ExemplarController extends Controller
 {
-    // Get All Exemplar
-    public function index()
+    public function create()
     {
-        $exemplar = Eksemplar::with('buku')->get();
-        return response()->json($exemplar);
+        return view('eksemplar.create');
     }
 
-    // Get Exemplar by ID
-    public function show($id)
-    {
-        $exemplar = Eksemplar::with('buku')->find($id);
-        if (!$exemplar) {
-            return response()->json(['message' => 'Exemplar tidak ditemukan'], 404);
-        }
-
-        return response()->json($exemplar);
-    }
-
-    // Create Exemplar
     public function store(Request $request)
     {
         $request->validate([
-            'kode_eksemplar' => 'required|unique:exemplar,kode_eksemplar',
-            'lokasi' => 'required|string|max:255',
-            'lokasi_rak' => 'required|string|max:255',
-            'tipe_koleksi' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
-            'id_buku' => 'required|exists:buku,id_buku',
+            'kode_eksemplar' => 'required',
+            'nomor_panggil' => 'required',
+            'tipe_koleksi' => 'required',
+            'tanggal_penerimaan' => 'required|date',
+            'lokasi' => 'required',
+            'lokasi_rak' => 'required',
+            'id_buku' => 'required',
         ]);
 
-        $exemplar = Eksemplar::create($request->all());
+        Eksemplar::create([
+            'kode_eksemplar' => $request->kode_eksemplar,
+            'nomor_panggil' => $request->nomor_panggil,
+            'tipe_koleksi' => $request->tipe_koleksi,
+            'tanggal_penerimaan' => $request->tanggal_penerimaan,
+            'lokasi' => $request->lokasi,
+            'lokasi_rak' => $request->lokasi_rak,
+            'id_buku' => $request->id_buku,
+            'tanggal_faktur' => $request->tanggal_penerimaan,
+            'tanggal_pemesanan' => $request->tanggal_penerimaan,
+        ]);
 
-        return response()->json(['message' => 'Exemplar berhasil ditambahkan', 'exemplar' => $exemplar], 201);
+        return redirect()->route('main.edit-bibliography', ['id' => $request->id_buku])
+            ->with('success', 'Data berhasil ditambahkan!');
     }
 
-    // Update Exemplar
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode_eksemplar)
     {
-        $exemplar = Eksemplar::find($id);
-        if (!$exemplar) {
-            return response()->json(['message' => 'Exemplar tidak ditemukan'], 404);
-        }
-
         $request->validate([
-            'lokasi' => 'sometimes|required|string|max:255',
-            'lokasi_rak' => 'sometimes|required|string|max:255',
-            'tipe_koleksi' => 'sometimes|required|string|max:255',
-            'status' => 'sometimes|required|string|max:255',
-            'id_buku' => 'sometimes|required|exists:buku,id_buku',
+            'kode_eksemplar' => 'required',
+            'nomor_panggil' => 'required',
+            'tipe_koleksi' => 'required',
+            'tanggal_penerimaan' => 'required|date',
+            'lokasi' => 'required',
+            'lokasi_rak' => 'required',
+            'id_buku' => 'required',
         ]);
 
-        $exemplar->update($request->all());
+        $eksemplar = Eksemplar::findOrFail($kode_eksemplar);
 
-        return response()->json(['message' => 'Exemplar berhasil diperbarui', 'exemplar' => $exemplar]);
+        $eksemplar->update([
+            'kode_eksemplar' => $request->kode_eksemplar,
+            'nomor_panggil' => $request->nomor_panggil,
+            'tipe_koleksi' => $request->tipe_koleksi,
+            'tanggal_penerimaan' => $request->tanggal_penerimaan,
+            'lokasi' => $request->lokasi,
+            'lokasi_rak' => $request->lokasi_rak,
+            'id_buku' => $request->id_buku,
+            'tanggal_faktur' => $request->tanggal_penerimaan,
+            'tanggal_pemesanan' => $request->tanggal_penerimaan,
+        ]);
+
+        return redirect()->route('main.edit-bibliography', ['id' => $request->id_buku])
+            ->with('success', 'Data eksemplar berhasil diperbarui!');
     }
 
-    // Delete Exemplar
-    public function destroy($id)
+
+    public function destroy($kode_eksemplar)
     {
-        $exemplar = Eksemplar::find($id);
-        if (!$exemplar) {
-            return response()->json(['message' => 'Exemplar tidak ditemukan'], 404);
-        }
+        $eksemplar = Eksemplar::findOrFail($kode_eksemplar);
+        $idBuku = $eksemplar->id_buku;
 
-        $exemplar->delete();
+        $eksemplar->delete();
 
-        return response()->json(['message' => 'Exemplar berhasil dihapus']);
+        return redirect()->route('main.edit-bibliography', ['id' => $idBuku])
+            ->with('success', 'Data eksemplar berhasil dihapus!');
     }
 
-    // Ambil buku dari exemplar tertentu
-    public function getBukuByExemplar($kode_eksemplar)
+    public function print($kode_eksemplar)
     {
-        $exemplar = Eksemplar::with('buku')->find($kode_eksemplar);
-        if (!$exemplar) {
-            return response()->json(['message' => 'Exemplar tidak ditemukan'], 404);
-        }
-
-        return response()->json($exemplar->buku);
+        $eksemplar = Eksemplar::where('kode_eksemplar', $kode_eksemplar)->firstOrFail();
+        return view('eksemplar.print', compact('eksemplar'));
     }
+    
 }

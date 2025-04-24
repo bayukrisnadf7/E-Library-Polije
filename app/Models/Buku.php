@@ -16,15 +16,22 @@ class Buku extends Model
 
     protected $fillable = [
         'id_buku',
-        'judul_buku',
-        'deskripsi_buku',
-        'cover',
         'ISBN',
+        'judul_buku',
         'pengarang',
         'penerbit',
+        'tempat_penerbit',
         'tahun_terbit',
-        'kota_terbit',
-        'kode_barcode'
+        'edisi',
+        'bahasa',
+        'subyek',
+        'deskripsi_fisik',
+        'judul_seri',
+        'abstrak',
+        'cover',
+        'gmd',
+        'no_panggil',
+        'klasifikasi',
     ];
     public function eksemplar()
 {

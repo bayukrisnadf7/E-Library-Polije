@@ -33,10 +33,10 @@
                     @csrf
                     <div class="flex flex-col gap-3 w-full">
                         <div class="flex flex-col gap-1">
-                            <label for="id_user">Email</label>
+                            <label for="id_user">ID User</label>
                             <input type="text" name="id_user" id="id_user"
                                 class="bg-[#E1E1E1] py-2 rounded-lg px-3 placeholder:text-[#A8A8A8] border-none focus:outline-none focus:ring-0"
-                                placeholder="Email" required>
+                                placeholder="ID User" required>
                         </div>
                         <div class="flex flex-col gap-1">
                             <label for="password">Password</label>
@@ -47,11 +47,12 @@
                         <button type="submit" class="bg-[#3694A8] py-3 rounded-lg text-white font-bold mt-1">Login</button>
                     </div>
                 </form>
+                
 
                 <div class="flex flex-col gap-2">
-                    <p class="text-center">Belum Punya Akun? <a href=""
+                    <p class="text-center">Belum Punya Akun? <a href="/register"
                             class="text-[#334B48] hover:text-[#3694A8]">Daftar</a></p>
-                    <p class="text-center">Lupa Password? <a href=""
+                    <p class="text-center">Lupa Password? <a href="/lupa-password"
                             class="text-[#334B48] hover:text-[#3694A8]">Reset
                             Password</a></p>
                 </div>

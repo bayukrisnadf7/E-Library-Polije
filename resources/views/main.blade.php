@@ -12,18 +12,18 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logo_tab.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     @vite('resources/css/app.css')
 </head>
 
 <body class="font-poppins max-w-full">
-    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register', 'lupa-password']))
+    @if (!request()->is('kunjungan', 'login', 'register', 'lupa-password', 'reset-password*'))
         @include('partials.Navbar.index')
     @endif
 
     @yield('content')
 
-    @if (!in_array(request()->path(), ['kunjungan', 'login', 'register', 'lupa-password']))
+    @if (!request()->is('kunjungan', 'login', 'register', 'lupa-password', 'reset-password*'))
         @include('partials.Footer.index')
     @endif
 

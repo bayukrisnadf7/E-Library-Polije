@@ -15,11 +15,11 @@ return new class extends Migration
             $table->string('id_user')->primary();
             $table->string('email');
             $table->string('nama');
-            $table->string('nim');
+            $table->string('nim')->nullable();
             $table->binary('foto')->nullable();
-            $table->string('institute');
-            $table->string('no_telepon');
-            $table->string('jenis_anggota');
+            $table->string('institute')->nullable();
+            $table->string('no_telepon')->nullable();
+            $table->string('jenis_anggota')->nullable();
             $table->string('alamat_anggota')->nullable();
             $table->string('catatan')->nullable();
             $table->string('password');

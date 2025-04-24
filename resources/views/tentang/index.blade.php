@@ -10,7 +10,7 @@
             </div>
 
             <!-- Konten Utama -->
-            <div class="flex flex-col md:flex-row items-center gap-10 animate-slide-up">
+            <div class="flex flex-col md:flex-row items-center gap-10 animate-slide-up mt-20">
                 <!-- Gambar Perpustakaan -->
                 <div class="md:w-1/2">
                     <img src="img/perpus.png"

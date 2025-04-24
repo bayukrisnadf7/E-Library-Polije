@@ -17,6 +17,11 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $primaryKey = 'id_user'; // ✅ Ini penting
+
+    public $incrementing = false; // ✅ kalau id_user bukan auto-increment (misalnya NIM)
+
+    protected $keyType = 'string'; // ✅ kalau id_user berupa string/NIM
     protected $fillable = [
         'id_user',
         'email',
@@ -59,4 +64,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function getJenisAnggotaLabelAttribute()
+{
+    return match($this->jenis_anggota) {
+        1 => 'Mahasiswa',
+        2 => 'Dosen',
+        3 => 'Karyawan',
+        4 => 'Pustakawan',
+        5 => 'Admin',
+        default => 'Tidak Diketahui',
+    };
+}
+
 }

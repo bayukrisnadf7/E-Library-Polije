@@ -44,6 +44,7 @@
                     <table id="example" class="table table-striped display text-nowrap">
                         <thead>
                             <tr>
+                                <th><input type="checkbox" id="checkAll" onclick="toggleAll(this)"></th>
                                 <th>ID Anggota</th>
                                 <th>Nama Anggota</th>
                                 <th>Tipe Anggota</th>
@@ -54,6 +55,7 @@
                         <tbody>
                             @foreach ($anggota as $item)
                                 <tr>
+                                    <td><input type="checkbox" class="book-checkbox" value="{{ $item->id_user }}"></td>
                                     <td>{{ $item->id_user }}</td>
                                     <td>{{ $item->nama }}</td>
                                     <td>
