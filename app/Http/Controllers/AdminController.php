@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Buku;
 use App\Models\Eksemplar;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -26,20 +27,42 @@ class AdminController extends Controller
         }
 
     }
-    public function indexDashboard()
+    public function indexDashboard(Request $request)
     {
-        return view('main.index-dashboard');
-    }
-    // Data Buku
-    // public function indexBibliography()
-    // {
-    //     ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
-    //     set_time_limit(0);
-    //     // Ambil semua data buku dari database
-    //     $books = Buku::all();
-    //     return view('main.index-bibliography', compact('books'));
-    // }
+        $tahun = $request->input('tahun', Carbon::now()->year); // default tahun ini
 
+        $totalBuku = Buku::count();
+        $jumlahPeminjaman = Peminjaman::count();
+        $jumlahAnggota = User::count();
+
+        $hariIni = Carbon::now()->toDateString();
+        $pengembalianHariIni = Peminjaman::whereDate('tgl_pengembalian', $hariIni)->count();
+        $peminjamanHariIni = Peminjaman::whereDate('tgl_peminjaman', $hariIni)->count();
+
+        $kategoriPopuler = Buku::select('subyek as kategori')
+            ->groupBy('kategori')
+            ->selectRaw('subyek as kategori, COUNT(*) as jumlah')
+            ->orderByDesc('jumlah')
+            ->take(5)
+            ->get();
+
+        $peminjamanChartData = Peminjaman::selectRaw('MONTH(tgl_peminjaman) as bulan, COUNT(*) as total')
+            ->whereYear('tgl_peminjaman', $tahun)
+            ->groupBy('bulan')
+            ->orderBy('bulan')
+            ->get();
+
+        return view('main.index-dashboard', compact(
+            'totalBuku',
+            'jumlahPeminjaman',
+            'jumlahAnggota',
+            'pengembalianHariIni',
+            'peminjamanHariIni',
+            'kategoriPopuler',
+            'peminjamanChartData',
+            'tahun'
+        ));
+    }
     // Data Eksemplar
     public function indexEksemplar()
     {
@@ -54,7 +77,7 @@ class AdminController extends Controller
     }
     public function indexAnggota(Request $request)
     {
-        $search = $request->method() === 'POST' ? $request->input('search') : null;
+        $search = $request->input('search');
 
         $query = User::query();
 
@@ -71,11 +94,21 @@ class AdminController extends Controller
     }
 
 
-    public function indexPeminjaman()
+    public function indexPeminjaman(Request $request)
     {
-        ini_set('memory_limit', '-1');
-        set_time_limit(0);
-        $peminjaman = Peminjaman::all();
+        $search = $request->input('search');
+
+        $query = Peminjaman::with('user');
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('nama', 'like', "%{$search}%")
+                    ->orWhere('id_user', 'like', "%{$search}%");
+            });
+        }
+
+        $peminjaman = $query->paginate(10);
+
         return view('main.index-peminjaman', compact('peminjaman'));
     }
     public function indexKoleksi()
@@ -89,20 +122,47 @@ class AdminController extends Controller
     }
     public function indexBibliography(Request $request)
     {
-        $search = $request->method() === 'POST' ? $request->input('search') : null;
+        // Ambil input dari request
+        $search = $request->input('search');
+        $tahun = $request->input('tahun_terbit');
+        $kategori = $request->input('kategori');
 
+        // Mulai query
         $query = Buku::query();
 
+        // 🔍 Pencarian berdasarkan judul atau ISBN
         if ($search) {
             $query->where(function ($q) use ($search) {
-                $q->where('ISBN', 'like', '%' . $search . '%')
-                    ->orWhere('judul_buku', 'like', '%' . $search . '%');
+                $q->where('judul_buku', 'like', '%' . $search . '%')
+                    ->orWhere('pengarang', 'like', '%' . $search . '%')
+                    ->orWhere('tahun_terbit', 'like', '%' . $search . '%')
+                    ->orWhere('ISBN', 'like', '%' . $search . '%');
             });
         }
 
-        $buku = $query->paginate(10);
+        // 📅 Filter tahun terbit jika diisi dan angka
+        if ($tahun && is_numeric($tahun)) {
+            $query->where('tahun_terbit', $tahun);
+        }
 
-        return view('main.index-bibliography', compact('buku'));
+        // 🏷️ Filter kategori jika tidak kosong
+        if ($kategori && $kategori !== '') {
+            $query->where('kategori', $kategori);
+        }
+
+        // 📄 Paginate dan pertahankan query string saat pindah halaman
+        $buku = $query->paginate(10)->withQueryString();
+
+        // Kirim data ke view
+        return view('main.index-bibliography', [
+            'title' => 'Bibliografi Buku',
+            'buku' => $buku,
+            'search' => $search,
+            'tahun_terbit' => $tahun,
+            'kategori' => $kategori,
+        ]);
     }
+
+
 
 }

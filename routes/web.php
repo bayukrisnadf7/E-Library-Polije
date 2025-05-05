@@ -14,6 +14,7 @@ use App\Http\Controllers\LupaPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\UserController;
+use App\Models\Peminjaman;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\ExemplarController;
@@ -86,7 +87,7 @@ Route::get('/eksemplar/{kode_eksemplar}/print', [ExemplarController::class, 'pri
 // Eksemplar End
 
 // Anggota Start
-Route::match(['get', 'post'], '/admin/anggota', [AdminController::class, 'indexAnggota'])->name('anggota.index');
+// Route::match(['get', 'post'], '/admin/anggota', [AdminController::class, 'indexAnggota'])->name('anggota.index');
 Route::get('/admin/anggota', [AdminController::class, 'indexAnggota'])->name('main.index-anggota');
 Route::get('/admin/tambah-anggota', [AnggotaController::class, 'tampilanTambahAnggota']);
 Route::post('/admin/tambah-anggota', [AnggotaController::class, 'store'])->name('anggota.store');
@@ -122,7 +123,8 @@ Route::resource('/admin/kategori', KategoriController::class);
 // Kategori ENd
 
 // Peminjaman Start
-Route::get('/admin/peminjaman', [AdminController::class, 'indexPeminjaman']);
+Route::get('/admin/peminjaman', [AdminController::class, 'indexPeminjaman'])->name('main.index-peminjaman');
+Route::get('/admin/export-peminjaman', [Peminjaman::class, 'exportPeminjaman']);
 // Peminjaman End
 // Wildcard harus paling bawah!
 Route::get('/admin/{main}/{view}', [AdminController::class, 'show']);

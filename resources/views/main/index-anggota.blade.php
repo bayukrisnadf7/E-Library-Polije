@@ -11,15 +11,20 @@
         <p class="fw-bold fs-4">Pencarian Anggota</p>
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-2">
-                <form method="POST" action="{{ route('anggota.index') }}" class="d-flex gap-2">
-                    @csrf
+                <form method="GET" action="{{ route('main.index-anggota') }}" class="d-flex gap-2">
                     <div class="position-relative" style="width: 250px;">
                         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y ms-2 text-muted"></i>
-                        <input type="text" name="search" value="{{ old('search') }}" class="form-control ps-4" placeholder="Cari...">
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control ps-4" placeholder="Cari...">
                     </div>
                     <button type="submit" class="btn btn-outline-primary">
                         <i class="ti ti-search"></i> Cari
                     </button>
+
+                    @if(request()->has('search') || request()->has('status_peminjaman') || request()->has('tanggal'))
+                        <a href="{{ route('main.index-anggota') }}" class="btn btn-outline-secondary">
+                            <i class="ti ti-refresh"></i> Reset
+                        </a>
+                    @endif
                 </form>
 
                 <button class="btn btn-outline-primary" onclick="toggleFilter()">

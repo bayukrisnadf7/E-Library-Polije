@@ -17,7 +17,7 @@
                 informasi yang dapat menunjang pelaksanaan akademis di Politeknik Negeri Jember.
             </p>
             <div class="flex gap-5">
-                <button
+                <button onclick="window.location.href='/buku'"
                     class="bg-[#3694A8] md:px-5 md:py-3 text-white md:w-48 w-52 md:h-[56px] h-[40px] md:text-base text-xs rounded-xl flex gap-2 justify-center font-bold items-center">
                     Pinjam Buku <img src="img/Vector (4).png" alt=""
                         class="bg-white md:p-2 p-1.5 rounded-full">

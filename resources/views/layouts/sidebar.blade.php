@@ -94,12 +94,34 @@
 
             </div>
         @endauth
-        <form action="{{ route('logout') }}" method="POST">
-          @csrf
-          <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="submit"
-              aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-              <i class="ti ti-power fs-6"></i>
-          </button>
-      </form>
+        <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="button" class="border-0 bg-transparent text-primary ms-auto" aria-label="logout"
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Logout" onclick="confirmLogout()">
+                <i class="ti ti-power fs-6"></i>
+            </button>
+        </form>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Yakin ingin logout?',
+            text: "Sesi Anda akan berakhir.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logoutForm').submit();
+            }
+        });
+    }
+</script>
+

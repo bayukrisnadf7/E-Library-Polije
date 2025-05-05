@@ -23,5 +23,10 @@ class Peminjaman extends Model
         'kode_eksemplar',
         'id_user',
     ];
+    public function user()
+{
+    return $this->belongsTo(User::class, 'id_user', 'id_user'); // sesuaikan jika primary key berbeda
+}
+
 }
 

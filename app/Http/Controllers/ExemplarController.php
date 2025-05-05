@@ -40,7 +40,7 @@ class ExemplarController extends Controller
         ]);
 
         return redirect()->route('main.edit-bibliography', ['id' => $request->id_buku])
-            ->with('success', 'Data berhasil ditambahkan!');
+            ->with('success', 'Data eksemplar berhasil ditambahkan!');
     }
 
     public function update(Request $request, $kode_eksemplar)

@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $user = Auth::user(); // Ambil user yang sedang login
         $riwayat = Peminjaman::where('id_user', Auth::id())->latest()->get();
-        return view('profil.index', compact('user', 'riwayat'));
+        return view('profil.index',['title' => 'Profil'], compact('user', 'riwayat'));
     }
 
     public function update(Request $request)

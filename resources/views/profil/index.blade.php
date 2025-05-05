@@ -14,10 +14,16 @@
         {{-- KIRI: Form Edit Profil --}}
         <div>
             <div class="flex flex-col items-center mb-6">
-                <div class="w-32 h-32 rounded-full overflow-hidden shadow">
-                    <img src="{{ $user->foto ? asset('user/' . $user->foto) : asset('img/default.png') }}"
-                         alt="Foto Profil" class="object-cover w-full h-full">
+                <div class="w-32 h-32 rounded-full overflow-hidden shadow cursor-pointer group relative">
+                    <img id="profilePreview"
+                         src="{{ $user->foto ? asset('user/' . $user->foto) : asset('img/default.png') }}"
+                         alt="Foto Profil"
+                         class="object-cover w-full h-full group-hover:opacity-80 transition" />
+                
+                    <input type="file" id="fotoInput" name="foto" accept="image/*"
+                        class="absolute inset-0 opacity-0 cursor-pointer" />
                 </div>
+                
             </div>
 
             <form action="{{ route('profil.update') }}" method="POST" enctype="multipart/form-data">
@@ -47,10 +53,10 @@
                         class="w-full border p-2 rounded">
                 </div>
 
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <label class="block text-sm font-medium">Ganti Foto</label>
                     <input type="file" name="foto" class="w-full border p-2 rounded">
-                </div>
+                </div> --}}
 
                 <div class="mb-4">
                     <label class="block text-sm font-medium">Password Baru (opsional)</label>
@@ -101,4 +107,20 @@
         </div>
     </div>
 </div>
+<script>
+    const fotoInput = document.getElementById('fotoInput');
+    const profilePreview = document.getElementById('profilePreview');
+
+    fotoInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                profilePreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
 @endsection

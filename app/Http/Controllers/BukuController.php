@@ -8,14 +8,29 @@ use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
-    public function indexBuku()
+    public function indexBuku(Request $request)
     {
-        ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
+        ini_set('memory_limit', '-1');
         set_time_limit(0);
-        // Ambil semua data buku dari database
-        $books = Buku::paginate(8);
-        return view('buku.index', compact('books'), ['title' => 'Buku']);
+
+        $query = Buku::query();
+
+        // Tambahkan pencarian jika ada input
+        if ($request->has('search') && $request->search !== null) {
+            $search = $request->search;
+            $query->where('judul_buku', 'like', "%{$search}%")
+                ->orWhere('ISBN', 'like', "%{$search}%");
+        }
+
+        $books = $query->paginate(8)->withQueryString(); // agar query string tetap saat pagination
+
+        return view('buku.index', [
+            'title' => 'Buku',
+            'books' => $books,
+            'search' => $request->search,
+        ]);
     }
+
 
     public function tampilanTambahBibliography()
     {

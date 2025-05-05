@@ -14,26 +14,31 @@
             <div class="d-flex align-items-center justify-content-between">
                 {{-- KIRI: Search + Filter + Export --}}
                 <div class="d-flex align-items-center gap-2">
-                    <form method="POST" action="{{ route('bibliography.index') }}" class="d-flex gap-2">
-                        @csrf
+                    <form method="GET" action="{{ route('main.index-bibliography') }}" class="d-flex gap-2">
                         <div class="position-relative" style="width: 250px;">
                             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y ms-2 text-muted"></i>
-                            <input type="text" name="search" value="{{ old('search') }}" class="form-control ps-4" placeholder="Cari...">
+                            <input type="text" name="search" value="{{ request('search') }}" class="form-control ps-4"
+                                placeholder="Cari...">
                         </div>
                         <button type="submit" class="btn btn-outline-primary">
                             <i class="ti ti-search"></i> Cari
                         </button>
+                        @if (request('search') || request('tahun_terbit') || request('kategori'))
+                            <a href="{{ route('main.index-bibliography') }}" class="btn btn-outline-secondary">
+                                <i class="ti ti-refresh"></i> Reset
+                            </a>
+                        @endif
                     </form>
-    
-                    <button class="btn btn-outline-primary" onclick="toggleFilter()">
+
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
                         <i class="ti ti-filter"></i> Filter
                     </button>
-    
+
                     <button onclick="window.location.href='/admin/export-bibliography'" class="btn btn-outline-danger">
                         <i class="ti ti-table-export"></i> Export
                     </button>
                 </div>
-    
+
                 {{-- KANAN: Tambah Buku + Hapus Terpilih --}}
                 <div class="d-flex gap-2">
                     <button onclick="window.location.href='/admin/tambah-bibliography'" class="btn btn-outline-success">
@@ -63,14 +68,15 @@
                             @foreach ($buku as $item)
                                 <tr>
                                     <td><input type="checkbox" class="book-checkbox" value="{{ $item->id_buku }}"></td>
-                                    <td>{{ $item->judul_buku }}</td>
-                                    <td>{{ $item->ISBN }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit($item->judul_buku, limit: 60) }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit($item->ISBN, 20) }}</td>
                                     <td>{{ $item->tahun_terbit }}</td>
                                     <td>
                                         <a href="/admin/edit-bibliography/{{ $item->id_buku }}" class="btn btn-warning">
                                             <i class="ti ti-pencil"></i>
                                         </a>
-                                        <form action="{{ route('buku.destroy', $item->id_buku) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete(this)">
+                                        <form action="{{ route('buku.destroy', $item->id_buku) }}" method="POST"
+                                            style="display:inline;" onsubmit="return confirmDelete(this)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">
@@ -89,6 +95,39 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    {{-- Modal Filter --}}
+    <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form method="GET" action="{{ route('main.index-bibliography') }}" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">Filter Buku</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
+                        <input type="number" class="form-control" name="tahun_terbit"
+                            value="{{ request('tahun_terbit') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="kategori" class="form-label">Kategori</label>
+                        <select class="form-select" name="kategori">
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="Teknologi" {{ request('kategori') == 'Teknologi' ? 'selected' : '' }}>Teknologi
+                            </option>
+                            <option value="Sains" {{ request('kategori') == 'Sains' ? 'selected' : '' }}>Sains</option>
+                            <option value="Sosial" {{ request('kategori') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Terapkan Filter</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
@@ -128,14 +167,14 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Oops...',
-                    text: 'Tidak ada anggota yang dipilih!'
+                    text: 'Tidak ada buku yang dipilih!'
                 });
                 return;
             }
 
             Swal.fire({
                 title: 'Yakin ingin menghapus?',
-                text: `Anda akan menghapus ${selected.length} anggota terpilih.`,
+                text: `Anda akan menghapus ${selected.length} buku terpilih.`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -148,13 +187,8 @@
                 }
             });
         }
-
-        function toggleFilter() {
-            alert("Tampilkan panel filter di sini.");
-        }
     </script>
 
-    {{-- SweetAlert notifikasi sukses/error --}}
     @if (session('success'))
         <script>
             Swal.fire({

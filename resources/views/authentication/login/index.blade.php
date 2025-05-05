@@ -32,22 +32,37 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="flex flex-col gap-3 w-full">
+                        {{-- ID USER --}}
                         <div class="flex flex-col gap-1">
                             <label for="id_user">ID User</label>
+
+                            @error('id_user')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+
                             <input type="text" name="id_user" id="id_user"
                                 class="bg-[#E1E1E1] py-2 rounded-lg px-3 placeholder:text-[#A8A8A8] border-none focus:outline-none focus:ring-0"
                                 placeholder="ID User" required>
                         </div>
+
+                        {{-- PASSWORD --}}
                         <div class="flex flex-col gap-1">
                             <label for="password">Password</label>
+
+                            @error('password')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+
                             <input type="password" name="password" id="password"
                                 class="bg-[#E1E1E1] py-2 rounded-lg px-3 placeholder:text-[#A8A8A8] border-none focus:outline-none focus:ring-0"
                                 placeholder="Password" required>
                         </div>
+
                         <button type="submit" class="bg-[#3694A8] py-3 rounded-lg text-white font-bold mt-1">Login</button>
                     </div>
                 </form>
-                
+
+
 
                 <div class="flex flex-col gap-2">
                     <p class="text-center">Belum Punya Akun? <a href="/register"
