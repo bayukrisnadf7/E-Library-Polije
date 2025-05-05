@@ -138,19 +138,26 @@
             </li>
         </ul>
         @guest
-            <button onclick="window.location.href='/login'"
-                class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg hover:bg-[#3694A8] hover:border-none">
-                Masuk / Daftar
-            </button>
+            <div class="hidden lg:block">
+                <button onclick="window.location.href='/login'"
+                    class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg hover:bg-[#3694A8] hover:border-none">
+                    Masuk / Daftar
+                </button>
+            </div>
         @endguest
 
+
         @auth
+            @php
+                $user = Auth::user();
+                $fotoProfil = $user && $user->foto ? asset('user/' . $user->foto) : asset('img/default.png');
+            @endphp
+
             <div class="relative group">
-                <img src="{{ asset('build/images/profile/user-1.jpg') }}" class="w-10 h-10 rounded-full cursor-pointer"
-                    alt="User Avatar">
+                <img src="{{ $fotoProfil }}" class="w-10 h-10 rounded-full cursor-pointer" alt="User Avatar">
                 <div
                     class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out delay-200 z-50">
-                    <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
+                    <a href="/profil" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
@@ -160,6 +167,7 @@
                 </div>
             </div>
         @endauth
+
 
         <!-- Tombol Login -->
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('tanggal_request');
             $table->date('tanggal_baru');
             $table->string('status');
-            $table->string('id_peminjaman');
+            $table->unsignedBigInteger('id_peminjaman'); // harus unsigned
             $table->foreign('id_peminjaman')->references('id_peminjaman')->on('peminjaman')->onDelete('cascade');
             $table->timestamps();
         });

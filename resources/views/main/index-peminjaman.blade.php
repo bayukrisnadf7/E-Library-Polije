@@ -9,36 +9,39 @@
 @section('pageContent')
     <div class="datatables">
         {{-- Search dan Filter --}}
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            {{-- KIRI: Search + Filter + Export --}}
-            <div class="d-flex align-items-center gap-2">
-                <div class="position-relative" style="width: 250px;">
-                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y ms-2 text-muted"></i>
-                    <input type="text" id="searchInput" class="form-control ps-4">
+        <div class="card border shadow-sm p-4 rounded-3">
+            <p class="fw-bold fs-4">Pencarian Peminjaman</p>
+            <div class="d-flex align-items-center justify-content-between">
+                {{-- KIRI: Search + Filter + Export --}}
+                <div class="d-flex align-items-center gap-2">
+                    <div class="position-relative" style="width: 250px;">
+                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y ms-2 text-muted"></i>
+                        <input type="text" id="searchInput" class="form-control ps-4" placeholder="Cari...">
+                    </div>
+    
+                    <button class="btn btn-outline-primary" onclick="toggleFilter()">
+                        <i class="ti ti-filter"></i> Filter
+                    </button>
+    
+                    <button onclick="window.location.href='/admin/export-bibliography'" class="btn btn-outline-danger">
+                        <i class="ti ti-table-export"></i> Export
+                    </button>
                 </div>
-
-                <button class="btn btn-outline-secondary" onclick="toggleFilter()">
-                    <i class="ti ti-filter"></i> Filter
-                </button>
-
-                <button onclick="window.location.href='/admin/main/export-bibliography'" class="btn btn-outline-success">
-                    <i class="ti ti-table-export"></i> Export
-                </button>
-            </div>
-
-            {{-- KANAN: Aksi Tambah, Export, Hapus --}}
-            <div class="d-flex gap-2">
-                <button onclick="window.location.href='/admin/main/tambah-bibliography'" class="btn btn-primary">
-                    <i class="ti ti-plus"></i> Tambah Peminjaman
-                </button>
-                <button class="btn btn-danger" onclick="deleteSelected()">
-                    <i class="ti ti-trash"></i> Hapus yang Terpilih
-                </button>
+    
+                {{-- KANAN: Tambah Buku + Hapus Terpilih --}}
+                <div class="d-flex gap-2">
+                    <button onclick="window.location.href='/admin/tambah-bibliography'" class="btn btn-outline-success">
+                        <i class="ti ti-plus"></i> Tambah Peminjaman
+                    </button>
+                    <button class="btn btn-outline-warning" onclick="deleteSelected()">
+                        <i class="ti ti-trash"></i> Hapus yang Terpilih
+                    </button>
+                </div>
             </div>
         </div>
 
 
-        <div class="card border mt-3">
+        <div class="card shadow-sm border mt-3 rounded-3">
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example" class="table table-striped display text-nowrap">

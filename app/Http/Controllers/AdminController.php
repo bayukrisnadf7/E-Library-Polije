@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
+use App\Models\Berita;
+use App\Models\Kategori;
 use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,8 +26,9 @@ class AdminController extends Controller
         }
 
     }
-    public function indexDashboard(){
-        return view ('main.index-dashboard');
+    public function indexDashboard()
+    {
+        return view('main.index-dashboard');
     }
     // Data Buku
     // public function indexBibliography()
@@ -35,7 +39,7 @@ class AdminController extends Controller
     //     $books = Buku::all();
     //     return view('main.index-bibliography', compact('books'));
     // }
-    
+
     // Data Eksemplar
     public function indexEksemplar()
     {
@@ -44,34 +48,61 @@ class AdminController extends Controller
         $eksemplar = Eksemplar::with('buku')->get();
         return view('main.index-eksemplar', compact('eksemplar'));
     }
-    public function indexTambahEksemplar(){
+    public function indexTambahEksemplar()
+    {
         return view('main.tambah-eksemplar');
     }
-    public function indexAnggota(){
-        ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
-        set_time_limit(0);
-        $anggota = User::all();
+    public function indexAnggota(Request $request)
+    {
+        $search = $request->method() === 'POST' ? $request->input('search') : null;
+
+        $query = User::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('id_user', 'like', '%' . $search . '%');
+            });
+        }
+
+        $anggota = $query->paginate(10);
+
         return view('main.index-anggota', compact('anggota'));
     }
-    public function indexPeminjaman(){
+
+
+    public function indexPeminjaman()
+    {
         ini_set('memory_limit', '-1');
         set_time_limit(0);
         $peminjaman = Peminjaman::all();
         return view('main.index-peminjaman', compact('peminjaman'));
     }
-    public function indexKoleksi(){
+    public function indexKoleksi()
+    {
         ini_set('memory_limit', '-1');
         set_time_limit(0);
-        $koleksi = Buku::all();
-        return view('main.index-koleksi', compact('koleksi'));
+        $berita = Berita::all();
+        $artikel = Artikel::all();
+        $kategori = Kategori::all();
+        return view('main.index-koleksi', compact('berita', 'artikel', 'kategori'));
     }
-    public function indexBibliography()
+    public function indexBibliography(Request $request)
     {
-        ini_set('memory_limit', '-1'); // Tambahkan di sini juga jika perlu
-        set_time_limit(0);
-        // Ambil semua data buku dari database
-        $books = Buku::all();
-        return view('main.index-bibliography', compact('books'));
+        $search = $request->method() === 'POST' ? $request->input('search') : null;
+
+        $query = Buku::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('ISBN', 'like', '%' . $search . '%')
+                    ->orWhere('judul_buku', 'like', '%' . $search . '%');
+            });
+        }
+
+        $buku = $query->paginate(10);
+
+        return view('main.index-bibliography', compact('buku'));
     }
 
 }

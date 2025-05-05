@@ -5,8 +5,8 @@
     @include('home.section1')
     @include('home.section2')
     @include('home.section3')
-    @include('home.section4')
-    @include('home.section5')
+    @include('home.section4', ['berita' => $berita])
+    @include('home.section5', ['artikel' => $artikel])
 
 </div>
 @endsection

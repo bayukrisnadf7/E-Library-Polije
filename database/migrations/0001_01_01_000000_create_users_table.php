@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('nama');
             $table->string('nim')->nullable();
-            $table->binary('foto')->nullable();
+            $table->string('foto')->nullable();
             $table->string('institute')->nullable();
             $table->string('no_telepon')->nullable();
             $table->string('jenis_anggota')->nullable();

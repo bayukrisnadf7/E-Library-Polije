@@ -13,8 +13,8 @@
         <div class="toast-body hstack align-items-start gap-6">
             <i class="ti ti-alert-circle fs-x`6"></i>
             <div>
-                <h5 class="text-white fs-3 mb-1">Welcome to Modernize</h5>
-                <h6 class="text-white fs-2 mb-0">Easy to customize the Template!!!</h6>
+                <h5 class="text-white fs-3 mb-1">Selamat datang di </h5>
+                <h6 class="text-white fs-2 mb-0">UPA Perpustakaan Polije</h6>
             </div>
             <button type="button" class="btn-close btn-close-white fs-2 m-0 ms-auto shadow-none" data-bs-dismiss="toast"
                 aria-label="Close"></button>
@@ -195,7 +195,7 @@
                 <!-- Customers -->
                 <div class="col-sm-6 d-flex align-items-stretch">
                     <div class="card w-100">
-                        <div class="card-body pb-0 mb-xxl-4 pb-1">
+                        <div class="card-body pb-0 mb-xxl-4">
                             <p class="mb-1 fs-3">Customers</p>
                             <h4 class="fw-semibold fs-7">36,358</h4>
                             <div class="d-flex align-items-center mb-3">
