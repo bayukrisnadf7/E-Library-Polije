@@ -5,7 +5,7 @@
         <!-- Background Gambar -->
         <img src="img/login.png" alt="" class="md:absolute lg:block md:block hidden lg:w-auto md:w-[50%] md:h-[100%]">
         <div class="absolute top-3 left-5 flex gap-3 items-center">
-            <img src="img/logopol 1.png" alt="Logo" class="md:w-14 w-10">
+            <img src="img/logopol.png" alt="Logo" class="md:w-14 w-10">
             <div class="flex flex-col  text-black font-bold md:text-sm text-xs">
                 <p>UPA PERPUSTAKAAN</p>
                 <div class="flex md:gap-[19px] gap-[17px]">
@@ -22,7 +22,7 @@
         <div class="relative flex h-screen justify-between items-center lg:mx-40 md:mx-28 mx-10">
             <img src="img/login-1.png" alt="" class="lg:block md:block hidden lg:w-[400px] md:w-[270px]">
             <div class=" flex flex-col gap-5 w-[400px]">
-                <img src="img/logopol 1.png" alt="" width="100" class="mx-auto">
+                <img src="img/logopol.png" alt="" width="100" class="mx-auto">
                 <p class="text-center font-bold">Login Ke Akun Anda</p>
                 @if (session('errorLogin'))
                     <div class="text-red-500 text-sm text-center mb-2">
@@ -82,3 +82,17 @@
         console.log("Login gagal: Email atau password salah.");
     @endif
 </script>
+<script>
+    @if (session('success'))
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registrasi Berhasil!',
+                text: 'Silakan login ke akun Anda.',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+            });
+        });
+    @endif
+</script>
+

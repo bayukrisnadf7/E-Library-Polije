@@ -20,11 +20,11 @@
                             <input type="text" name="search" value="{{ request('search') }}" class="form-control ps-4"
                                 placeholder="Cari...">
                         </div>
-                        <button type="submit" class="btn btn-outline-primary">
+                        <button type="submit" class="btn btn-outline-muted">
                             <i class="ti ti-search"></i> Cari
                         </button>
                         @if (request('search') || request('tahun_terbit') || request('kategori'))
-                            <a href="{{ route('main.index-bibliography') }}" class="btn btn-outline-secondary">
+                            <a href="{{ route('main.index-bibliography') }}" class="btn btn-outline-danger">
                                 <i class="ti ti-refresh"></i> Reset
                             </a>
                         @endif
@@ -44,7 +44,7 @@
                     <button onclick="window.location.href='/admin/tambah-bibliography'" class="btn btn-outline-success">
                         <i class="ti ti-plus"></i> Tambah Buku
                     </button>
-                    <button class="btn btn-outline-warning" onclick="deleteSelected()">
+                    <button class="btn btn-outline-danger" onclick="deleteSelected()">
                         <i class="ti ti-trash"></i> Hapus yang Terpilih
                     </button>
                 </div>

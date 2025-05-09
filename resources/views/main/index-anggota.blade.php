@@ -16,7 +16,7 @@
                         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y ms-2 text-muted"></i>
                         <input type="text" name="search" value="{{ request('search') }}" class="form-control ps-4" placeholder="Cari...">
                     </div>
-                    <button type="submit" class="btn btn-outline-primary">
+                    <button type="submit" class="btn btn-outline-muted">
                         <i class="ti ti-search"></i> Cari
                     </button>
 

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BeritaController extends Controller
 {
+    public function index(){
+        return view('berita.index')->with([
+            'title' => 'Berita'
+        ]);
+    }
     public function tampilanTambahBerita()
     {
         return view('main.tambah-berita');

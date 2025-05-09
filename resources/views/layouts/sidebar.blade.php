@@ -1,10 +1,10 @@
 <!-- ---------------------------------- -->
 <!-- Start Vertical Layout Sidebar -->
 <!-- ---------------------------------- -->
-<div class="brand-logo d-flex align-items-center justify-content-between">
+<div class="brand-logo d-flex align-items-center justify-content-between mb-2">
     <a href="/admin/main/index" class="text-nowrap logo-img">
-        <img src="{{ URL::asset('build/images/logos/dark-logo.svg') }}" class="dark-logo" alt="Logo-Dark" />
-        <img src="{{ URL::asset('build/images/logos/light-logo.svg') }}" class="light-logo" alt="Logo-light" />
+        <img src="{{ URL::asset('img/logos.png') }}" class="dark-logo" width="180" alt="Logo-Dark" />
+        <img src="{{ URL::asset('img/logwhite.png') }}" class="light-logo" width="180" alt="Logo-light" />
     </a>
     <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
         <i class="ti ti-x"></i>

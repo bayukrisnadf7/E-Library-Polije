@@ -2,14 +2,46 @@
 <html lang="en" dir="ltr" data-bs-theme="@yield('theme', 'light')" data-color-theme="Blue_Theme" data-layout="vertical">
 <head>
     @include('layouts.head')
-    <title>@yield('title', 'Modernize Bootstrap Admin')</title>
+    <title>@yield('title', 'Admin')</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
     @yield('css')
+    <style>
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 99999;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+      
+        .spinner-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+      
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            border-width: 0.3em;
+            color: #3498db; /* warna bisa diganti sesuai tema */
+        }
+      </style>
+      
 </head>
 <body class="link-sidebar">
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ URL::asset('build/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
+        <div class="spinner-wrapper">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
     </div>
     <div id="main-wrapper">
 
@@ -47,6 +79,7 @@
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     
     @yield('scripts')
+    
     
 </body>
 </html>

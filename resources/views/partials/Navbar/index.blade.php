@@ -1,11 +1,11 @@
 <div class="bg-[#1A2130] w-full">
-    <div class="flex justify-between items-center p-4 md:mx-10 gap-10">
+    <div class="flex items-center p-4 justify-between mx-5">
         <!-- Logo dan tombol hamburger -->
         <div class="flex justify-between items-center lg:w-auto w-full">
             <a href="/">
 
                 <div class="flex gap-3 items-center">
-                    <img src="img/logopol 1.png" alt="Logo" class="md:w-14 w-10">
+                    <img src="img/logopol.png" alt="Logo" class="md:w-14 w-10">
                     <div class="flex flex-col  text-white font-bold md:text-sm text-xs">
                         <p>UPA PERPUSTAKAAN</p>
                         <div class="flex md:gap-[19px] gap-[17px]">
@@ -28,7 +28,7 @@
 
         <!-- Menu Navbar -->
         <ul id="nav-menu"
-            class="hidden lg:flex flex-col md:flex-row gap-4 font-semibold absolute md:static top-20 left-0 w-full bg-[#F8F5FC] md:w-auto md:bg-transparent md:gap-10 p-5 md:p-0 shadow-lg md:shadow-none md:text-white text-black">
+            class="hidden lg:flex flex-col md:flex-row gap-4 font-semibold absolute md:static top-20 left-0 w-full bg-[#F8F5FC] md:w-auto md:bg-transparent md:gap-8 p-5 md:p-0 shadow-lg md:shadow-none md:text-white text-black">
             <a href="/"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
                 Beranda
@@ -111,13 +111,17 @@
                 </div>
             </li>
 
-            <a href="#"
+            <a href="/layanan"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
-                Artikel
+                Pelayanan
             </a>
-            <a href="#"
+            <a href="/tata-tertib"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
-                Berita
+                Tata Tertib
+            </a>
+            <a href="/keanggotaan"
+                class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
+                Keanggotaan
             </a>
             <a href="/tentang"
                 class="relative cursor-pointer md:mt-0 mt-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-[white] hover:after:w-full after:transition-all after:duration-300">
@@ -140,7 +144,7 @@
         @guest
             <div class="hidden lg:block">
                 <button onclick="window.location.href='/login'"
-                    class="bg-transparent border-2 font-bold border-white px-5 py-3 text-white w-48 rounded-lg hover:bg-[#3694A8] hover:border-none">
+                    class="bg-transparent border-2 font-bold border-white py-3 text-white w-48 rounded-lg hover:bg-[#3694A8] hover:border-none">
                     Masuk / Daftar
                 </button>
             </div>

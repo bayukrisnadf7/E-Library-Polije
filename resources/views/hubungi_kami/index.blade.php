@@ -1,52 +1,42 @@
 @extends('main')
 
 @section('content')
-<div class="bg-[#2A1D43] h-[270px]">
-    <div class="text-center text-white mb-10 py-10">
+<div class="bg-[#2A1D43] md:h-[270px] h-[225px]">
+    <div class="text-center text-white md:mb-10 py-10">
         <h2 class="text-4xl font-bold">Hubungi Kami</h2>
-        <p class="text-lg mt-5">UPT. Perpustakaan</p>
+        <p class="text-lg mt-5">UPA. Perpustakaan</p>
     </div>
 
-    <div class="flex flex-col md:flex-row justify-center gap-10 px-4 md:px-0">
+    <div class="flex flex-row justify-center gap-10 px-4 md:px-0">
         <!-- Email 1 -->
-        <div class="bg-[#4A3D63] text-white rounded-xl p-6 w-full md:w-64 text-center shadow-md">
+        <div class="bg-[#4A3D63] text-white rounded-xl md:p-6 p-2 w-[170px] h-[100px] md:w-64  text-center shadow-md">
             <div class="flex items-center justify-center gap-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H8m0 0H6m2 0h2m6 0h2M3 6h18M3 6v12a2 2 0 002 2h14a2 2 0 002-2V6M3 6l9 6 9-6" />
                 </svg>
                 <span class="text-lg font-bold">Email</span>
             </div>
-            <p>Politeknik@polije.ac.id</p>
+            <p class="md:text-base text-sm break-words md:break-normal">perpustakaan@polije.ac.id</p>
+
         </div>
 
         <!-- WhatsApp -->
-        <div class="bg-[#4A3D63] text-white rounded-xl p-6 w-full md:w-64 text-center shadow-md">
+        <div class="bg-[#4A3D63] text-white rounded-xl md:p-6 p-2 w-[170px] h-[100px] md:w-64  text-center shadow-md">
             <div class="flex items-center justify-center gap-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H8m0 0H6m2 0h2m6 0h2M3 6h18M3 6v12a2 2 0 002 2h14a2 2 0 002-2V6M3 6l9 6 9-6" />
                 </svg>
-                <span class="text-lg font-bold">Whatsapp</span>
+                <span class="text-lg font-bold">Telepon</span>
             </div>
-            <p>+62 8913 9238 32</p>
-        </div>
-
-        <!-- Email 2 -->
-        <div class="bg-[#4A3D63] text-white rounded-xl p-6 w-full md:w-64 text-center shadow-md">
-            <div class="flex items-center justify-center gap-2 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H8m0 0H6m2 0h2m6 0h2M3 6h18M3 6v12a2 2 0 002 2h14a2 2 0 002-2V6M3 6l9 6 9-6" />
-                </svg>
-                <span class="text-lg font-bold">Email</span>
-            </div>
-            <p>Politeknik@polije.ac.id</p>
+            <p class="md:text-base text-sm">(0331) 333532</p>
         </div>
     </div>
 </div>
 
 <div class=" bg-white py-28 px-4 md:px-10">
-    <div class="mx-40">
+    <div class="md:mx-40">
         <div class="flex flex-col md:flex-row justify-between items-start gap-10 animate-slide-up">
-            <div class="w-full md:w-1/2 space-y-5">
+            <div class="w-full md:w-1/2 space-y-5 text-center">
                 <p class="text-4xl font-bold">FORMULIR</p>
                 <p class="text-4xl font-bold">KONTAK</p>
                 <!-- Tambahkan detail kontak/alamat lainnya di sini -->
@@ -84,7 +74,7 @@
     
 </div>
 
-<div class="w-[800px] h-[500px] overflow-hidden shadow-lg mx-auto mb-20">
+<div class="w-full md:w-[800px] h-[400px] md:h-[500px] mx-auto overflow-hidden shadow-lg mb-20 rounded-lg">
     <iframe
         width="100%"
         height="100%"
@@ -95,6 +85,7 @@
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.298947204232!2d113.7209946!3d-8.1602156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd695b624959a65%3A0x5105d01c6db05f6c!2sPerpustakaan%20POLIJE!5e0!3m2!1sid!2sid!4v1713981426454!5m2!1sid!2sid">
     </iframe>
 </div>
+
 
 
 @endsection

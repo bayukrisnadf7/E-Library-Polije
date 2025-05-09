@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\CustomResetPassword;
 
 class User extends Authenticatable
 {
@@ -64,15 +65,19 @@ class User extends Authenticatable
         ];
     }
     public function getJenisAnggotaLabelAttribute()
+    {
+        return match ($this->jenis_anggota) {
+            1 => 'Mahasiswa',
+            2 => 'Dosen',
+            3 => 'Karyawan',
+            4 => 'Pustakawan',
+            5 => 'Admin',
+            default => 'Tidak Diketahui',
+        };
+    }
+    public function sendPasswordResetNotification($token)
 {
-    return match($this->jenis_anggota) {
-        1 => 'Mahasiswa',
-        2 => 'Dosen',
-        3 => 'Karyawan',
-        4 => 'Pustakawan',
-        5 => 'Admin',
-        default => 'Tidak Diketahui',
-    };
+    $this->notify(new CustomResetPassword($token));
 }
 
 }

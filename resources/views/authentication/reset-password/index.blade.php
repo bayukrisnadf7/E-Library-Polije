@@ -5,7 +5,7 @@
         <!-- Background Gambar -->
         {{-- <img src="{{ asset('img/logopol 1.png') }}" alt="" class="md:absolute lg:block md:block hidden lg:w-auto md:w-[50%] md:h-[100%]"> --}}
         <div class="absolute top-3 left-5 flex gap-3 items-center">
-            <img src="{{ asset('img/logopol 1.png') }}" alt="Logo" class="md:w-14 w-10">
+            <img src="{{ asset('img/logopol.png') }}" alt="Logo" class="md:w-14 w-10">
             <div class="flex flex-col  text-black font-bold md:text-sm text-xs">
                 <p>UPA PERPUSTAKAAN</p>
                 <div class="flex md:gap-[19px] gap-[17px]">

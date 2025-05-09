@@ -8,11 +8,6 @@
                 <i class="ti ti-menu-2"></i>
             </a>
         </li>
-        <li class="nav-item nav-icon-hover-bg rounded-circle d-none d-lg-flex">
-            <a class="nav-link" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="ti ti-search"></i>
-            </a>
-        </li>
     </ul>
 
     <div class="d-block d-lg-none py-4">
@@ -46,24 +41,6 @@
                         <i class="ti ti-sun sun"></i>
                     </a>
                 </li>
-
-                <!-- ------------------------------- -->
-                <!-- start notification Dropdown -->
-                <!-- ------------------------------- -->
-                <li class="nav-item nav-icon-hover-bg rounded-circle dropdown">
-                    <a class="nav-link position-relative" href="javascript:void(0)" id="drop2"
-                        aria-expanded="false">
-                        <i class="ti ti-bell-ringing"></i>
-                        <div class="notification bg-primary rounded-circle"></div>
-                    </a>
-                    <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up"
-                        aria-labelledby="drop2">
-                        <x-headers.dd-notification />
-                    </div>
-                </li>
-                <!-- ------------------------------- -->
-                <!-- end notification Dropdown -->
-                <!-- ------------------------------- -->
 
                 <!-- ------------------------------- -->
                 <!-- start profile Dropdown -->

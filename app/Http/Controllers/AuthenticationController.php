@@ -39,13 +39,11 @@ class AuthenticationController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        User::create([
             'id_user' => $request->id_user,
             'email' => $request->email,
             'nama' => $request->nama,
             'password' => Hash::make($request->password),
-
-            // ✅ Kolom lain diisi null/default
             'nim' => null,
             'foto' => null,
             'institute' => null,
@@ -55,10 +53,9 @@ class AuthenticationController extends Controller
             'catatan' => null,
         ]);
 
-        Auth::login($user);
-
         return redirect('/login')->with('success', 'Akun berhasil dibuat.');
     }
+
 
 
     public function authenticate(Request $request): RedirectResponse
