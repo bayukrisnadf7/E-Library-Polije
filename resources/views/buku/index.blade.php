@@ -59,62 +59,137 @@
                 </select>
             </div>
             <div class="w-full md:w-[300px]">
-                <input type="text" placeholder="Cari Buku..."
-                    class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <form method="GET" action="{{ route('buku.index') }}" class="w-full md:w-[300px]">
+                    <input type="text" name="search" placeholder="Cari Buku..." value="{{ request('search') }}"
+                        class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </form>
             </div>
         </div>
 
-        <!-- Section Buku -->
-        @php
-            $dummyBooks = [
-                [
-                    'judul' => 'Matematika SMA Kelas 12',
-                    'pengarang' => 'Budi Santoso',
-                    'rating' => 4.5,
-                    'cover' => 'dummy-cover.jpg',
-                ],
-                [
-                    'judul' => 'Fisika Dasar',
-                    'pengarang' => 'Siti Aminah',
-                    'rating' => 4.0,
-                    'cover' => 'dummy-cover.jpg',
-                ],
-                [
-                    'judul' => 'Pemrograman Python',
-                    'pengarang' => 'Joko Widodo',
-                    'rating' => 4.8,
-                    'cover' => 'dummy-cover.jpg',
-                ],
-                [
-                    'judul' => 'Bahasa Inggris Akademik',
-                    'pengarang' => 'Ani Setiani',
-                    'rating' => 4.2,
-                    'cover' => 'dummy-cover.jpg',
-                ],
-            ];
-        @endphp
-
-        @foreach (['Untuk Anda', 'Sering Dipinjam', 'Buku Terbaru'] as $label)
+        <!-- Section Rekomendasi (Jika Ada) -->
+        @if (request()->has('search'))
             <div class="max-w-7xl mx-auto px-6 py-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-bold">{{ $label }}</h2>
-                    <a href="#" class="text-sm text-indigo-600 hover:underline">Lihat semua</a>
-                </div>
+                <h2 class="text-lg font-bold mb-4">Hasil Pencarian</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    @foreach ($dummyBooks as $book)
+                    @forelse ($books as $book)
                         <div class="bg-white rounded-lg shadow hover:shadow-md transition">
-                            <img src="{{ asset('img/' . $book['cover']) }}" alt="{{ $book['judul'] }}"
+                            <img src="{{ asset('covers/' . ($book->cover ?? 'default.jpg')) }}"
+                                onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
                                 class="w-full h-[220px] object-contain rounded-t-lg">
                             <div class="p-3 space-y-1">
-                                <p class="text-sm font-bold truncate">{{ $book['judul'] }}</p>
-                                <p class="text-xs text-gray-600">Pengarang: {{ $book['pengarang'] }}</p>
-                                <p class="text-xs text-yellow-500 font-medium">⭐ {{ $book['rating'] }}</p>
+                                <p class="text-sm font-bold truncate">{{ $book->judul_buku }}</p>
+                                <p class="text-xs text-gray-600">Pengarang: {{ $book->pengarang }}</p>
+                                <p class="text-xs text-gray-600">Tahun: {{ $book->tahun_terbit }}</p>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <p class="text-gray-500">Tidak ada buku ditemukan.</p>
+                    @endforelse
                 </div>
             </div>
-        @endforeach
+        @else
+            @if (isset($rekomendasi) && count($rekomendasi))
+                <div class="max-w-7xl mx-auto px-6 py-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold">Rekomendasi Untuk Anda</h2>
+                        <div class="flex items-center gap-2">
+                            <a href="{{ route('buku.index') }}" class="text-sm text-indigo-600 hover:underline">Lihat
+                                semua</a>
+                            <button onclick="scrollSlider('rekomendasi-slider', -300)" class="text-lg px-2">◀</button>
+                            <button onclick="scrollSlider('rekomendasi-slider', 300)" class="text-lg px-2">▶</button>
+                        </div>
+                    </div>
+                    <div id="rekomendasi-slider" class="overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden">
+                        <div class="flex gap-4">
+                            @foreach ($rekomendasi as $book)
+                                <a href="{{ route('buku.detail', $book->id_buku) }}" class="max-w-[200px] bg-white rounded-lg shadow hover:shadow-md transition">
+                                    <img src="{{ asset('covers/' . ($book->cover ?? 'default.jpg')) }}"
+                                        onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
+                                        class="w-full h-[220px] object-contain rounded-t-lg">
+                                    <div class="p-3 space-y-1">
+                                        <p class="text-sm font-bold truncate">{{ $book->judul_buku }}</p>
+                                        <p class="text-xs text-gray-600">Pengarang: {{ $book->pengarang }}</p>
+                                        <p class="text-xs text-gray-600">Tahun: {{ $book->tahun_terbit }}</p>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
 
+            <div class="max-w-7xl mx-auto px-6 py-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold">Peminjaman Terbanyak</h2>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('buku.index') }}" class="text-sm text-indigo-600 hover:underline">Lihat semua</a>
+                        <button onclick="scrollSlider('peminjaman-slider', -300)" class="text-lg px-2">◀</button>
+                        <button onclick="scrollSlider('peminjaman-slider', 300)" class="text-lg px-2">▶</button>
+                    </div>
+                </div>
+                <div id="peminjaman-slider" class="overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden">
+                    <div class="flex gap-4">
+                        @foreach ($peminjamTerbanyak as $item)
+                            @php
+                                $buku = \App\Models\Buku::find($item->id_buku);
+                            @endphp
+                            @if ($buku)
+                                <a href="{{ route('buku.detail', $buku->id_buku) }}" class="max-w-[200px] bg-white rounded-lg shadow hover:shadow-md transition">
+                                    <img src="{{ asset('covers/' . ($buku->cover ?? 'default.jpg')) }}"
+                                        onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
+                                        class="w-full h-[220px] object-contain rounded-t-lg">
+                                    <div class="p-3 space-y-1">
+                                        <p class="text-sm font-bold truncate">{{ $buku->judul_buku }}</p>
+                                        <p class="text-xs text-gray-600">Pengarang: {{ $buku->pengarang }}</p>
+                                        <p class="text-xs text-gray-600">Tahun: {{ $buku->tahun_terbit }}</p>
+                                        <p class="text-xs text-indigo-500">Dipinjam {{ $item->jumlah_peminjaman }}x</p>
+                                    </div>
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 py-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold">Buku Terbaru</h2>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('buku.index') }}" class="text-sm text-indigo-600 hover:underline">Lihat
+                            semua</a>
+                        <button onclick="scrollSlider('terbaru-slider', -300)" class="text-lg px-2">◀</button>
+                        <button onclick="scrollSlider('terbaru-slider', 300)" class="text-lg px-2">▶</button>
+                    </div>
+                </div>
+                <div id="terbaru-slider" class="overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden">
+                    <div class="flex gap-4">
+                        @foreach ($bukuTerbaru as $book)
+                            <a href="{{ route('buku.detail', $book->id_buku) }}" class="max-w-[200px] bg-white rounded-lg shadow hover:shadow-md transition">
+                                <img src="{{ asset('covers/' . ($book->cover ?? 'default.jpg')) }}"
+                                    onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
+                                    class="w-full h-[220px] object-contain rounded-t-lg">
+                                <div class="p-3 space-y-1">
+                                    <p class="text-sm font-bold truncate">{{ $book->judul_buku }}</p>
+                                    <p class="text-xs text-gray-600">Pengarang: {{ $book->pengarang }}</p>
+                                    <p class="text-xs text-gray-600">Tahun: {{ $book->tahun_terbit }}</p>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function scrollSlider(id, value) {
+            const slider = document.getElementById(id);
+            slider.scrollBy({
+                left: value,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 @endsection

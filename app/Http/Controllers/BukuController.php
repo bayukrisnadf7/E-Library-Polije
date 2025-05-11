@@ -2,12 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use App\Models\Buku;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class BukuController extends Controller
 {
+    public function rekomendasiBuku(Request $request)
+    {
+        $search = $request->query('search');
+        $books = [];
+
+        if ($search) {
+            $books = Buku::where('judul_buku', 'like', "%$search%")
+                ->orWhere('pengarang', 'like', "%$search%")
+                ->orWhere('tahun_terbit', 'like', "%$search%")
+                ->get();
+        }
+
+        // Jika tidak sedang mencari, tampilkan rekomendasi, peminjaman terbanyak dan buku terbaru
+        $rekomendasi = [];
+        $peminjamTerbanyak = [];
+        $bukuTerbaru = [];
+
+        if (!$search) {
+            $user = Auth::user();
+            $jumlah_rekomendasi = 10;
+
+            try {
+                // Rekomendasi
+                $response = $user
+                    ? Http::get("http://147.139.162.244:7000/rekomendasi/user/{$user->id_user}", ['jumlah' => $jumlah_rekomendasi])
+                    : Http::get("http://147.139.162.244:7000/rekomendasi", ['jumlah' => $jumlah_rekomendasi]);
+
+                if ($response->successful()) {
+                    $ids = collect($response->json()['buku'] ?? [])->pluck('id_buku');
+                    $rekomendasi = Buku::whereIn('id_buku', $ids)->get();
+                }
+
+                // Peminjaman Terbanyak
+                $peminjamTerbanyak = DB::table('peminjaman')
+                    ->join('exemplar as e', 'peminjaman.kode_eksemplar', '=', 'e.kode_eksemplar')
+                    ->select('e.id_buku', DB::raw('COUNT(*) as jumlah_peminjaman'))
+                    ->whereNotNull('peminjaman.kode_eksemplar')
+                    ->groupBy('e.id_buku')
+                    ->orderByDesc('jumlah_peminjaman')
+                    ->limit(10)
+                    ->get();
+
+                // Buku Terbaru
+                $bukuTerbaru = Buku::orderByDesc('tahun_terbit')->limit(10)->get();
+            } catch (\Exception $e) {
+                // Log error jika diperlukan
+            }
+        }
+
+        return view('buku.index', ['title' => 'Buku'], compact('books', 'search', 'rekomendasi', 'peminjamTerbanyak', 'bukuTerbaru'));
+    }
+
+    public function detailBuku($id){
+        $buku = Buku::with('eksemplar')->where('id_buku', $id)->first();
+        return view('buku.detail', ['title' => 'Detail Buku'] ,compact('buku'));
+    }
+
+
     public function indexBuku(Request $request)
     {
         ini_set('memory_limit', '-1');

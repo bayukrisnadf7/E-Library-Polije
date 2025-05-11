@@ -3,7 +3,7 @@
     <div class="flex justify-between md:mx-20 mx-8 text-[#2A1D43] md:text-xl text-sm">
         <p class="font-bold mt-10">Artikel</p>
         <div class="flex items-center gap-2 cursor-pointer mt-10">
-            <p class="font-semibold">Selengkapnya</p>
+            <a href="/artikel" class="font-semibold">Selengkapnya</a>
             <img src="img/Vector (5).png" alt="" class="bg-black p-1 rounded-full">
         </div>
     </div>

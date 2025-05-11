@@ -13,6 +13,7 @@ use App\Http\Controllers\KeanggotaanController;
 use App\Http\Controllers\KunjunganController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LupaPasswordController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TataTertibController;
 use App\Http\Controllers\TentangController;
@@ -74,14 +75,20 @@ Route::get('/hubungi-kami', [HubungiKamiController::class, 'index']);
 
 // Buku
 Route::get('/buku', [BukuController::class, 'indexBuku']);
+Route::get('/buku', [BukuController::class, 'rekomendasiBuku'])->name('buku.index');
+Route::get('detail-buku/{id}', [BukuController::class, 'detailBuku'])->name('buku.detail');
+
 
 // Kunjungan
 Route::get('/kunjungan', [KunjunganController::class, 'index']);
 Route::post('/kunjungan', [KunjunganController::class, 'store'])->name('kunjungan.store');
 
 // Profil
-Route::get('/profil', [UserController::class, 'edit'])->name('profil.edit');
-Route::post('/profil', [UserController::class, 'update'])->name('profil.update');
+Route::middleware(['auth'])->group(function () {
+    // Profil hanya untuk user yang login
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profil.edit');
+    Route::post('/profil', [ProfileController::class, 'update'])->name('profil.update');
+});
 
 // Admin
 Route::middleware(['web', 'auth', 'adminonly'])

@@ -4,7 +4,7 @@
     <div class="flex justify-between md:mt-16 mt-10 text-[#2A1D43] md:text-xl text-sm md:mx-20 mx-5">
         <p class=" font-bold">Berita</p>
         <div class="flex items-center gap-2 cursor-pointer">
-            <p class="font-semibold">Selengkapnya</p>
+            <a href="/berita" class="font-semibold">Selengkapnya</a>
             <img src="img/Vector (5).png" alt="" class="bg-black p-1 rounded-full">
         </div>
     </div>

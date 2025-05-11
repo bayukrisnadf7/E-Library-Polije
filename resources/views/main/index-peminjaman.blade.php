@@ -116,7 +116,7 @@
             </div>
             <div class="px-4 pb-4 d-flex justify-content-end">
                 <div class="pagination pagination-sm">
-                    {{ $peminjaman->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
+                    {{ $peminjaman->appends(request()->query())->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
         </div>

@@ -14,13 +14,14 @@
                 <form method="GET" action="{{ route('main.index-anggota') }}" class="d-flex gap-2">
                     <div class="position-relative" style="width: 250px;">
                         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y ms-2 text-muted"></i>
-                        <input type="text" name="search" value="{{ request('search') }}" class="form-control ps-4" placeholder="Cari...">
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control ps-4"
+                            placeholder="Cari...">
                     </div>
                     <button type="submit" class="btn btn-outline-muted">
                         <i class="ti ti-search"></i> Cari
                     </button>
 
-                    @if(request()->has('search') || request()->has('status_peminjaman') || request()->has('tanggal'))
+                    @if (request()->has('search') || request()->has('status_peminjaman') || request()->has('tanggal'))
                         <a href="{{ route('main.index-anggota') }}" class="btn btn-outline-secondary">
                             <i class="ti ti-refresh"></i> Reset
                         </a>
@@ -116,7 +117,7 @@
             </div>
             <div class="px-4 pb-4 d-flex justify-content-end">
                 <div class="pagination pagination-sm">
-                    {{ $anggota->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
+                    {{ $anggota->appends(request()->query())->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
         </div>

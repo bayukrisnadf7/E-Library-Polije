@@ -5,7 +5,7 @@
             <a href="/">
 
                 <div class="flex gap-3 items-center">
-                    <img src="img/logopol.png" alt="Logo" class="md:w-14 w-10">
+                    <img src="{{ asset('img/logopol.png') }}" alt="Logo" class="md:w-14 w-10">
                     <div class="flex flex-col  text-white font-bold md:text-sm text-xs">
                         <p>UPA PERPUSTAKAAN</p>
                         <div class="flex md:gap-[19px] gap-[17px]">
@@ -154,27 +154,49 @@
         @auth
             @php
                 $user = Auth::user();
-                $fotoProfil = $user && $user->foto ? asset('user/' . $user->foto) : asset('img/default.png');
+                $fotoProfil =
+                    $user->foto && file_exists(public_path('user/' . $user->foto))
+                        ? asset('user/' . $user->foto)
+                        : asset('img/default_profil.png');
             @endphp
 
             <div class="relative group">
-                <img src="{{ $fotoProfil }}" class="w-10 h-10 rounded-full cursor-pointer" alt="User Avatar">
+                <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center">
+                    <img src="{{ $fotoProfil }}" class="w-9 h-9 rounded-full object-cover" alt="User Avatar">
+                </div>
                 <div
                     class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out delay-200 z-50">
                     <a href="/profil" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil</a>
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="hidden">
                         @csrf
-                        <button type="submit" class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
-                            Logout
-                        </button>
                     </form>
+
+                    <button type="button" onclick="confirmLogout()"
+                        class="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
+                        Logout
+                    </button>
                 </div>
             </div>
         @endauth
-
-
-        <!-- Tombol Login -->
-
-
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Yakin ingin logout?',
+            text: 'Anda akan keluar dari akun.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logoutForm').submit();
+            }
+        });
+    }
+</script>
+
