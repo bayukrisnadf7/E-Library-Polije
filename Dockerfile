@@ -4,7 +4,7 @@ FROM php:8.4-fpm
 # Install dependensi yang diperlukan
 RUN apt-get update && apt-get install -y \
     netcat-openbsd \
-    python3-pip \
+    python3-venv \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -42,7 +42,16 @@ RUN npm ci
 RUN npm run build
 RUN cp public/build/.vite/manifest.json public/build
 
-RUN pip install -r requirements.txt
+# Bikin virtualenv
+ENV VENV_PATH=/opt/venv
+RUN python3 -m venv $VENV_PATH
+
+# Aktifin venv, dan pasang pip deps
+ENV PATH="$VENV_PATH/bin:$PATH"
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+#Bersihin cache APT
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Jalankan entrypoint script
 ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
