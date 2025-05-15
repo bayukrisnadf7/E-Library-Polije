@@ -37,8 +37,8 @@ class BukuController extends Controller
             try {
                 // Rekomendasi
                 $response = $user
-                    ? Http::get("http://147.139.162.244:7000/rekomendasi/user/{$user->id_user}", ['jumlah' => $jumlah_rekomendasi])
-                    : Http::get("http://147.139.162.244:7000/rekomendasi", ['jumlah' => $jumlah_rekomendasi]);
+                    ? Http::get("http://localhost:7000/rekomendasi/user/{$user->id_user}", ['jumlah' => $jumlah_rekomendasi])
+                    : Http::get("http://localhost:7000/rekomendasi", ['jumlah' => $jumlah_rekomendasi]);
 
                 if ($response->successful()) {
                     $ids = collect($response->json()['buku'] ?? [])->pluck('id_buku');

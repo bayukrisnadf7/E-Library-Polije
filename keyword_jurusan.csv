@@ -1,0 +1,10 @@
+Kode,Jurusan,Keyword
+A,Pertanian,"['agrikultur', 'agronomi', 'budidaya tanaman', 'tanah & air', 'teknologi pangan', 'perkebunan', 'irigasi', 'hidroponik']"
+B,Pertanian,"['agrikultur', 'agronomi', 'budidaya tanaman', 'tanah & air', 'teknologi pangan', 'perkebunan', 'irigasi', 'hidroponik']"
+C,Peternakan,"['manajemen ternak', 'nutrisi hewan', 'kesehatan hewan', 'budidaya sapi', 'unggas', 'pakan ternak', 'genetika ternak']"
+D,Manajemen,"['manajemen bisnis', 'manajemen pemasaran', 'kepemimpinan', 'ekonomi', 'akuntansi', 'kewirausahaan', 'SDM', 'strategi bisnis']"
+E,Teknologi,"['pemrograman', 'kecerdasan buatan', 'data science', 'IoT', 'teknologi informasi', 'jaringan komputer', 'cybersecurity']"
+F,Bahasa,"['linguistik', 'sastra', 'tata bahasa', 'bahasa Inggris', 'penerjemahan', 'fonologi', 'morfologi', 'komunikasi']"
+G,Kesehatan,"['keperawatan', 'farmasi', 'kesehatan masyarakat', 'gizi', 'anatomi', 'fisiologi', 'epidemiologi', 'psikologi kesehatan']"
+H,Teknik,"['teknik sipil', 'teknik elektro', 'teknik mesin', 'otomasi', 'robotika', 'CAD', 'mekanika', 'elektronika']"
+I,Bisnis,"['bisnis digital', 'e-commerce', 'pemasaran', 'investasi', 'startup', 'manajemen bisnis', 'ekonomi mikro', 'ekonomi makro']"

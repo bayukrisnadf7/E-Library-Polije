@@ -4,6 +4,7 @@ FROM php:8.4-fpm
 # Install dependensi yang diperlukan
 RUN apt-get update && apt-get install -y \
     netcat-openbsd \
+    pyton3-pip \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -40,6 +41,8 @@ RUN composer install --no-interaction --optimize-autoloader
 RUN npm ci
 RUN npm run build
 RUN cp public/build/.vite/manifest.json public/build
+
+RUN pip install -r requirements.txt
 
 # Jalankan entrypoint script
 ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
