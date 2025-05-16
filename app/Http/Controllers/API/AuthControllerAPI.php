@@ -15,9 +15,9 @@ class AuthControllerAPI extends Controller
     public function register(Request $request)
     {
         // Check if the username already exists
-        $id_userExists = User::where('id_user', $request->id_user)->exists();
-        if ($id_userExists) {
-            return response()->json(['message' => 'id_user already exists'], 403);
+        $user_idExists = User::where('user_id', $request->user_id)->exists();
+        if ($user_idExists) {
+            return response()->json(['message' => 'user_id already exists'], 403);
         }
 
         // Check if the email is valid and not already used
@@ -39,7 +39,7 @@ class AuthControllerAPI extends Controller
         // Baca file gambar dan ubah jadi BLOB
         $foto = file_get_contents($request->file('foto'));
         $user = User::create([
-            'id_user' => $request->id_user,
+            'user_id' => $request->user_id,
             'email' => $request->email,
             'nama' => $request->nama,
             'password' => Hash::make($request->password),
@@ -58,7 +58,7 @@ class AuthControllerAPI extends Controller
     public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'id_user' => ['required'],
+            'user_id' => ['required'],
             'password' => ['required'],
         ]);
 
@@ -75,7 +75,7 @@ class AuthControllerAPI extends Controller
         }
 
         return back()->withErrors([
-            'id_user' => 'ID atau password salah.',
+            'user_id' => 'ID atau password salah.',
         ]);
     }
 
@@ -102,10 +102,10 @@ class AuthControllerAPI extends Controller
 
     public function checkSession(Request $request)
     {
-        if ($request->session()->has('id_user')) {
+        if ($request->session()->has('user_id')) {
             return response()->json([
                 'message' => 'Session exists',
-                'id_user' => $request->session()->get('id_user'),
+                'user_id' => $request->session()->get('user_id'),
             ]);
         } else {
             return response()->json([

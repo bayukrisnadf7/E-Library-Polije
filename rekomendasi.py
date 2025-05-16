@@ -1,14 +1,14 @@
-from fastapi import FastAPI, Query
-from fastapi.responses import JSONResponse
-from typing import Optional
-import mysql.connector
-import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.neighbors import NearestNeighbors
-import json
-import re
+from fastapi.responses import JSONResponse
+from fastapi import FastAPI, Query
+from dotenv import load_dotenv
+from typing import Optional
+import mysql.connector
+import pandas as pd
 import difflib
+import json
 import re
 import os
 
@@ -16,6 +16,7 @@ app = FastAPI()
 
 #======================= LOAD DATABASE =======================
 print("Loading Database")
+load_dotenv()
 
 db_host = os.environ.get("DB_HOST", "localhost")
 db_user = os.environ.get("DB_USERNAME", "root")
