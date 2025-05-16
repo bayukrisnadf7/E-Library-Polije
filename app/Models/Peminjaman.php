@@ -20,11 +20,11 @@ class Peminjaman extends Model
         'tgl_pengembalian',
         'status_peminjaman',
         'kode_eksemplar',
-        'id_user',
+        'user_id',
     ];
     public function user()
 {
-    return $this->belongsTo(User::class, 'id_user', 'id_user'); // sesuaikan jika primary key berbeda
+    return $this->belongsTo(User::class, 'user_id', 'user_id'); // sesuaikan jika primary key berbeda
 }
 
 }

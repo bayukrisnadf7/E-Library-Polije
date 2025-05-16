@@ -8,7 +8,7 @@
 @endsection
 
 @section('pageContent')
-    <form action="{{ route('anggota.update', $user->id_user) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('anggota.update', $user->user_id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row w-100 g-4 h-100">

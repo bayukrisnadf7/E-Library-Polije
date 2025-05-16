@@ -16,22 +16,22 @@ class KunjunganController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_user' => 'required|string|max:255',
+            'user_id' => 'required|string|max:255',
         ]);
 
-        $user = \App\Models\User::where('id_user', $request->id_user)->first();
+        $user = \App\Models\User::where('user_id', $request->user_id)->first();
 
         if (!$user) {
             return redirect()->back()->with('error', 'User tidak ditemukan.');
         }
 
         Kunjungan::create([
-            'id_user' => $user->id_user,
+            'user_id' => $user->user_id,
         ]);
 
         return redirect()->back()->with([
             'success' => true,
-            'user_id' => $user->id_user,
+            'user_id' => $user->user_id,
             'user_name' => $user->nama,
             'user_photo' => $user->foto,
         ]);

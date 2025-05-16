@@ -10,9 +10,9 @@ class Kunjungan extends Model
     protected $primaryKey = 'id_kunjungan';
     
     protected $fillable = [
-        'id_user'
+        'user_id'
     ];
     public function user(){
-        return $this->belongsTo(User::class, 'id_user', 'id_user');
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 }

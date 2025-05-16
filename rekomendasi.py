@@ -177,7 +177,7 @@ mapping = df_exemplar.set_index('kode_eksemplar')['id_buku'].to_dict()
 df_peminjaman['id_buku'] = df_peminjaman['kode_eksemplar'].map(mapping)
 
 # Buat tabel pivot user-item
-user_item_matrix = df_peminjaman.pivot_table(index='id_user', columns='id_buku', aggfunc='size', fill_value=0)
+user_item_matrix = df_peminjaman.pivot_table(index='user_id', columns='id_buku', aggfunc='size', fill_value=0)
 
 # Inisialisasi model KNN
 knn = NearestNeighbors(metric='cosine', algorithm='brute')
@@ -231,9 +231,9 @@ def find_closest_user_id(user_id, user_list):
         return closest_matches[0] if closest_matches else None
 
 # rekomendasi dari id user jurusan
-def rekomendasi_topik(id_user, jumlah=None):
+def rekomendasi_topik(user_id, jumlah=None):
     # --- Cek dan ekstrak prefix ---
-    match = re.match(r"([A-Za-z]+)(\d+)", id_user)
+    match = re.match(r"([A-Za-z]+)(\d+)", user_id)
     if not match:
         return pd.DataFrame()
 

@@ -13,7 +13,7 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user(); // Ambil user yang sedang login
-        $riwayat = Peminjaman::where('id_user', Auth::id())->latest()->get();
+        $riwayat = Peminjaman::where('user_id', Auth::id())->latest()->get();
         return view('profil.index', ['title' => 'Profil'], compact('user', 'riwayat'));
     }
 

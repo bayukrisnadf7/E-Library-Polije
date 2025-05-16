@@ -31,7 +31,7 @@
             <div class="flex flex-col place-items-center gap-5 font-semibold">
                 <p>Siap untuk membaca buku hari ini? Silahkan masukan NIM/NIP</p>
                 <div class="flex gap-3 w-[870px] max-w-full">
-                    <input type="text" name="id_user" placeholder="Masukkan NIM atau NIP" required
+                    <input type="text" name="user_id" placeholder="Masukkan NIM atau NIP" required
                         class="w-full p-3 rounded-lg border-2 border-[#5B9BC1] mt-1">
                     <button type="submit"
                         class="bg-[#3694A8] w-56 text-white rounded-xl flex gap-2 justify-center items-center">Konfirmasi</button>

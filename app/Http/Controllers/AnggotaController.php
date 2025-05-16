@@ -32,7 +32,7 @@ class AnggotaController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'id_user' => 'required|string',
+            'user_id' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'nama' => 'required|string',
             'nim' => 'nullable|string',
@@ -84,7 +84,7 @@ class AnggotaController extends Controller
         $user = User::findOrFail($id);
 
         $data = $request->validate([
-            'email' => 'required|email|unique:users,email,' . $user->id_user . ',id_user',
+            'email' => 'required|email|unique:users,email,' . $user->user_id . ',user_id',
             'nama' => 'required|string',
             'nim' => 'nullable|string',
             'institute' => 'nullable|string',
@@ -148,7 +148,7 @@ class AnggotaController extends Controller
             'Expires' => '0'
         ];
 
-        $columns = ['id_user', 'email', 'nama', 'nim', 'foto', 'institute', 'no_telepon', 'jenis_anggota', 'alamat_anggota', 'catatan', 'password', 'remember_token', 'created_at', 'updated_at'];
+        $columns = ['user_id', 'email', 'nama', 'nim', 'foto', 'institute', 'no_telepon', 'jenis_anggota', 'alamat_anggota', 'catatan', 'password', 'remember_token', 'created_at', 'updated_at'];
 
         $callback = function () use ($anggota, $columns) {
             $file = fopen('php://output', 'w');
@@ -156,7 +156,7 @@ class AnggotaController extends Controller
 
             foreach ($anggota as $user) {
                 fputcsv($file, [
-                    $user->id_user,
+                    $user->user_id,
                     $user->email,
                     $user->nama,
                     $user->nim,
@@ -184,7 +184,7 @@ class AnggotaController extends Controller
         $ids = explode(',', $request->ids);
 
         foreach ($ids as $id) {
-            $user = User::where('id_user', $id)->first();
+            $user = User::where('user_id', $id)->first();
             if ($user) {
                 // Hapus foto jika ada
                 if ($user->foto && file_exists(public_path($user->foto))) {

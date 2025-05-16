@@ -17,9 +17,9 @@ return new class extends Migration
             $table->date('tgl_pengembalian');
             $table->string('status_peminjaman');
             $table->string('kode_eksemplar');
-            $table->string('id_user');
+            $table->string('user_id');
             $table->foreign('kode_eksemplar')->references('kode_eksemplar')->on('exemplar')->onDelete('cascade');            
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

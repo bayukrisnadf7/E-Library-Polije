@@ -43,7 +43,7 @@
                         <label class="font-bold text-xl text-gray-800">Anggota</label>
                         <div class="flex flex-col mt-3">
                             <p class="font-medium text-gray-700">ID User <span class="text-red-500">*</span></p>
-                            <input name="id_user" type="text"
+                            <input name="user_id" type="text"
                                 class="mt-1 border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline placeholder-gray-400 placeholder:text-sm"
                                 placeholder="Masukan email">
                         </div>

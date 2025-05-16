@@ -18,13 +18,11 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $primaryKey = 'id_user'; // ✅ Ini penting
-
-    public $incrementing = false; // ✅ kalau id_user bukan auto-increment (misalnya NIM)
-
-    protected $keyType = 'string'; // ✅ kalau id_user berupa string/NIM
+    protected $primaryKey = 'user_id'; // ✅ Ini penting
+    public $incrementing = false; // ✅ kalau user_id bukan auto-increment (misalnya NIM)
+    protected $keyType = 'string'; // ✅ kalau user_id berupa string/NIM
     protected $fillable = [
-        'id_user',
+        'user_id',
         'email',
         'nama',
         'nim', // <-- pastikan ini ada!
@@ -48,7 +46,7 @@ class User extends Authenticatable
     ];
     public function getAuthIdentifierName()
     {
-        return 'id_user'; // default-nya 'email'
+        return 'user_id'; // default-nya 'email'
     }
 
 

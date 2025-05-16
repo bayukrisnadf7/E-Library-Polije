@@ -33,11 +33,11 @@
 
                     <!-- ID User -->
                     <div class="flex flex-col gap-1">
-                        <label for="id_user" class="font-medium">ID User (NIM / NIDN)</label>
-                        @error('id_user')
+                        <label for="user_id" class="font-medium">ID User (NIM / NIDN)</label>
+                        @error('user_id')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
-                        <input type="text" name="id_user" id="id_user" value="{{ old('id_user') }}"
+                        <input type="text" name="user_id" id="user_id" value="{{ old('user_id') }}"
                             class="bg-[#E1E1E1] py-2 rounded-lg px-3 placeholder:text-[#A8A8A8] border-none focus:outline-none focus:ring-0"
                             placeholder="ID User">
                     </div>

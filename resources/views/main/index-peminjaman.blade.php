@@ -96,8 +96,8 @@
                     <tbody>
                         @foreach ($peminjaman as $item)
                             <tr>
-                                <td><input type="checkbox" class="book-checkbox" value="{{ $item->id_user }}"></td>
-                                <td>{{ $item->id_user }}</td>
+                                <td><input type="checkbox" class="book-checkbox" value="{{ $item->user_id }}"></td>
+                                <td>{{ $item->user_id }}</td>
                                 <td>{{ $item->user->nama ?? '-' }}</td>
                                 <td>{{ $item->kode_eksemplar }}</td>
                                 <td>{{ $item->tgl_peminjaman }}</td>

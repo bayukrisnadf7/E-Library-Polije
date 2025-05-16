@@ -19,7 +19,7 @@ class PeminjamanController extends Controller
             'Expires' => '0'
         ];
 
-        $columns = ['id_peminjaman', 'tgl_peminjaman', 'tgl_pengembalian', 'status_peminjaman', 'barcode_peminjaman', 'kode_eksemplar', 'id_user','created_at', 'updated_at'];
+        $columns = ['id_peminjaman', 'tgl_peminjaman', 'tgl_pengembalian', 'status_peminjaman', 'barcode_peminjaman', 'kode_eksemplar', 'user_id','created_at', 'updated_at'];
 
         $callback = function () use ($peminjaman, $columns) {
             $file = fopen('php://output', 'w');
@@ -33,7 +33,7 @@ class PeminjamanController extends Controller
                     $pmjm->status_peminjaman,
                     $pmjm->barcode_peminjaman,
                     $pmjm->kode_eksemplar,
-                    $pmjm->id_user,
+                    $pmjm->user_id,
                     $pmjm->created_at,
                     $pmjm->updated_at
                 ]);

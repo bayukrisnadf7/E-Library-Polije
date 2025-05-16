@@ -33,14 +33,14 @@ class AuthenticationController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'id_user' => 'required|string|unique:users,id_user',
+            'user_id' => 'required|string|unique:users,user_id',
             'email' => 'required|email|unique:users,email',
             'nama' => 'required|string|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         User::create([
-            'id_user' => $request->id_user,
+            'user_id' => $request->user_id,
             'email' => $request->email,
             'nama' => $request->nama,
             'password' => Hash::make($request->password),
@@ -61,7 +61,7 @@ class AuthenticationController extends Controller
     public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'id_user' => ['required'],
+            'user_id' => ['required'],
             'password' => ['required'],
         ]);
 
@@ -78,7 +78,7 @@ class AuthenticationController extends Controller
         }
 
         return back()->withErrors([
-            'id_user' => 'ID atau password salah.',
+            'user_id' => 'ID atau password salah.',
         ]);
     }
     public function logout(Request $request)

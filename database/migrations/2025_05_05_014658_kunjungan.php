@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('kunjungan', function (Blueprint $table) {
             $table->id('id_kunjungan');
-            $table->string('id_user');
-            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+            $table->string('user_id');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

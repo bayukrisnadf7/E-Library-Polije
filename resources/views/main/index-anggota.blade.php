@@ -64,8 +64,8 @@
                     <tbody id="tableBody">
                         @foreach ($anggota as $item)
                             <tr>
-                                <td><input type="checkbox" class="book-checkbox" value="{{ $item->id_user }}"></td>
-                                <td>{{ $item->id_user }}</td>
+                                <td><input type="checkbox" class="book-checkbox" value="{{ $item->user_id }}"></td>
+                                <td>{{ $item->user_id }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td>
                                     @switch($item->jenis_anggota)
@@ -98,10 +98,10 @@
                                     @endswitch
                                 </td>
                                 <td>
-                                    <a href="{{ route('anggota.edit', $item->id_user) }}" class="btn btn-warning btn-sm">
+                                    <a href="{{ route('anggota.edit', $item->user_id) }}" class="btn btn-warning btn-sm">
                                         <i class="ti ti-pencil"></i>
                                     </a>
-                                    <form action="{{ route('anggota.delete', $item->id_user) }}" method="POST"
+                                    <form action="{{ route('anggota.delete', $item->user_id) }}" method="POST"
                                         class="d-inline" onsubmit="return confirmDelete(this)">
                                         @csrf
                                         @method('DELETE')

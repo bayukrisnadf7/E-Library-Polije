@@ -39,7 +39,7 @@ class BukuController extends Controller
             try {
                 // Rekomendasi
                 $response = $user
-                    ? Http::get("http://localhost:7000/rekomendasi/user/{$user->id_user}", ['jumlah' => $jumlah_rekomendasi])
+                    ? Http::get("http://localhost:7000/rekomendasi/user/{$user->user_id}", ['jumlah' => $jumlah_rekomendasi])
                     : Http::get("http://localhost:7000/rekomendasi", ['jumlah' => $jumlah_rekomendasi]);
 
                 if ($response->successful()) {
@@ -104,7 +104,7 @@ class BukuController extends Controller
             'status_peminjaman' => '3',
             'barcode_peminjaman' => 'PMJ-' . strtoupper(Str::random(6)), // random kode unik
             'kode_eksemplar' => $eksemplar->kode_eksemplar,
-            'id_user' => auth()->user()->id_user, // pastikan user sudah login
+            'user_id' => auth()->user()->user_id, // pastikan user sudah login
         ]);
 
         $peminjaman->save();
