@@ -6,11 +6,18 @@
             <!-- Sidebar Cover + Barcode -->
             <div class="col-span-1 space-y-4">
                 <div class="bg-white p-4 rounded shadow">
-                    <img src="{{ asset('covers/' . ($buku->cover ?? 'default.jpg')) }}" onerror="this.onerror=null;this.src='{{ asset('img/default-book.jpeg') }}';" class="w-full h-auto object-contain rounded" alt="Cover">
+                    <img src="{{ asset('covers/' . ($buku->cover ?? 'default.jpg')) }}"
+                        onerror="this.onerror=null;this.src='{{ asset('img/default-book.jpeg') }}';"
+                        class="w-full h-auto object-contain rounded" alt="Cover">
                 </div>
                 <div class="text-center">
-                    <img src="{{ asset('img/barcode.png') }}" alt="Barcode" class="mx-auto">
-                    <button class="mt-4 bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">Pinjam Buku</button>
+                    <form action="{{ route('pinjam.buku', $buku->id_buku) }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="mt-4 bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">
+                            Pinjam Buku
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -29,6 +36,30 @@
                 <p class="text-sm text-gray-700 leading-relaxed">
                     {{ $buku->abstrak ?? 'Tidak ada deskripsi tersedia.' }}
                 </p>
+
+
+
+                <!-- Info Buku -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p><strong>Pernyataan Tanggung Jawab:</strong> {{ $buku->penanggung_jawab }}</p>
+                        <p><strong>Pengarang:</strong> {{ $buku->pengarang }}</p>
+                        <p><strong>No. Panggil:</strong> {{ $buku->no_panggil }}</p>
+                        <p><strong>Klasifikasi:</strong> {{ $buku->klasifikasi }}</p>
+                        <p><strong>Judul Seri:</strong> {{ $buku->judul_seri }}</p>
+                        <p><strong>GMD:</strong> {{ $buku->gmd }}</p>
+                        <p><strong>Bahasa:</strong> {{ $buku->bahasa }}</p>
+                    </div>
+                    <div>
+                        <p><strong>Penerbit:</strong> {{ $buku->penerbit }}</p>
+                        <p><strong>Tempat Terbit:</strong> {{ $buku->tempat_penerbit }}</p>
+                        <p><strong>Tahun Terbit:</strong> {{ $buku->tahun_terbit }}</p>
+                        <p><strong>Subyek:</strong> {{ $buku->subyek }}</p>
+                        <p><strong>Deskripsi Fisik:</strong> {{ $buku->deskripsi_fisik }}</p>
+                        <p><strong>ISBN:</strong> {{ $buku->ISBN }}</p>
+                        <p><strong>Info Detail Spesifik:</strong> {!! nl2br(e($buku->info_detail)) !!}</p>
+                    </div>
+                </div>
 
                 <!-- Ketersediaan -->
                 <div>
@@ -52,29 +83,31 @@
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Info Buku -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                        <p><strong>Pernyataan Tanggung Jawab:</strong> {{ $buku->penanggung_jawab }}</p>
-                        <p><strong>Pengarang:</strong> {{ $buku->pengarang }}</p>
-                        <p><strong>No. Panggil:</strong> {{ $buku->no_panggil }}</p>
-                        <p><strong>Klasifikasi:</strong> {{ $buku->klasifikasi }}</p>
-                        <p><strong>Judul Seri:</strong> {{ $buku->judul_seri }}</p>
-                        <p><strong>GMD:</strong> {{ $buku->gmd }}</p>
-                        <p><strong>Bahasa:</strong> {{ $buku->bahasa }}</p>
-                    </div>
-                    <div>
-                        <p><strong>Penerbit:</strong> {{ $buku->penerbit }}</p>
-                        <p><strong>Tempat Terbit:</strong> {{ $buku->tempat_penerbit }}</p>
-                        <p><strong>Tahun Terbit:</strong> {{ $buku->tahun_terbit }}</p>
-                        <p><strong>Subyek:</strong> {{ $buku->subyek }}</p>
-                        <p><strong>Deskripsi Fisik:</strong> {{ $buku->deskripsi_fisik }}</p>
-                        <p><strong>ISBN:</strong> {{ $buku->ISBN }}</p>
-                        <p><strong>Info Detail Spesifik:</strong> {!! nl2br(e($buku->info_detail)) !!}</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+            });
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+            });
+        </script>
+    @endif
 @endsection

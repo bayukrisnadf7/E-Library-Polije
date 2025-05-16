@@ -74,8 +74,8 @@
                     @forelse ($books as $book)
                         <div class="bg-white rounded-lg shadow hover:shadow-md transition">
                             <img src="{{ asset('covers/' . ($book->cover ?? 'default.jpg')) }}"
-                                onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
-                                class="w-full h-[220px] object-contain rounded-t-lg">
+                                onerror="this.onerror=null;this.src='{{ asset('img/default-book.jpeg') }}';"
+                                class="min-w-[200px] h-[220px]  object-contain rounded-t-lg">
                             <div class="p-3 space-y-1">
                                 <p class="text-sm font-bold truncate">{{ $book->judul_buku }}</p>
                                 <p class="text-xs text-gray-600">Pengarang: {{ $book->pengarang }}</p>
@@ -104,8 +104,8 @@
                             @foreach ($rekomendasi as $book)
                                 <a href="{{ route('buku.detail', $book->id_buku) }}" class="max-w-[200px] bg-white rounded-lg shadow hover:shadow-md transition">
                                     <img src="{{ asset('covers/' . ($book->cover ?? 'default.jpg')) }}"
-                                        onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
-                                        class="w-full h-[220px] object-contain rounded-t-lg">
+                                        onerror="this.onerror=null;this.src='{{ asset('img/default-book.jpeg') }}';"
+                                        class="min-w-[200px] h-[220px] object-contain rounded-t-lg">
                                     <div class="p-3 space-y-1">
                                         <p class="text-sm font-bold truncate">{{ $book->judul_buku }}</p>
                                         <p class="text-xs text-gray-600">Pengarang: {{ $book->pengarang }}</p>
@@ -136,8 +136,8 @@
                             @if ($buku)
                                 <a href="{{ route('buku.detail', $buku->id_buku) }}" class="max-w-[200px] bg-white rounded-lg shadow hover:shadow-md transition">
                                     <img src="{{ asset('covers/' . ($buku->cover ?? 'default.jpg')) }}"
-                                        onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
-                                        class="w-full h-[220px] object-contain rounded-t-lg">
+                                        onerror="this.onerror=null;this.src='{{ asset('img/default-book.jpeg') }}';"
+                                        class="min-w-[200px] h-[220px] object-contain rounded-t-lg">
                                     <div class="p-3 space-y-1">
                                         <p class="text-sm font-bold truncate">{{ $buku->judul_buku }}</p>
                                         <p class="text-xs text-gray-600">Pengarang: {{ $buku->pengarang }}</p>
@@ -166,8 +166,8 @@
                         @foreach ($bukuTerbaru as $book)
                             <a href="{{ route('buku.detail', $book->id_buku) }}" class="max-w-[200px] bg-white rounded-lg shadow hover:shadow-md transition">
                                 <img src="{{ asset('covers/' . ($book->cover ?? 'default.jpg')) }}"
-                                    onerror="this.onerror=null;this.src='{{ asset('img/default.jpg') }}';"
-                                    class="w-full h-[220px] object-contain rounded-t-lg">
+                                    onerror="this.onerror=null;this.src='{{ asset('img/default-book.jpeg') }}';"
+                                    class="min-w-[200px] h-[220px] object-contain rounded-t-lg">
                                 <div class="p-3 space-y-1">
                                     <p class="text-sm font-bold truncate">{{ $book->judul_buku }}</p>
                                     <p class="text-xs text-gray-600">Pengarang: {{ $book->pengarang }}</p>

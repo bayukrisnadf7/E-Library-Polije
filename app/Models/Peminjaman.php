@@ -19,7 +19,6 @@ class Peminjaman extends Model
         'tgl_peminjaman',
         'tgl_pengembalian',
         'status_peminjaman',
-        'barcode_peminjaman',
         'kode_eksemplar',
         'id_user',
     ];

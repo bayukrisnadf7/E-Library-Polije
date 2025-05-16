@@ -16,7 +16,6 @@ return new class extends Migration
             $table->date('tgl_peminjaman');
             $table->date('tgl_pengembalian');
             $table->string('status_peminjaman');
-            $table->string('barcode_peminjaman');
             $table->string('kode_eksemplar');
             $table->string('id_user');
             $table->foreign('kode_eksemplar')->references('kode_eksemplar')->on('exemplar')->onDelete('cascade');            

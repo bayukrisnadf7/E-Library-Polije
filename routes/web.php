@@ -77,6 +77,7 @@ Route::get('/hubungi-kami', [HubungiKamiController::class, 'index']);
 Route::get('/buku', [BukuController::class, 'indexBuku']);
 Route::get('/buku', [BukuController::class, 'rekomendasiBuku'])->name('buku.index');
 Route::get('detail-buku/{id}', [BukuController::class, 'detailBuku'])->name('buku.detail');
+Route::post('/buku/{id}', [BukuController::class, 'pinjam'])->name('pinjam.buku');
 
 
 // Kunjungan

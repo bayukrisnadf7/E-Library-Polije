@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str; // Tambahkan ini di atas jika belum
+use Carbon\Carbon; // Untuk tanggal
 
 
 class BukuController extends Controller
@@ -65,10 +67,52 @@ class BukuController extends Controller
         return view('buku.index', ['title' => 'Buku'], compact('books', 'search', 'rekomendasi', 'peminjamTerbanyak', 'bukuTerbaru'));
     }
 
-    public function detailBuku($id){
+    public function detailBuku($id)
+    {
         $buku = Buku::with('eksemplar')->where('id_buku', $id)->first();
-        return view('buku.detail', ['title' => 'Detail Buku'] ,compact('buku'));
+
+        // Filter eksemplar yang tidak berakhiran dengan angka 1
+        if ($buku) {
+            $buku->eksemplar = $buku->eksemplar->filter(function ($item) {
+                return !preg_match('/1$/', $item->kode_eksemplar);
+            });
+        }
+
+        return view('buku.detail', ['title' => 'Detail Buku'], compact('buku'));
     }
+    public function pinjam($id)
+    {
+        $buku = Buku::with('eksemplar')->findOrFail($id);
+
+        // Ambil semua eksemplar yang tersedia, kecuali urutan pertama
+        $eksemplar = $buku->eksemplar->filter(function ($item, $index) {
+            return $index > 0 && $item->status === 'Tersedia';
+        })->first();
+
+        if (!$eksemplar) {
+            return back()->with('error', 'Maaf, tidak ada eksemplar yang tersedia untuk dipinjam.');
+        }
+
+        // Tandai sebagai dipinjam
+        $eksemplar->status = 'Tidak Tersedia';
+        $eksemplar->save();
+
+        // Generate data peminjaman
+        $peminjaman = new Peminjaman([ // atau bisa pakai ID khusus lainnya
+            'tgl_peminjaman' => Carbon::now(),
+            'tgl_pengembalian' => Carbon::now()->addDays(7), // misalnya default 7 hari
+            'status_peminjaman' => '3',
+            'barcode_peminjaman' => 'PMJ-' . strtoupper(Str::random(6)), // random kode unik
+            'kode_eksemplar' => $eksemplar->kode_eksemplar,
+            'id_user' => auth()->user()->id_user, // pastikan user sudah login
+        ]);
+
+        $peminjaman->save();
+
+        return back()->with('success', 'Buku berhasil dipinjam dengan kode: ' . $eksemplar->kode_eksemplar);
+    }
+
+
 
 
     public function indexBuku(Request $request)
