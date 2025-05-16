@@ -39,5 +39,7 @@ php artisan cache:clear
 php artisan route:clear
 php artisan view:clear
 
+uvicorn rekomendasi:app --host 0.0.0.0 --port 7000 --reload &
+
 # Jalankan PHP-FPM
 exec php-fpm
